@@ -9,6 +9,13 @@
 /tb_sc/ch_[2-9][0-9]_*
 /tb_sc/ch_[1-9][0-9][0-9]_*
 
+# Ignore tb_sc data and tools folders
+/tb_sc/data/
+/tb_sc/tools/
+
+# Never share root-level Python files
+/*.py
+
 # Ignore local and generated files
 .venv/
 .venv-1/
