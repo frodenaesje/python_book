@@ -3,6 +3,8 @@
 !.gitignore
 !tb_sc/
 !tb_sc/**
+!tb_qa_en/
+!tb_qa_en/**
 
 # Ignore tb_sc chapters 15 and above
 /tb_sc/ch_1[5-9]_*
