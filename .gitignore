@@ -13,11 +13,6 @@
 /tb_sc/data/
 /tb_sc/tools/
 
-# Ignore Python, text, and JSON files inside tb_sc
-/tb_sc/**/*.py
-/tb_sc/**/*.txt
-/tb_sc/**/*.json
-
 # Never share root-level Python files
 /*.py
 
