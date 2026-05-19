@@ -13,6 +13,10 @@
 /tb_sc/data/
 /tb_sc/tools/
 
+# Ignore tb_sc package experiment files by name
+/tb_sc/**/for_test*.py
+/tb_sc/**/rom_student*.py
+
 # Never share root-level Python files
 /*.py
 
