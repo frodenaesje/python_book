@@ -5,9 +5,9 @@
 !tb_sc/**
 
 # Ignore tb_sc chapters 15 and above
-/tb_sc/ch_1[5-9]_* 
-/tb_sc/ch_[2-9][0-9]_* 
-/tb_sc/ch_[1-9][0-9][0-9]_* 
+/tb_sc/ch_1[5-9]_*
+/tb_sc/ch_[2-9][0-9]_*
+/tb_sc/ch_[1-9][0-9][0-9]_*
 
 # Ignore local and generated files
 .venv/
