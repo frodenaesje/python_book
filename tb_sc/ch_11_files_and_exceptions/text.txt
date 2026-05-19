@@ -1,4 +1,0 @@
-Hello World!
-This is a sample text file.
-Line 3 of the file.
-End of file.

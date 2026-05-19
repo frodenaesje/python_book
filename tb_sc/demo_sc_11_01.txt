@@ -1,4 +1,0 @@
-Linje1
-Linje2
-Tredje linje
-Fjerde linje

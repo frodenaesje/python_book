@@ -1,2 +1,0 @@
-Hello, World!
-This file was created with write_text().
