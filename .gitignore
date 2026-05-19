@@ -1,0 +1,14 @@
+# Ignore everything except the tb_sc folder for initial mirror
+/*
+!.gitignore
+!tb_sc/
+!tb_sc/**
+
+# Ignore local and generated files
+.venv/
+.venv-1/
+.pytest_cache/
+.vscode/
+__pycache__/
+*.py[cod]
+*.pkl
