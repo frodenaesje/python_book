@@ -15,7 +15,7 @@
 
 # Ignore tb_sc package experiment files by name
 /tb_sc/**/for_test*.py
-/tb_sc/**/rom_student*.py
+/tb_sc/**/from_student*.py
 
 # Never share root-level Python files
 /*.py
@@ -28,3 +28,4 @@
 __pycache__/
 *.py[cod]
 *.pkl
+*.coverage
