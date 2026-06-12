@@ -13,3 +13,13 @@ by Frode Næsje.
 
 This repository contains companion material for the textbook 
 *Programming in Python — Fundamentals*.
+
+## License
+
+© Frode Næsje. 
+
+The source code examples in this repository are licensed under 
+[Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/).
+
+You are free to use and adapt the material for non-commercial and 
+educational purposes, provided that appropriate credit is given.
