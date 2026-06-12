@@ -20,6 +20,41 @@ A separate instructor repository with full solutions and teaching
 resources (extra exercises, ppt slides all chapters) is available. 
 Contact frode.nasje@gmail.com for access.
 
+## Downloading the Repository
+
+### Option 1 — Download as ZIP (recommended for beginners)
+
+1. Go to [github.com/frodenaesje/python_book](https://github.com/frodenaesje/python_book)
+2. Click the green **Code** button near the top right
+3. Click **Download ZIP**
+4. Extract the ZIP file to a folder on your computer
+
+### Option 2 — Clone with Git (recommended if you know Git)
+
+If you have Git installed, open a terminal and run:
+
+```bash
+git clone https://github.com/frodenaesje/python_book.git
+```
+
+This creates a local copy of the repository that you can easily update 
+later by running:
+
+```bash
+git pull
+```
+
+### Downloading a Single File
+
+1. Navigate to the file on GitHub
+2. Click the file to open it
+3. Click the **Raw** button in the top right corner of the file view
+4. Right-click the page and select **Save as**
+5. Save the file to your desired location
+
+> **Tip:** If you find yourself downloading many individual files, 
+> it is easier to download the entire repository as a ZIP instead.
+
 ## License
 
 © Frode Næsje. 
