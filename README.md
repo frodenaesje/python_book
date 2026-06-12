@@ -17,7 +17,8 @@ This repository contains companion material for the textbook
 ## For Instructors
 
 A separate instructor repository with full solutions and teaching 
-resources is available. Contact frode.nasje@gmail.com for access.
+resources (extra exercises, ppt slides all chapters) is available. 
+Contact frode.nasje@gmail.com for access.
 
 ## License
 
