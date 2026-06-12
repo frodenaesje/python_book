@@ -3,16 +3,22 @@
 Source code and resources for the Python programming textbook 
 by Frode Næsje.
 
+## For Students
+
+This repository contains companion material for the textbook 
+*Programming in Python — Fundamentals*, covering data structures, 
+algorithms, object-oriented programming, and file handling.
+
 ## Structure
 
 - `tb_sc/` — source code examples from the book
 - `tb_qa_en/` — English review questions and answers
 - `tb_sol/` — solutions to even-numbered exercises
 
-## About
+## For Instructors
 
-This repository contains companion material for the textbook 
-*Programming in Python — Fundamentals*.
+A separate instructor repository with full solutions and teaching 
+resources is available. Contact frode.nasje@gmail.com for access.
 
 ## License
 
