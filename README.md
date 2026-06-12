@@ -6,8 +6,7 @@ by Frode Næsje.
 ## For Students
 
 This repository contains companion material for the textbook 
-*Programming in Python — Fundamentals*, covering data structures, 
-algorithms, object-oriented programming, and file handling.
+*Programming in Python — Fundamentals*.
 
 ## Structure
 
