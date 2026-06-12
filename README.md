@@ -12,7 +12,7 @@ This repository contains companion material for the textbook
 
 - `tb_sc/` — source code examples from the book
 - `tb_qa_en/` — English review questions and answers
-- `tb_sol/` — solutions to even-numbered exercises
+- `tb_ex/` — exercise text, start code and solutions to even-numbered exercises
 
 ## For Instructors
 
