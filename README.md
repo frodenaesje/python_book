@@ -11,7 +11,7 @@ This repository contains companion material for the textbook
 ## Structure
 
 - `tb_sc/` — source code examples from the book
-- `tb_qa_en/` — English review questions and answers
+- `tb_qa_en/` — English review questions and answers (full questions in the book)
 - `tb_ex/` — exercise text, start code and solutions to even-numbered exercises
 
 ## For Instructors
