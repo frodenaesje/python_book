@@ -38,11 +38,23 @@ Dunder methods are special methods with double underscores, such as `__eq__()`, 
 **12. Object without `__bool__()`**
 Python uses a fallback hierarchy: first `__bool__()` is checked, then `__len__()` (true if > 0), and finally the object is always true if neither method exists. An object without `__bool__()` is therefore always truthy.
 
+**13. `__str__()` vs. `__repr__()`**
+`__str__()` is for humans — readable output, called by `print()`. `__repr__()` is for developers — should ideally give a string that recreates the object, called by the REPL. Without `__str__()` Python falls back to `__repr__()`. Without either, `object`'s fallback prints the class name and memory address.
+
+**14. Overloading vs. overriding**
+Overloading means defining multiple versions of the same method with different parameter lists — common in Java and C++, not directly supported in Python (the second definition simply replaces the first). Overriding means replacing a method inherited from a base class with a new implementation in a subclass. What Python calls operator overloading is technically overriding: we replace inherited dunder methods from `object` to give operators new behaviour for our class.
+
+**15. `@dataclass` and what it generates automatically**
+`@dataclass` is a decorator that reads field declarations and automatically generates `__init__()`, `__repr__()` and `__eq__()`. Fields are declared with name and type directly in the class block: `x: int`. This reduces boilerplate for simple data classes that mainly store values together.
+
+**16. Why `items: list = []` is not allowed in a `@dataclass` — and the solution**
+`[]` is evaluated once when the class is defined — all instances would share the exact same list object. Changes to one instance would silently affect all others. The solution is `field(default_factory=list)`, which calls `list()` to create a fresh, independent list for each new instance.
+
 ---
 
 ## Practical
 
-**13. `Person` with `greet()`**
+**17. `Person` with `greet()`**
 ```python
 class Person:
     def __init__(self, name: str, age: int) -> None:
@@ -58,7 +70,7 @@ p1.greet()
 p2.greet()
 ```
 
-**14. `__str__()` in `Person`**
+**18. `__str__()` in `Person`**
 ```python
 def __str__(self) -> str:
     return f"Person(name={self._name}, age={self._age})"
@@ -66,7 +78,7 @@ def __str__(self) -> str:
 print(p1)   # Person(name=Alice, age=30)
 ```
 
-**15. Property `age` with validation**
+**19. Property `age` with validation**
 ```python
 @property
 def age(self) -> int:
@@ -80,14 +92,14 @@ def age(self, value: int) -> None:
         self._age = value
 ```
 
-**16. `my_car.drive()` vs. `Car.drive(my_car)`**
+**20. `my_car.drive()` vs. `Car.drive(my_car)`**
 ```python
 my_car = Car("Toyota", "Blue")
 my_car.drive()        # Toyota car is driving!
 Car.drive(my_car)     # Toyota car is driving! — identical result
 ```
 
-**17. `__eq__()` in `BankAccount`**
+**21. `__eq__()` in `BankAccount`**
 ```python
 class BankAccount:
     def __init__(self, balance: float) -> None:
@@ -103,7 +115,7 @@ print(a1 == a2)   # True
 print(a1 == a3)   # False
 ```
 
-**18. `Playlist` with `__getitem__()`**
+**22. `Playlist` with `__getitem__()`**
 ```python
 class Playlist:
     def __init__(self) -> None:
@@ -124,7 +136,7 @@ print(pl[-1])     # Song C
 print(pl[0:2])    # ['Song A', 'Song B']
 ```
 
-**19. `__bool__()` in `Playlist`**
+**23. `__bool__()` in `Playlist`**
 ```python
 def __bool__(self) -> bool:
     return len(self._songs) > 0
@@ -136,4 +148,40 @@ if not empty:
 pl.add("Song A")
 if pl:
     print("The playlist has content")
+```
+
+**24. `@dataclass` `Point` with equality check**
+```python
+from dataclasses import dataclass
+
+@dataclass
+class Point:
+    x: int
+    y: int
+
+p1 = Point(3, 4)
+p2 = Point(3, 4)
+p3 = Point(1, 2)
+
+print(p1)           # Point(x=3, y=4)
+print(p1 == p2)     # True  — __eq__() generated automatically
+print(p1 == p3)     # False
+```
+
+**25. `Point` with `tags: list` using `field(default_factory=list)`**
+```python
+from dataclasses import dataclass, field
+
+@dataclass
+class Point:
+    x: int
+    y: int
+    tags: list = field(default_factory=list)
+
+p1 = Point(3, 4)
+p2 = Point(3, 4)
+
+p1.tags.append("origin")
+print(p1.tags)   # ['origin']
+print(p2.tags)   # []  — separate list, not shared
 ```
