@@ -68,11 +68,17 @@ In example 2a, `input()` must be called in two places — once before the loop t
 **20. The `key` parameter**
 `key` takes a function that is called on each element to compute a sort key. The element with the lowest key value comes first. The elements themselves are unchanged — only the order changes.
 
+**21. `del` on a list vs. `remove()`**
+`del` removes an element by index or deletes an entire slice: `del lst[2]` removes the element at index 2, `del lst[1:3]` removes a range. `remove()` searches for the first occurrence of a value and removes it — it works by value, not by position.
+
+**22. `break` and `continue`**
+`break` exits the loop immediately, skipping any remaining iterations. `continue` skips the rest of the current iteration and jumps to the next one. Both only affect the innermost enclosing loop.
+
 ---
 
 ## Practical
 
-**21. Empty list with names**
+**23. Empty list with names**
 ```python
 names = []
 names.append("Anna")
@@ -84,7 +90,7 @@ print(names[-1])   # Eva
 print(names[-2])   # Dag
 ```
 
-**22. Read five integers**
+**24. Read five integers**
 ```python
 numbers = []
 for _ in range(5):
@@ -94,7 +100,7 @@ print("Max:", max(numbers))
 print("Sum:", sum(numbers))
 ```
 
-**23. `sort()` vs. `sorted()`**
+**25. `sort()` vs. `sorted()`**
 ```python
 numbers = [5, 3, 8, 1, 9, 2]
 numbers.sort()
@@ -106,7 +112,7 @@ print(sorted_numbers)   # [1, 2, 3, 5, 8, 9]
 print(numbers)          # [5, 3, 8, 1, 9, 2] — original unchanged
 ```
 
-**24. Double every element**
+**26. Double every element**
 ```python
 numbers = [1, 2, 3, 4, 5]
 for index in range(len(numbers)):
@@ -114,7 +120,7 @@ for index in range(len(numbers)):
 print(numbers)  # [2, 4, 6, 8, 10]
 ```
 
-**25. Months numbered from 1**
+**27. Months numbered from 1**
 ```python
 months = ["January", "February", "March", "April", "May", "June",
           "July", "August", "September", "October", "November", "December"]
@@ -122,7 +128,7 @@ for number, month in enumerate(months, start=1):
     print(f"{number}: {month}")
 ```
 
-**26. Copy with `copy()`**
+**28. Copy with `copy()`**
 ```python
 original = [10, 20, 30]
 copy = original.copy()
@@ -131,20 +137,20 @@ print(original)  # [10, 20, 30] — unchanged
 print(copy)      # [99, 20, 30]
 ```
 
-**27. Slicing**
+**29. Slicing**
 ```python
 lista = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 print(lista[::2])   # [0, 2, 4, 6, 8] — every other element
 print(lista[::-1])  # [9, 8, 7, 6, 5, 4, 3, 2, 1, 0] — reversed
 ```
 
-**28. List comprehension — even numbers**
+**30. List comprehension — even numbers**
 ```python
 even_numbers = [x for x in range(21) if x % 2 == 0]
 print(even_numbers)  # [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
 ```
 
-**29. 3×3 matrix**
+**31. 3×3 matrix**
 ```python
 matrix = [
     [1, 2, 3],
@@ -155,13 +161,13 @@ for row_index, row in enumerate(matrix):
     print(f"Row {row_index}: {row}")
 ```
 
-**30. `join()`**
+**32. `join()`**
 ```python
 words = ["Python", "is", "fun"]
 print(" ".join(words))  # Python is fun
 ```
 
-**31. Guess a number**
+**33. Guess a number**
 ```python
 secret = 7
 attempts = 0
@@ -174,7 +180,7 @@ while True:
     print("Wrong, try again.")
 ```
 
-**32. Infinite loop — REPL**
+**34. Infinite loop — REPL**
 ```python
 x = 1
 while x > 0:
@@ -182,7 +188,7 @@ while x > 0:
 ```
 `x` increases every round and will never become ≤ 0, so the loop runs until we interrupt with Ctrl+C. Fix: change the condition to `while x < 10` or add `if x > 1000: break` inside the loop.
 
-**33. `all()` — word length**
+**35. `all()` — word length**
 ```python
 words = ["hi", "hey", "hello"]
 print(all(len(w) > 3 for w in words))   # False  ("hi" and "hey" have ≤ 3)
@@ -191,7 +197,7 @@ words = ["hey", "hello", "world"]
 print(all(len(w) > 3 for w in words))   # True
 ```
 
-**34. `map()` — uppercase**
+**36. `map()` — uppercase**
 ```python
 word_list = ["hello", "world", "python"]
 upper = list(map(str.upper, word_list))
@@ -201,7 +207,7 @@ print(upper)  # ['HELLO', 'WORLD', 'PYTHON']
 upper = [w.upper() for w in word_list]
 ```
 
-**35. `filter()` — remove negatives**
+**37. `filter()` — remove negatives**
 ```python
 numbers = [3, -1, 4, -1, 5, -9, 2]
 positive = list(filter(lambda x: x > 0, numbers))
@@ -211,7 +217,7 @@ print(positive)  # [3, 4, 5, 2]
 positive = [x for x in numbers if x > 0]
 ```
 
-**36. `zip()` — create dictionary**
+**38. `zip()` — create dictionary**
 ```python
 keys   = ["a", "b", "c"]
 values = [1, 2, 3]
@@ -219,14 +225,14 @@ d = dict(zip(keys, values))
 print(d)  # {'a': 1, 'b': 2, 'c': 3}
 ```
 
-**37. `sorted()` with `key`**
+**39. `sorted()` with `key`**
 ```python
 word_list = ["banana", "apple", "kiwi", "orange"]
 print(sorted(word_list, key=len))                   # shortest first
 print(sorted(word_list, key=len, reverse=True))     # longest first
 ```
 
-**38. Three dice — 100,000 rolls**
+**40. Three dice — 100,000 rolls**
 ```python
 import random
 

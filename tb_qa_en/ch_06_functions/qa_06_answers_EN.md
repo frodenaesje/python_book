@@ -146,3 +146,15 @@ def multiply(numbers: list[int], factor: int) -> list[int]:
 
 print(multiply([1, 2, 3, 4], 3))  # [3, 6, 9, 12]
 ```
+
+**26. Function returning multiple values**
+```python
+def min_max_avg(numbers: list[float]) -> tuple[float, float, float]:
+    """Returns the minimum, maximum and average of a list."""
+    return min(numbers), max(numbers), sum(numbers) / len(numbers)
+
+lowest, highest, average = min_max_avg([3.0, 7.0, 1.0, 9.0, 4.0])
+print(f"Min: {lowest}, Max: {highest}, Avg: {average:.1f}")
+# Min: 1.0, Max: 9.0, Avg: 4.8
+```
+Python packs multiple return values into a tuple automatically. At the call site we unpack the tuple into separate variables with `lowest, highest, average = ...`.

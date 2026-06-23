@@ -56,11 +56,17 @@ A generator is a function that uses `yield` instead of `return`. It does not ret
 **18. Generator expression vs. list comprehension**
 A list comprehension `[x**2 for x in range(n)]` computes all values at once and stores them in a list in memory. A generator expression `(x**2 for x in range(n))` is lazy — it computes one value at a time when requested. For large datasets a generator expression is significantly more memory-efficient since it never stores the entire result at once.
 
+**19. Multiple inheritance and the diamond problem**
+Multiple inheritance means a class inherits from more than one superclass simultaneously. The diamond problem occurs when two superclasses share a common ancestor — a method call may be ambiguous if both superclasses override the same method. Python resolves this with the MRO (Method Resolution Order) using the C3 linearisation algorithm, accessible via `ClassName.__mro__`.
+
+**20. `collections.abc.Iterator`**
+`collections.abc.Iterator` is an abstract base class that formalises the iterator protocol. Inheriting from it gives us a free implementation of `__iter__()` that returns `self`, so we only need to implement `__next__()`. It also makes `isinstance(obj, Iterator)` work correctly for type checking — useful when writing functions that accept any iterator.
+
 ---
 
 ## Practical
 
-**19. `Shape` with subclasses**
+**21. `Shape` with subclasses**
 ```python
 class Shape:
     def area(self) -> float:
@@ -86,7 +92,7 @@ for shape in shapes:
     print(f"{shape.__class__.__name__}: {shape.area():.2f}")
 ```
 
-**20. `__str__()` and `__repr__()`**
+**22. `__str__()` and `__repr__()`**
 ```python
 class Shape:
     def __str__(self) -> str:
@@ -108,7 +114,7 @@ print(r)       # Rectangle with area 20.00  — uses __str__()
 print(repr(r)) # Rectangle(4, 5)            — uses __repr__()
 ```
 
-**21. Abstract `Shape`**
+**23. Abstract `Shape`**
 ```python
 from abc import ABC, abstractmethod
 
@@ -120,7 +126,7 @@ class Shape(ABC):
 shape = Shape()   # TypeError: Can't instantiate abstract class Shape
 ```
 
-**22. `Playlist` with `__iter__()`**
+**24. `Playlist` with `__iter__()`**
 ```python
 class Song:
     def __init__(self, title: str) -> None:
@@ -148,7 +154,7 @@ for song in pl:
     print(song)
 ```
 
-**23. REPL — iterator exhaustion**
+**25. REPL — iterator exhaustion**
 ```python
 lista = [1, 2, 3]
 it = iter(lista)
@@ -161,7 +167,7 @@ for x in it:
 ```
 The last loop prints only 3 — the iterator `it` remembers that it has already retrieved 1 and 2.
 
-**24. `Color` with `__eq__()` and `__hash__()`**
+**26. `Color` with `__eq__()` and `__hash__()`**
 ```python
 class Color:
     def __init__(self, r: int, g: int, b: int) -> None:
@@ -184,7 +190,7 @@ lookup = {red1: "red"}
 print(lookup[red2])              # red — works because hashes are equal
 ```
 
-**25. Generator `even_numbers`**
+**27. Generator `even_numbers`**
 ```python
 def even_numbers(limit: int):
     current = 0
@@ -198,7 +204,7 @@ for n in even_numbers(10):
 print(list(even_numbers(10)))   # [0, 2, 4, 6, 8]
 ```
 
-**26. `CountUp` rewritten as a generator**
+**28. `CountUp` rewritten as a generator**
 ```python
 # Class-based (15 lines):
 class CountUp:
