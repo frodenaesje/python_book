@@ -1,3 +1,0 @@
-Hello, World!
-This is a test file.
-Pathlib is great for file handling.
