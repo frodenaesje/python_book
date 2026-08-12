@@ -1,10 +1,13 @@
 # file: ex_02_09_sum_of_digits_start.py
 
-# Read an integer between 0 and 100
-number = int(input("Enter an integer between 0 and 100: "))
+# Read an integer with at most three digits (0 to 999)
+number = int(input("Enter an integer with at most three digits: "))
 
 # TODO: split the number into its digits using // and %.
-#   Remember that 100 has three digits.
+#   We do not know loops yet, so we extract exactly three
+#   digit positions by hand: hundreds, tens, and ones.
+#   A number with fewer digits gets 0 in the higher positions -
+#   47 becomes hundreds = 0, tens = 4, ones = 7.
 #   hundreds = ...
 #   tens     = ...
 #   ones     = ...
