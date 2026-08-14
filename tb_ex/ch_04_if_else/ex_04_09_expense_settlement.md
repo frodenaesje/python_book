@@ -2,14 +2,11 @@
 
 ## Exercise
 
-After a trip with friends, someone has paid for the cabin, someone for
-the food, and someone for the fuel - and at some point the group needs
-to settle up. Several apps can solve exactly this: everyone registers their expenses, and
-the app calculates who owes whom. We will build a simplified version for
-three friends on a cabin trip.
+After a trip with friends, someone has paid for the cabin, someone for the food, and someone for the fuel - and at some point the group needs to settle up. Several apps solve exactly this problem: everyone registers what they have paid, and the app calculates who owes whom.
 
-The expenses are given as variables in the starter code. All expenses are
-split equally among the three:
+We will build a simplified version for three friends on a cabin trip. The solution will use only variables, conditions, and functions we already know. Later, when we introduce loops and collections, the same basic idea can be extended to any number of people.
+
+The expenses are given as variables in the starter code:
 
 ```python
 jonas_paid = 2400    # cabin rental
@@ -17,19 +14,33 @@ maria_paid = 950     # food and drinks
 simen_paid = 400     # fuel
 ```
 
+All expenses are split equally among the three.
+
 ### Part A - Share and balance
 
-Calculate the total and how much each person should cover (the total
-divided by three). Then calculate the balance for each person: what the
-person has paid, minus the share the person should cover.
+Calculate the total and how much each person should cover:
 
-- Positive balance: the person has paid too much and should get money back
-- Negative balance: the person owes money
+```text
+share = total / 3
+```
+
+Then calculate the balance for each person:
+
+```text
+balance = amount paid - share
+```
+
+The balance tells us how far the person is from being settled:
+
+* A **positive balance** means the person has paid too much and should receive money.
+* A **negative balance** means the person has paid too little and should pay money.
+* A balance of **zero** means the person is already settled.
 
 Print the total, the share, and each person's balance with two decimals.
+
 Expected output with the numbers above:
 
-```
+```text
 Total: 3750.00
 Share per person: 1250.00
 Jonas: +1150.00
@@ -37,109 +48,340 @@ Maria: -300.00
 Simen: -850.00
 ```
 
-Hint: f-strings can format with a sign and two decimals like this:
-`f"{jonas_balance:+.2f}"`.
+Hint: f-strings can format a number with an explicit sign and two decimals:
+
+```python
+f"{jonas_balance:+.2f}"
+```
+
+Notice an important property of the balances:
+
+```text
++1150 - 300 - 850 = 0
+```
+
+The balances must always add up to zero. The money that some people have paid too much is exactly the money that the others have paid too little.
 
 ### Part B - Status per person
 
-Use `if`-`elif`-`else` to print a status line for each person:
+Use `if`-`elif`-`else` to print a status line for each person.
 
-- Balance greater than 0: `Jonas should receive 1150.00`
-- Balance less than 0: `Simen should pay 850.00` (use the amount without the minus sign)
-- Balance equal to 0: `Maria is settled`
+For a positive balance:
+
+```text
+Jonas should receive 1150.00
+```
+
+For a negative balance:
+
+```text
+Simen should pay 850.00
+```
+
+Print the amount without the minus sign.
+
+For a zero balance:
+
+```text
+Maria is settled
+```
+
+Do this separately for Jonas, Maria, and Simen.
 
 ### Part C - Who pays whom?
 
-Now the program should do the job the app does at the end: print the
-actual payments. With three people, the settlement always requires at
-most two transfers. Expected output with the numbers above:
+Now the program should perform the actual settlement.
 
+For the original expenses, the balances are:
+
+```text
+Jonas: +1150.00
+Maria: -300.00
+Simen: -850.00
 ```
+
+Jonas should therefore receive money, while Maria and Simen should pay. The final output should be:
+
+```text
 Maria pays 300.00 to Jonas
 Simen pays 850.00 to Jonas
 ```
 
-If everyone is settled, the program should print `No payments needed`.
+If everyone is already settled, print:
 
-**How to think about it:** Each person's balance says where they stand.
-A positive balance means the person has paid too much and should get money
-back (a recipient); a negative balance means the person owes money (a
-debtor). A single payment always goes from a debtor to a recipient, and its
-size is limited on both sides: a debtor cannot pay more than they owe, and a
-recipient cannot take more than they are owed. So the amount is the smaller
-of the two - `min(what the debtor owes, what the recipient should receive)`
-- which fully settles at least one of them in that one payment.
+```text
+No payments needed
+```
 
-With three people, one payment settles at most one person, so we may need
-more than one. Two facts keep it manageable. First, the balances always sum
-to zero: what one person overpaid is exactly what the others owe. Because of
-that, three people can always be settled in at most two transfers, and only
-two basic patterns can occur when nobody is already even - either one debtor
-pays the two recipients, or two debtors pay the one recipient. If someone is
-already at zero, it collapses to a plain two-person settlement between the
-other two.
+#### Think of the balances as amounts that change
 
-Here is why each block stands on its own. In both patterns the lone person
-on the single side has exactly enough to cover each of the others in full:
-the one debtor owes the two recipients combined, so at least each of them,
-and the one recipient is owed the two debtors combined, so at least each of
-them. That means every `min()` comes out equal to the counterpart's full
-amount - no payment is ever partial. Because nothing is left half-paid,
-there is no remainder to carry forward, and no check ever has to update a
-balance or hand a number to the next check. Each of the six checks reads the
-original balances and is a self-contained, stateless `if`.
+The important idea is that a balance represents what is **still left to settle**.
 
-The key point is that to know who pays whom, we have to look at each person
-against both of the others, not one at a time. A debtor might end up paying
-one recipient, the other, or both, depending on the whole picture, so we
-cannot treat the people in isolation - we compare them pairwise. Concretely,
-we check every debtor-recipient pair: could Jonas owe Maria something? Could
-Jonas owe Simen? And so on. Because we do not have loops yet, we cannot say
-"go through all debtors and all recipients" and let the machine find the
-pairs; we write the cases out by hand with `if`-`else`, classifying each
-balance as positive, negative, or zero, and setting up the transfers between
-the specific pairs explicitly. The `min()` function gives each transfer
-amount, and conditions are often combined with `and` when a person has to be
-judged against both of the others at once.
+Suppose Maria has a balance of `-300` and Jonas has a balance of `+1150`.
 
-**Worked example:** suppose the three balances come out as -200 (owes 200),
-+150 (should receive 150) and +50 (should receive 50). The first person is
-the only debtor. They pay the +150 person `min(200, 150)` = 150; that
-recipient is now settled and the debtor still owes 50. They pay the +50
-person `min(50, 50)` = 50; now everyone is settled. Two transfers, exactly
-as the zero-sum balance guarantees.
+Maria owes 300, while Jonas should receive 1150. A payment must therefore go from Maria to Jonas:
+
+```text
+Maria → Jonas
+```
+
+How much should Maria pay?
+
+A debtor cannot pay more than they still owe, and a recipient should not receive more than they are still owed. The payment must therefore be the smaller of the two amounts:
+
+```python
+payment = min(-maria_balance, jonas_balance)
+```
+
+Here:
+
+```text
+min(300, 1150) = 300
+```
+
+After Maria pays 300, both balances must be updated:
+
+```python
+maria_balance += payment
+jonas_balance -= payment
+```
+
+The new balances are:
+
+```text
+Maria:    0
+Jonas: +850
+```
+
+Maria is now settled. Jonas still needs to receive 850.
+
+Simen has a balance of `-850`, so the next payment can be:
+
+```text
+Simen → Jonas
+```
+
+The amount is:
+
+```text
+min(850, 850) = 850
+```
+
+After updating both balances:
+
+```text
+Simen: 0
+Jonas: 0
+```
+
+Everyone is now settled.
+
+This gives us the general rule for one payment:
+
+1. Find a person with a negative balance - a **debtor**.
+2. Find a person with a positive balance - a **recipient**.
+3. Transfer the smaller of what the debtor owes and what the recipient should receive.
+4. Update both balances.
+5. Continue until all balances are zero.
+
+The important part is step 4. A payment changes the situation, so later payments must use the **new balances**, not the original ones.
+
+#### Turning the rule into code
+
+For any particular pair of people, we first check whether one owes money and the other should receive money.
+
+For example, Maria should pay Jonas only when:
+
+```python
+maria_balance < 0 and jonas_balance > 0
+```
+
+If this condition is true, calculate the payment:
+
+```python
+payment = min(-maria_balance, jonas_balance)
+```
+
+Then print the payment and update both balances:
+
+```python
+print(f"Maria pays {payment:.2f} to Jonas")
+
+maria_balance += payment
+jonas_balance -= payment
+```
+
+The complete check is therefore:
+
+```python
+if maria_balance < 0 and jonas_balance > 0:
+    payment = min(-maria_balance, jonas_balance)
+    print(f"Maria pays {payment:.2f} to Jonas")
+    maria_balance += payment
+    jonas_balance -= payment
+```
+
+Notice what happens to the signs. Maria starts with a negative balance, so adding the payment moves her balance **up toward zero**. Jonas starts with a positive balance, so subtracting the payment moves his balance **down toward zero**.
+
+The same logic works regardless of which two people are involved.
+
+#### Checking all possible payment directions
+
+With three people, there are six possible payment directions:
+
+```text
+Jonas → Maria
+Jonas → Simen
+
+Maria → Jonas
+Maria → Simen
+
+Simen → Jonas
+Simen → Maria
+```
+
+We have not learned loops yet, so write these possibilities explicitly as six `if` statements.
+
+Each check follows exactly the same pattern:
+
+```text
+Is the first person a debtor?
+        AND
+Is the second person a recipient?
+
+        ↓
+
+Calculate payment
+
+        ↓
+
+Print payment
+
+        ↓
+
+Update both balances
+```
+
+For example, the opposite direction between Jonas and Maria would be:
+
+```python
+if jonas_balance < 0 and maria_balance > 0:
+    payment = min(-jonas_balance, maria_balance)
+    print(f"Jonas pays {payment:.2f} to Maria")
+    jonas_balance += payment
+    maria_balance -= payment
+```
+
+Do the same for the remaining possible directions.
+
+These should be separate `if` statements, not one large `if`-`elif` chain. After one payment changes the balances, another payment may still be necessary.
+
+For example, with:
+
+```text
+Jonas: -500
+Maria: +200
+Simen: +300
+```
+
+one payment can settle Maria:
+
+```text
+Jonas pays 200 to Maria
+```
+
+leaving:
+
+```text
+Jonas: -300
+Maria:    0
+Simen: +300
+```
+
+A later `if` statement can then use these updated balances and make the second payment:
+
+```text
+Jonas pays 300 to Simen
+```
+
+The balances are now:
+
+```text
+Jonas: 0
+Maria: 0
+Simen: 0
+```
+
+This is why updating the balances after every payment is useful: every new check sees the current state of the settlement.
+
+#### Could we solve the three-person case differently?
+
+Yes. Three people are a special case. Because the balances always sum to zero, the possible situations are limited enough that we could derive a shorter solution that examines the original balances and handles the possible patterns directly.
+
+That would work for three people, but it would rely on properties of this particular case.
+
+Instead, we deliberately update the balances after each payment. This is slightly more work here, but it introduces the same basic mechanism we will later use when the number of participants is not fixed.
 
 ### Part D - Test the program
 
-Change the expense amounts and verify that the program produces correct
-payments in all situations: one person owing two, two people owing one,
-and the case where one person is exactly settled. Prefer amounts where
-the total is divisible by three, to avoid fractional rounding.
+Change the expense amounts and verify that the program produces correct payments in different situations:
 
-### Looking ahead: Why only three people?
+* one person owes the other two
+* two people owe one person
+* one person is already settled
+* everyone is settled
 
-With three people we get by with three variables and pure `if`-`else`
-logic - every possible situation can be enumerated and handled
-separately. That is exactly what this chapter is about.
+Also try changing which person is the debtor or recipient so that different payment directions are tested.
 
-Still, notice how repetitive the code is: three nearly identical status
-blocks in part B, six nearly identical checks in part C. With four people
-it would be four status blocks and twelve pair checks, and with ten
-people it would get completely out of hand.
+Prefer amounts where the total is divisible by three to avoid fractional rounding while testing the settlement logic.
 
-But repetition is only the surface reason. The deeper one is the partial
-payment. Everything above worked because at most one side ever had two
-people, so every `min()` cleared a pair in full and left no remainder. With
-four people that breaks: we can have two debtors and two recipients at once,
-both sides "two". Now a debtor may not have enough to cover a recipient in
-full, or a recipient may need more than any single debtor can give. A
-payment then settles a pair only partly and leaves a remainder, and the next
-payment has to take that remainder into account. That is the exact moment we
-can no longer read the original balances and treat each pair on its own: we
-need balances that we update as we go, and a loop that keeps going until
-everyone is settled.
+### Looking ahead: From three people to many
 
-To handle any number of people, then, we need two things we have not learned
-yet: a data structure that can hold all the participants and amounts
-together (lists and dictionaries), and loops that repeat the same logic for
-each person.
+The settlement rule itself does not depend on there being exactly three people:
+
+```text
+find debtor and recipient
+        ↓
+calculate payment
+        ↓
+update balances
+        ↓
+repeat
+```
+
+What changes when there are more people is how we represent the participants and how we repeat the operation.
+
+With three people, we can store everything in individual variables and write the possible payment directions explicitly. That is manageable because there are only six.
+
+With four people there are twelve possible payment directions. With ten people there are ninety. Writing every possibility as a separate `if` statement would quickly become impractical.
+
+More importantly, with more participants there may be several debtors and several recipients at the same time. A payment may settle one person while leaving the other with a remaining balance. The program must then continue from that updated state.
+
+For example:
+
+```text
+-500, -100, +300, +300
+```
+
+If the first debtor pays 300 to one recipient, the balances become:
+
+```text
+-200, -100, 0, +300
+```
+
+The settlement is not finished. The remaining balances determine what should happen next.
+
+The algorithm, however, has not changed. We still find a debtor and a recipient, transfer:
+
+```python
+min(amount_owed, amount_to_receive)
+```
+
+update their balances, and continue.
+
+To make that practical for any number of people, we need two tools that we have not learned yet:
+
+* **collections**, such as lists and dictionaries, to keep participants and balances together
+* **loops**, to repeat the same settlement operation instead of writing every possible pair by hand
+
+When we introduce those tools later, we can replace the repetitive code with a much more general solution - without changing the basic settlement logic developed here.

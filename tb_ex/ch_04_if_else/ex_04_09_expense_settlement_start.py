@@ -24,6 +24,14 @@ simen_paid = 400     # fuel
 
 # --- Part C - Who pays whom? ---
 
-# TODO: Print the actual payments, e.g. "Maria pays 300.00 to Jonas"
+# A balance is what is still left to settle. One payment goes from a
+# debtor (negative balance) to a recipient (positive balance) for
+# min(what the debtor owes, what the recipient is owed). After each
+# payment, update BOTH balances so later checks use the new state.
 
-# TODO: If everyone is settled, print "No payments needed"
+# TODO: Write the six possible debtor -> recipient directions as
+#       separate if statements (we have no loops yet). In each: check
+#       the debtor and recipient against the tolerance, compute the
+#       payment with min(), print it, then update both balances.
+
+# TODO: If no one owes anything, print "No payments needed"
