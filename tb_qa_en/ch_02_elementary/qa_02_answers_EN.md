@@ -179,6 +179,8 @@ else:
     print("The city is not Oslo.")
 ```
 
+*Note: this uses `if`/`else`, which we meet in Chapter 4. With only Chapter 2 tools you can still print the comparison result directly - `print(city == "oslo")` gives `True` or `False`. Come back for the labelled two-way output after Chapter 4.*
+
 **32. Circle area with math.pi**
 
 ```python
@@ -209,6 +211,8 @@ for _ in range(5):
 
 Running the program twice produces exactly the same five numbers both times. Without `seed(0)`, the numbers would differ on every run.
 
+*Note: the `for` loop is Chapter 5. Until then you can write the five `print(random.randint(1, 10))` lines out by hand after `random.seed(0)` - the point about reproducibility is exactly the same.*
+
 **35. Sentence analysis**
 
 ```python
@@ -221,6 +225,8 @@ if "python" in sentence.lower():
 else:
     print("The sentence does not contain the word 'python'.")
 ```
+
+*Note: counting the words and upper-casing the sentence are Chapter 2, but the `if`/`else` that checks for "python" is Chapter 4. Until then you can print the check directly - `print("python" in sentence.lower())` - and add the labelled branch after Chapter 4.*
 
 **36. Handle non-numeric input**
 
@@ -246,6 +252,8 @@ for _ in range(1000):
 print(f"Sum of 7 occurred {count / 1000:.1%} of the time.")
 ```
 
+*Note: this one needs both a `for` loop (Chapter 5) and an `if` test (Chapter 4), and it cannot be done with Chapter 2 tools alone - a thousand trials require a loop. Come back to it after Chapter 5.*
+
 **38. Read until non-empty input**
 
 ```python
@@ -254,6 +262,8 @@ while not name.strip():
     name = input("Enter your name: ")
 print(f"Hello, {name.strip()}!")
 ```
+
+*Note: the `while` loop is Chapter 5. With only Chapter 2 tools you can read the name once, but not keep asking until it is non-empty. Come back after Chapter 5.*
 
 **39. Table: name, age, monthly salary**
 
@@ -267,6 +277,8 @@ for _ in range(3):
     print(f"{name:<15} {age:>6} {annual_pay:>15,.2f}")
 ```
 
+*Note: the `for` loop is Chapter 5. Until then you can repeat the read-and-print block three times by hand - the header line and the f-string formatting (alignment and `,.2f`) are all Chapter 2.*
+
 **40. Extended table with tax deduction**
 
 ```python
@@ -279,3 +291,5 @@ for _ in range(3):
     tax          = annual_pay * 0.33
     print(f"{name:<15} {age:>6} {annual_pay:>15,.2f} {tax / annual_pay:>11.1%}")
 ```
+
+*Note: as in exercise 39, the `for` loop is Chapter 5 and the block can be written out three times by hand until then. The percentage format `:.1%` and the rest of the formatting are Chapter 2.*

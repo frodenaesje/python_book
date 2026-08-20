@@ -1,7 +1,6 @@
 # file: sc_02_11_type_conversion.py
 # Type conversion between different data types (int, float, str)
 
-
 # String to int
 age = int("25")
 print(f"String '25' converted to int: {age}, type: {type(age)}")
