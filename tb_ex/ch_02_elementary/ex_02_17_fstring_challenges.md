@@ -1,7 +1,5 @@
 # F-string Challenges
 
-*Extra exercise - a set of small, independent challenges that dig deeper into f-string formatting.*
-
 ## Exercise 1 - Decimal places
 
 Given:
@@ -111,6 +109,8 @@ Hint:
 ```python
 f"{value:.{decimals}f}"
 ```
+
+> **Note:** Exercises 7 and 8 use conditional expressions (`x if condition else y`), which rely on `if`/`else` logic. If we haven't covered conditionals in this chapter yet, we can safely skip these two for now and come back to them once we have.
 
 ## Exercise 7 - Singular or plural?
 
