@@ -17,4 +17,4 @@ print(text[:5])   # Hello       (from start)
 print(text[::1])  # Hello, world!  (each character)
 print(text[::2])  # Hlo ol! (every other character)
 print(text[::-1]) # !dlrow ,olleH. reverse string
-# text[0] = 'h'  # TypeError: str is immutable!
+text[0] = 'h'  # TypeError: str is immutable!
