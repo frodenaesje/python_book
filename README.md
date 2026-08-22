@@ -57,10 +57,23 @@ git pull
 
 ## License
 
-© Frode Næsje. 
+© Frode Næsje. The textbook *Programming in Python - Fundamentals* itself - its
+text, exercises, and structure - is not covered by the licenses below. All rights
+to the book are reserved. The licenses apply only to the companion material in
+this repository.
 
-The source code examples in this repository are licensed under 
-[Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/).
+This repository is licensed by content type:
 
-You are free to use and adapt the material for non-commercial and 
-educational purposes, provided that appropriate credit is given.
+- **Program code** - all Python source files (`.py`), including code examples,
+  start code, and solutions - is released under the [MIT License](LICENSE). You
+  may use, modify, and redistribute it freely, including in your own projects,
+  as long as the copyright notice is kept.
+
+- **Written material** - exercise descriptions, review questions, answers, and
+  any other text - is released under
+  [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/).
+  You may share and adapt it for non-commercial and educational purposes,
+  provided appropriate credit is given.
+
+In short: code is MIT, written material is CC BY-NC 4.0. If a file is a `.py`
+file it is MIT; anything written is CC BY-NC 4.0.
