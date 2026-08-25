@@ -1,26 +1,27 @@
 # Parking Fee
 
-## Exercise Parking fee
+## Exercise
 
 A parking house sets its prices with the model below. Write a program that reads the details of
 a single parking session and prints the fee. The model is fictional but consistent.
 
-## The price model
+### The price model
 
-| Time / situation      | Price                                          |
-|-----------------------|------------------------------------------------|
-| Daytime 08–18         | 30 per hour                                    |
-| Evening 18–22         | 15 per hour                                    |
-| Night 22–08           | free                                           |
-| Weekend               | 50% discount                                   |
-| Electric vehicle      | 50% discount (can be combined with weekend)    |
-| First 15 min          | free                                           |
-| Disability permit     | free up to 6 hours                             |
-| Max price / day       | 250                                            |
+| Time / situation        | Price                                          |
+|-------------------------|------------------------------------------------|
+| Daytime 08–18           | 30 per hour                                    |
+| Evening 18–22           | 15 per hour                                    |
+| Night 22–08             | free                                           |
+| Weekend                 | 50% discount                                   |
+| Electric vehicle        | 50% discount (can be combined with weekend)    |
+| First 15 min            | free                                           |
+| Disability permit       | free up to 6 hours                             |
+| Maximum fee per session | 250                                            |
 
-## How the rules combine (read carefully)
+### How the rules combine (read carefully)
 
-1. **Hourly rate is decided by the start hour**, and applies to the whole session:
+1. **The hourly rate is determined only by the start hour and remains unchanged for the entire
+   session, even if the session continues into another time band.**
    `08 ≤ start < 18` gives 30, `18 ≤ start < 22` gives 15, otherwise 0 (night).
 2. **Free period.** First **15 minutes** free; a **disability permit** extends this to the first
    **6 hours** (360 min). Only time beyond the free period is charged. (The 6-hour period already
@@ -29,12 +30,14 @@ a single parking session and prints the fee. The model is fictional but consiste
    (never below 0).
 4. **Discounts.** Weekend halves the price; electric halves it again. They **stack**: a weekend
    electric car pays 25%.
-5. **Daily cap.** Never more than **250** (applied last, after the discounts).
+5. **Maximum fee.** Never more than **250** for the whole session (applied last, after the
+   discounts).
 6. Print the result with **2 decimals**.
 
-**Assumptions:** inputs are valid; a session is at most 24 hours and does not cross midnight.
+**Assumptions:** inputs are valid; `start_hour` is a whole hour from 0 to 23; a session is at most
+24 hours and does not cross midnight.
 
-## Your task
+### Your task
 
 The code that reads the five values from the user is already written for you in the start file.
 Below it, add logic that computes the fee and prints it, for example:
@@ -43,7 +46,7 @@ Below it, add logic that computes the fee and prints it, for example:
 Parking fee: 22.50
 ```
 
-## The heart of it: mixing conditions
+### The heart of it: mixing conditions
 
 The interesting part is not any single rule; it is making several apply *together*. The one to
 watch is the pair of discounts:

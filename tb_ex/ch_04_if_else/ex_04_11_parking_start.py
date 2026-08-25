@@ -20,5 +20,5 @@ disability = input("Disability permit? (y/n): ").strip().lower().startswith("y")
 # 4) cost = rate * billable / 60
 # 5) discounts: halve for weekend, halve for electric - BOTH can apply,
 #               so use two separate 'if's, not an if/elif chain
-# 6) cap the cost at 250
+# 6) cap the fee at 250 (maximum for the session)
 # 7) print:  f"Parking fee: {cost:.2f}"
