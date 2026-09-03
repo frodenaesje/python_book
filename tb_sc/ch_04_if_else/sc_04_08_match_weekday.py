@@ -17,4 +17,4 @@ match point:
     case [0, 0]: print('Origin')
     case [x, 0]: print(f'On x-axis: x={x}')
     case [0, y]: print(f'On y-axis: y={y}')
-    case [x, y]: print(f'Point ({x}, {y})')
+    case [x, y]: print(f'Point ({x}, {y})' if x != y else 'On diagonal')

@@ -1,6 +1,5 @@
 # sc_04_06_ternary.py
 # Syntax: value_if_true  if  condition  else  value_if_false
-
 num_hours = 1
 price     = 30
 
