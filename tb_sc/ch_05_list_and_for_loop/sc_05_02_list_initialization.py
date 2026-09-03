@@ -16,4 +16,8 @@ mixed_list[1] = "new_text" # Change second element
 
 text    = "python"
 letters = list(text)   # ["p", "y", "t", "h", "o", "n"]
-word    = [text]       # ["python"] - the string as a single element in the list
+letters.append('i')    # ["p", "y", "t", "h", "o", "n","i"]
+print(letters)
+word    = [text]         # ["python"] - the string as a single element in the list
+word.append("next text") # ["python","next text"]
+print(word)
