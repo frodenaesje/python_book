@@ -1,30 +1,30 @@
 # file: sc_05_05_slicing_demo.py
 s = "Helloworld"
 
-print(s[0:5])             # "Hello" – from index 0 to 4
-print(s[:])               # "Helloworld" – entire string
-print(s[::])              # "Helloworld" – entire string
-print(s[None:])           # "Helloworld" - None means "use the default
-                          # for this position": start defaults to 0 here
-print(s[0:len(s)])        # "Helloworld" – entire string
-print(s[:None])           # "Helloworld" - None means "use the default
-                          # for this position": stop defaults to len(s) here
-
-print(s[0:5:2])           # "Hlo" – every other character from
-                          # index 0 to 4
-print(s[::-1])            # "dlrowolleH" – reverses the entire
-                          # string, default values used
-print(s[None:None:-1])    # "dlrowolleH" – reverses the entire
-                          # string, default values used
-print(s[0::-1])           # "H" - the start index is always included;
-                          # going backwards from 0 there is nothing
-                          # before it, so only index 0 is visited     
-print(s[0:0:-1])          # "" - stop is 0 and is excluded, and there
-                          # are no indices between start 0 and stop 0 
-print(s[5:0:-1])          # "wolle" – backwards from index 5
-                          # to 1
-print(s[5::-1])           # "wolleH" – backwards from index 5
-                          # to the start
+print(s[0:5])          # "Hello" – index 0 up to (not incl.) 5
+print(s[:])            # "Helloworld" – both ends omitted:
+                       # entire string
+print(s[::])           # "Helloworld" – same, step omitted too
+print(s[None:])        # "Helloworld" – None as start goes to
+                       # the edge: the beginning (index 0 here)
+print(s[0:len(s)])     # "Helloworld" – index 0 up to len(s):
+                       # entire string
+print(s[:None])        # "Helloworld" – None as stop goes to
+                       # the edge: the end (len(s) here)
+print(s[0:5:2])        # "Hlo" – index 0 up to 5 in steps of 2
+print(s[::-1])         # "dlrowolleH" – step -1, both ends
+                       # omitted, so each goes to its edge:
+                       # whole string reversed
+print(s[None:None:-1]) # "dlrowolleH" – same as above, written
+                       # with None
+print(s[0::-1])        # "H" – start 0 included; going back
+                       # there is nothing before index 0, so
+                       # only 0 is visited
+print(s[0:0:-1])       # "" – stop 0 is excluded and equals the
+                       # start, so no index is visited
+print(s[5:0:-1])       # "wolle" – index 5 back to 0, not incl.
+print(s[5::-1])        # "wolleH" – index 5 back to the start,
+                       # 0 incl.
 
 # slicing on a list, same rules as for strings
 list1 = ['H', 'e', 'l', 'l', 'o', 'w', 'o', 'r', 'l', 'd']

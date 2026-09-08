@@ -1,30 +1,28 @@
-# file: sc_05_13_while_demo.py
+# sc_05_13_while_demo.py
 
-# Example 1: simple counter
+# while: check condition before each iteration
 count = 0
 while count < 5:
-    print(f"count is {count}")
-    count += 1
+    print(f'count is {count}')
+    count += 1      # IMPORTANT: must update count!
 
-# Example 2a: read input - duplicated prompt (beginner)
-print("\nType something (quit to exit):")
-text = input("> ")
-while text != "quit":
-    print(f"You typed: {text}")
-    text = input("> ")
+# Reading input - beginner (duplicated input call)
+text = input('> ')
+while text != 'quit':
+    print(f'You typed: {text}')
+    text = input('> ')
 
-# Example 2b: read input - while True with break (pythonic)
-print("\nType something (quit to exit):")
+# Pythonic: while True with break
 while True:
-    text = input("> ")
-    if text == "quit":
+    text = input('> ')
+    if text == 'quit':
         break
-    print(f"You typed: {text}")
+    print(f'You typed: {text}')
 
-# Example 3: sum numbers until the total exceeds 100
+# Unknown number of iterations
 total = 0
 number = 1
 while total <= 100:
     total += number
     number += 1
-print(f"\nThe sum exceeded 100 after {number - 1} numbers, sum = {total}")
+print(f'Exceeded 100 after {number-1} numbers, sum={total}')
