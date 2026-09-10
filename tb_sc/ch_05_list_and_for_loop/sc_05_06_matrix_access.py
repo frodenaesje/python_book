@@ -26,6 +26,16 @@ for i in range(len(matrix)):
 matrix[0][0] = 10  # Changes the value at row 0, column 0
 print("After change:", matrix)  # Prints the matrix after the change
 
+# A recursive function that traverses a list with unknown levels
+def traverse(data, level=0): 
+    for item in data:
+        if isinstance(item, list):
+            traverse(item, level + 1)
+        else:
+            print(" " * level + str(item))
+nested = [1, [2, 3, [4, 5], 6], [7, [8, [9, 10]]]]
+traverse(nested)
+
 # copy a two-dimensional list in various ways
 matrix_copy1 = matrix.copy()  # Copies the reference to the outer list
 matrix_copy2 = [row.copy() for row in matrix]  # Copies each row individually
