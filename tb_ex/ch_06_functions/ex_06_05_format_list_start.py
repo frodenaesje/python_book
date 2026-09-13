@@ -2,13 +2,19 @@
 
 # TODO: Write a function format_list(items: list) -> str
 #       Returns a human-readable string from a list of items:
-#         []              -> ""
-#         ["apple"]       -> "apple"
-#         ["apple", "banana"] -> "apple and banana"
-#         ["apple", "banana", "cherry"] -> "apple, banana and cherry"
+#         []                              -> ""
+#         ["apple"]                       -> "apple"
+#         ["apple", "banana"]             -> "apple and banana"
+#         ["apple", "banana", "cherry"]   -> "apple, banana and cherry"
 #
 #       Hint for the general case (3+ items):
-#         ", ".join(items[:-1]) + " and " + items[-1]
+#         all items except the last are joined with commas,
+#         and the last one is attached with "and"
+
+
+def format_list(items: list) -> str:
+    # your code here
+    pass
 
 
 if __name__ == "__main__":
