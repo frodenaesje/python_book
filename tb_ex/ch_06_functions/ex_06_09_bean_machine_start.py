@@ -31,6 +31,16 @@ def display_histogram(counts: list):
     pass
 
 
+# TODO (extension): Write display_histogram_vertical(counts: list)
+#       Show the histogram vertically: bars grow upward, with the slot
+#       counts and slot numbers along the bottom. Best viewed with a small
+#       number of balls, since the height equals the largest count.
+#       See the Extension section in the book for the approach.
+def display_histogram_vertical(counts: list):
+    # your code here
+    pass
+
+
 if __name__ == "__main__":
     NUM_BALLS = 500
     NUM_ROWS = 8
