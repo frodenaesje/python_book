@@ -11,7 +11,7 @@ print(result1) # 3
 print(result2) # 7
 
 # More useful: grade calculator
-def calc_grade(score):
+def calc_grade(score : int) -> str:
     """Returns a letter grade based on score (0-100).
 
     score:   integer between 0 and 100
