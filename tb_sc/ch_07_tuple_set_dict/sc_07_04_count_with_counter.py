@@ -1,36 +1,44 @@
-# file: ch_07_tuple_set_dict/sc_07_04_count_with_counter.py
+# file: sc_07_04_count_with_counter.py
 # Counting occurrences using collections.Counter
 
 from collections import Counter
-word = "programming"
-letter_count = Counter(word)
-print("Letter counts in 'programming':")
-for letter, count in letter_count.items():
-    print(f"'{letter}': {count}")
 
-# Counter works wit iterables that are hashable (e.g., strings, lists, tuples)
-sentence = "the quick brown fox jumps over the lazy dog the fox is quick"
-word_list = sentence.split()
-word_count = Counter(word_list)
-print(f"\nWord counts in sentence:")
-for word, count in word_count.items():
-    print(f"'{word}': {count}")
+# Counter creates a dictionary-like object from an iterable.
+# Each distinct element becomes a key; its occurrence count is the value.
+numbers = [1, 2, 2, 3, 3, 3]
+c = Counter(numbers)
+print(c)
+# Counter({3: 3, 2: 2, 1: 1})
 
-# Find most common item
-most_common_word, most_common_count = word_count.most_common(1)[0]
-print(f"\nMost common word: '{most_common_word}' with {most_common_count} occurrences")
+# Strings are iterable, so Counter can count their characters directly.
+text = "banana"
+c = Counter(text)
+print(c)
+# Counter({'a': 3, 'n': 2, 'b': 1})
 
-# Example 3: Count grades from a list
-grades = ['A', 'B', 'A', 'C', 'B', 'A', 'B', 'C', 'A', 'D', 'B']
-grade_count = Counter(grades)
-print(f"\nGrade distribution:")
-for grade, count in grade_count.items():
-    print(f"Grade {grade}: {count} students")
+# most_common(n) returns the n elements with the highest counts.
+c = Counter("banana bread")
+print(c.most_common(2))
+# [('a', 3), ('n', 2)]
 
-# Example 4: Count colors from survey responses
-survey_responses = ['red', 'blue', 'green', 'red', 'yellow', 'blue', 'red', 'green', 'blue', 'red']
-color_count = Counter(survey_responses)
-print(f"\nFavorite color survey results:")
-for color, count in color_count.items():
-    print(f"{color}: {count} votes")
+# update() adds occurrences to an existing Counter.
+c = Counter("hi")
+c.update("hihi")
+print(c)
+# Counter({'h': 3, 'i': 3})
+
+# A practical example - counting words in a text
+# split() creates the words; Counter counts them in one operation.
+text = "once upon a time there was a little man who had a cat"
+words = text.split()
+c = Counter(words)
+print(c)
+# Counter({'a': 3, 'once': 1, 'upon': 1, 'time': 1, ...})
+
+# most_common() makes it easy to retrieve the most frequent words.
+print(c.most_common(3))
+# [('a', 3), ('once', 1), ('upon', 1)]
+
+c = Counter("banankake")
+print(c.most_common(2))
 
