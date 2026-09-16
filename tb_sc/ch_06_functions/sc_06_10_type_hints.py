@@ -1,29 +1,58 @@
 # sc_06_10_type_hints.py
-# Basic type hints: parameter: type  ->  return_type
 
-def add(a: int, b: int) -> int:
+def add_two_numbers(a: int, b: int) -> int:
     return a + b
 
 def greet(name: str) -> str:
-    return 'Hello, ' + name
+    return "Hello, " + name
 
-def is_even(n: int) -> bool:
-    return n % 2 == 0
+def area(width: float, height: float) -> float:
+    return width * height
 
-def print_msg(msg: str) -> None:  # no return value
-    print(msg)
+def is_even(number: int) -> bool:
+    return number % 2 == 0
 
-# Type hints on variables:
-count: int   = 10
-name: str    = 'Alice'
+def print_message(message: str) -> None:
+    print(message)
+
+count: int = 10
+name: str = "Alice"
 price: float = 19.95
+active: bool = True
 
-# Lists:
+print(add_two_numbers("Hello, ", "Python"))
+
 def total(numbers: list[int]) -> int:
     return sum(numbers)
 
-# Optional return (str or None):
-def find(lst: list[str], key: str) -> str | None:
-    for item in lst:
-        if item == key: return item
+def average(values: list[float]) -> float:
+    return sum(values) / len(values)
+
+def print_names(names: list[str]) -> None:
+    for name in names:
+        print(name)
+
+print(total([1, 2, 3]))             # 6
+print(average([1.0, 2.0, 3.0]))     # 2.0
+
+def find_name(names: list[str], search_name: str) -> str | None:
+    for name in names:
+        if name == search_name:
+            return name
     return None
+
+result = find_name(["Alice", "Bob", "Charlie"], "Bob")
+
+if result is not None:
+    print("Found:", result)
+else:
+    print("Name not found")
+
+def format_value(value: int | float) -> str:
+    return f"{value:.2f}"
+
+print(format_value(3))    # 3.00
+print(format_value(3.5))  # 3.50
+
+def display_id(user_id: int | str) -> str:
+    return f"User ID: {user_id}"

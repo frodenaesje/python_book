@@ -1,4 +1,4 @@
-# file: sc_06_15_lotto_pythonic.py
+# file: sc_06_15_lotto.py
 import random
 import math
 

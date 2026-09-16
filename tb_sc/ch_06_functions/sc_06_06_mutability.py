@@ -1,21 +1,27 @@
 # sc_06_06_mutability.py
 def modify_int(x):
-    print('Before:', x, '| id:', id(x))
-    x = x + 1          # creates NEW int object
-    print('After: ', x, '| id:', id(x))
+    print("Before:", x, "| id:", id(x))
+    x = x + 1
+    print("After:", x, "| id:", id(x))
+
+def modify_str(s):
+    print("Before:", s, "| id:", id(s))
+    s = s + "!"
+    print("After:", s, "| id:", id(s))
 
 x = 10
 modify_int(x)
-print('Outside:', x, '| id:', id(x))
+print("Outside:", x, "| id:", id(x))
 
-# Output:
-# Before:  10   | id: 1754625606160
-# After:   11   | id: 1754625606192  <- NEW id!
-# Outside: 10   | id: 1754625606160  <- unchanged
+s = "Hello"
+modify_str(s)
+print("Outside:", s, "| id:", id(s))
 
-def modify_str(s):
-    s = s + '!'        # creates NEW str object
+def modify_list(lst):
+    print("Before:", lst, "| id:", id(lst))
+    lst.append(4)
+    print("After:", lst, "| id:", id(lst))
 
-msg = 'Hello'
-modify_str(msg)
-print(msg)             # 'Hello' - unchanged
+lst = [1, 2, 3]
+modify_list(lst)
+print("Outside:", lst, "| id:", id(lst))
