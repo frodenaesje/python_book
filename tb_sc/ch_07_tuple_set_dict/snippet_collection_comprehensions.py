@@ -1,7 +1,6 @@
-# file: sc_07_11_comprehensions_examples.py
-
-# file: sc_07_05_comprehensions.py
-# Comprehensions for set, dict and tuple
+# file: snippet_collection_comprehensions.py
+# Comprehensions can build sets and dictionaries; parentheses create a generator.
+# Pass the generator expression to tuple() to build a tuple.
 
 # Set comprehension
 # Curly braces without a key:value pair create a set.
@@ -24,12 +23,12 @@ print(lengths)
 
 # Build a dictionary from two parallel sequences.
 # zip() supplies one name and one age for each iteration.
-names = ["Anna", "Bjørn", "Célia"]
+names = ["Anna", "Bjorn", "Celina"]
 ages = [25, 34, 29]
 
 people = {name: age for name, age in zip(names, ages)}
 print(people)
-# {"Anna": 25, "Bjørn": 34, "Célia": 29}
+# {"Anna": 25, "Bjorn": 34, "Celina": 29}
 
 
 # Invert a dictionary by exchanging its keys and values.

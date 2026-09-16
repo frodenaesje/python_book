@@ -1,5 +1,5 @@
-# file: sc_07_04_count_occurencies.py
-# Counting occurrences using dictionaries
+# file: snippet_counting_with_dict.py
+# get() supplies zero for unseen items so a dictionary can count occurrences.
 
 # Count letters in a word
 # get(letter, 0) starts unseen letters at zero.

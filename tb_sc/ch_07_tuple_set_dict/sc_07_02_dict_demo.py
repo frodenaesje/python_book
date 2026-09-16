@@ -21,7 +21,9 @@ license_registry = {
 # [] raises KeyError if missing; get() can return a default.
 plate = "CD-67890"
 owner = license_registry[plate]  # direct access
+print(owner)
 owner = license_registry.get(plate, "Unknown")  # default value returned if plate not found
+print(owner)
 
 # Adding and updating values
 # Assignment adds a new key or updates an existing key.
@@ -84,9 +86,9 @@ for plate, owner in license_registry.items():
     print(f"{plate}: {owner}")
 
 # Dictionary views
-type(license_registry.keys())    # <class 'dict_keys'>
-type(license_registry.values())  # <class 'dict_values'>
-type(license_registry.items())   # <class 'dict_items'>
+print(type(license_registry.keys()))    # <class 'dict_keys'>
+print(type(license_registry.values()))  # <class 'dict_values'>
+print(type(license_registry.items()))   # <class 'dict_items'>
 
 keys_list = list(license_registry.keys())
 
@@ -94,6 +96,7 @@ keys_list = list(license_registry.keys())
 # Sorting a dictionary
 # dict has no sort() method; sorted() returns items in sorted order.
 sorted_by_key = dict(sorted(license_registry.items()))
+print(sorted_by_key)
 
 
 def value_key(item):
@@ -101,3 +104,4 @@ def value_key(item):
 
 
 sorted_by_value = dict(sorted(license_registry.items(), key=value_key))
+print(sorted_by_value)

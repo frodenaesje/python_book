@@ -1,4 +1,6 @@
-# file: sc_07_05_tuple_unpacking.py
+# file: snippet_tuple_unpacking.py
+# Unpacking assigns iterable elements to separate variables.
+# A starred expression collects the remaining elements in a list.
 
 # --- Tuple unpacking ---
 a, b = [1, 2]          # list
@@ -48,3 +50,7 @@ print(f"{name}, {age} years, {profession}")
 fruit = ["apple", "banana", "orange"]
 for index, value in enumerate(fruit):
     print(f"{index}: {value}")
+
+t = (1, [2, 3], 4)
+t[1].append(99)   # OK! Changes the list inside the tuple
+print(t)          # (1, [2, 3, 99], 4)

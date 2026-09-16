@@ -1,4 +1,6 @@
-# file: sc_07_06_constructor_calls_as_values.py
+# file: snippet_constructor_calls_as_values.py
+# Constructor calls create objects directly as dictionary values,
+# so their methods can be used without converting stored strings.
 
 from datetime import datetime
 

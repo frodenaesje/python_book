@@ -1,5 +1,5 @@
-# file: sc_07_04_count_with_counter.py
-# Counting occurrences using collections.Counter
+# file: snippet_counting_with_counter.py
+# Counter counts occurrences in an iterable; most_common() finds the most frequent.
 
 from collections import Counter
 
@@ -19,7 +19,7 @@ print(c)
 # most_common(n) returns the n elements with the highest counts.
 c = Counter("banana bread")
 print(c.most_common(2))
-# [('a', 3), ('n', 2)]
+# [('a', 4), ('b', 2)]
 
 # update() adds occurrences to an existing Counter.
 c = Counter("hi")
@@ -38,7 +38,3 @@ print(c)
 # most_common() makes it easy to retrieve the most frequent words.
 print(c.most_common(3))
 # [('a', 3), ('once', 1), ('upon', 1)]
-
-c = Counter("banankake")
-print(c.most_common(2))
-

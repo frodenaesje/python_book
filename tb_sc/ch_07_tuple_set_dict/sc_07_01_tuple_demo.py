@@ -17,7 +17,7 @@ print("tu5:", tu5)
 a_list  = [1, 2, 3]
 a_tuple = (1, 2, 3)
 a_list[0]  = 99  # OK
-# a_tuple[0] = 99  # TypeError!
+# a_tuple[0] = 99  # Uncomment to see TypeError: tuples are immutable
 
 # unpacking
 a, b, c = tu1
