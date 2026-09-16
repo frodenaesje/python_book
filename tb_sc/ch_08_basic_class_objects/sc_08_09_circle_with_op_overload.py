@@ -1,4 +1,4 @@
-# file: sc_08_09_circle_with_op_overload1.py
+# file: sc_08_09_circle_with_op_overload.py
 class Circle:
     def __init__(self, radius=1):
         self._radius = radius

@@ -7,10 +7,10 @@ class Order:
     def __getitem__(self, key):
         return self.cart[key]
 
-    def __contains__(self, key):
-        return key in self.cart
+    def __contains__(self, item):
+        return item in self.cart
 
 order = Order(['Soap', 'Apple', 'Deodorant'], 'Hansen')
 
-if 'Soap' in order:
-    print("Soap is in the cart")
+print('Apple' in order)      # True
+print('Milk' in order)       # False

@@ -19,6 +19,12 @@ class Account:
         self._interest = interest
         self._transactions = []
 
+    def get_balance(self):
+        return self._balance
+
+    def set_balance(self, new_balance):
+        self._balance = new_balance
+
     def deposit(self, amount):
         if amount > 0:
             self._balance += amount
@@ -39,8 +45,6 @@ class Account:
     def calculate_monthly_interest(self):
         return self._balance * self._interest / 100 / 12
 
-    def get_transactions(self):
-        return self._transactions
     
     def print_transactions(self):
         print("Date and time         | Type     |   Amount")

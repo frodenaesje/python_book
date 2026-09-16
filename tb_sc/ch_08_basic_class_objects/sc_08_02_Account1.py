@@ -23,16 +23,13 @@ class Account:
         return self._balance
 
     def add_monthly_interest(self):
-        monthly_interest = self.calculate_monthly_interest()
-        self._balance += monthly_interest
+        self._balance += self.calculate_monthly_interest()
 
     def calculate_monthly_interest(self):
         return self._balance * self._interest / 100 / 12
 
     def __str__(self):
-        return f'''
-Customer id  = {self._cust_id}
-Account no = {self._account_no}
-Balance = {self._balance}
-Interest = {self._interest}
-'''
+        return (f"Customer id  = {self._cust_id}\n"
+                f"Account no   = {self._account_no}\n"
+                f"Balance      = {self._balance:.2f}\n"
+                f"Interest     = {self._interest}%")

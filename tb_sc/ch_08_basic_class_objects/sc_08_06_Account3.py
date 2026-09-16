@@ -45,16 +45,12 @@ class Account:
         if amount > 0:
             self._balance += amount
             self._transactions.append(Transaction(amount, "deposit"))
-        else:
-            print("Deposit amount must be positive!")
         return self._balance
 
     def withdraw(self, amount):
         if amount <= self._balance:
             self._balance -= amount
             self._transactions.append(Transaction(amount, "withdraw"))
-        else:
-            print("Insufficient balance for withdrawal!")
         return self._balance
 
     def add_monthly_interest(self):
@@ -65,8 +61,6 @@ class Account:
     def calculate_monthly_interest(self):
         return self._balance * self._interest / 100 / 12
 
-    def get_transactions(self):
-        return self._transactions
     
     def print_transactions(self):
         print("Date and time         | Type     |   Amount")

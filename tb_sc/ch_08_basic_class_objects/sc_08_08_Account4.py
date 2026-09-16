@@ -87,7 +87,7 @@ class Account:
         return self._balance
 
     def withdraw(self, amount):
-        if 0 < amount <= self._balance:
+        if amount <= self._balance:
             self._balance -= amount
             self._transactions.append(
                 Transaction(amount, "withdraw"))
@@ -96,20 +96,20 @@ class Account:
 
     def add_monthly_interest(self):
         monthly_interest = self.calculate_monthly_interest()
+        self._balance += monthly_interest
+        self._transactions.append(
+            Transaction(monthly_interest, "interest"))
+        Account._transaction_count += 1
 
-        if monthly_interest > 0:
-            self._balance += monthly_interest
-            self._transactions.append(
-                Transaction(monthly_interest, "interest"))
-            Account._transaction_count += 1
-
-        return self._balance
+    def print_transactions(self):
+        print("Date and time         | Type     |   Amount")
+        print("-" * 42)
+        for trans in self._transactions:
+            print(trans)
 
     def calculate_monthly_interest(self):
         return self._balance * self._interest / 100 / 12
 
-    def get_transactions(self):
-        return self._transactions
 
     def __str__(self):
         return f"""Customer id  = {self._cust_id}

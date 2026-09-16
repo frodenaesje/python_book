@@ -18,4 +18,4 @@ if w1:
 if not w2:
     print("Wallet is empty")
 
-# Without __bool__(), objects are always truthy
+# Without __bool__() or __len__(), objects are always truthy.
