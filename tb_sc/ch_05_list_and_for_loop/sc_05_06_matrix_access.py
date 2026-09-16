@@ -12,19 +12,20 @@ print(first_row)  # Prints the first row, which is [1, 2, 3]
 
 # for loop to print all values in the matrix
 for row in matrix:
-    for value in row:
-        print(value, end=' ')  # Prints values in the same row
-    print()  # Go to next line after each row
+    for item in row:
+        print(item, end=" ")
+    print()
 
 # for loop to print all values in the matrix with indices
-for i in range(len(matrix)):
-    for j in range(len(matrix[i])):
-        print(f"matrix[{i}][{j}] = {matrix[i][j]}", end=' ')
-    print()  # Go to next line after each row
+for row_index, row in enumerate(matrix):
+    for col_index, value in enumerate(row):
+        print(f"matrix[{row_index}][{col_index}] = {value}")
 
-# change a value in the matrix
-matrix[0][0] = 10  # Changes the value at row 0, column 0
-print("After change:", matrix)  # Prints the matrix after the change
+matrix = [[1, 2], [3, 4, 5], [6]]
+for row_index, row in enumerate(matrix):
+    for col_index, value in enumerate(row):
+        matrix[row_index][col_index] = value * 10
+print(matrix)  # [[10, 20], [30, 40, 50], [60]]
 
 # A recursive function that traverses a list with unknown levels
 def traverse(data, level=0): 
@@ -32,12 +33,6 @@ def traverse(data, level=0):
         if isinstance(item, list):
             traverse(item, level + 1)
         else:
-            print(" " * level + str(item))
+            print("  " * level + str(item))
 nested = [1, [2, 3, [4, 5], 6], [7, [8, [9, 10]]]]
 traverse(nested)
-
-# copy a two-dimensional list in various ways
-matrix_copy1 = matrix.copy()  # Copies the reference to the outer list
-matrix_copy2 = [row.copy() for row in matrix]  # Copies each row individually
-print("Copied matrix (reference):", matrix_copy1)
-print("Copied matrix (individual rows):", matrix_copy2)

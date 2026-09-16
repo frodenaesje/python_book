@@ -15,12 +15,12 @@ last = shopping_list.pop()              # remove + return last
 print(last)                             # butter
 print(shopping_list)                    # ['milk', 'egg', 'cheese']
 
-pos = shopping_list.index('egg')        # find position
-print(pos)                              # 1
+position = shopping_list.index('egg')        # find position
+print(position)                              # 1
 
 shopping_list.append('milk')
-cnt = shopping_list.count('milk')       # count occurrences
-print(cnt)                              # 2
+count = shopping_list.count('milk')       # count occurrences
+print(count)                              # 2
 
 result = shopping_list.sort()           # sort in place
 print(shopping_list)                    # ['cheese', 'egg', 'milk', 'milk']

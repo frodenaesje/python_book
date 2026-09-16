@@ -7,12 +7,14 @@ while count < 5:
     count += 1      # IMPORTANT: must update count!
 
 # Reading input - beginner (duplicated input call)
+print("\nType something (quit to exit):")
 text = input('> ')
 while text != 'quit':
     print(f'You typed: {text}')
     text = input('> ')
 
 # Pythonic: while True with break
+print("\nType something (quit to exit):")
 while True:
     text = input('> ')
     if text == 'quit':
@@ -25,4 +27,4 @@ number = 1
 while total <= 100:
     total += number
     number += 1
-print(f'Exceeded 100 after {number-1} numbers, sum={total}')
+print(f"\nThe sum exceeded 100 after {number - 1} numbers, sum = {total}")

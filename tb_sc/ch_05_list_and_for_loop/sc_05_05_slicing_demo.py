@@ -29,3 +29,9 @@ print(s[5::-1])        # "wolleH" – index 5 back to the start,
 # slicing on a list, same rules as for strings
 list1 = ['H', 'e', 'l', 'l', 'o', 'w', 'o', 'r', 'l', 'd']
 print(list1[::-1])  # ['d', 'l', 'r', 'o', 'w', 'o', 'l', 'l', 'e', 'H']
+
+original = [1, 2, 3, 4, 5]
+copy = original[1:4]
+copy[0] = 99
+print(original)  # [1, 2, 3, 4, 5]
+print(copy)      # [99, 3, 4]

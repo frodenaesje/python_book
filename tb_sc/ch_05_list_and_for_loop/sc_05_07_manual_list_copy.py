@@ -1,5 +1,5 @@
 # file: sc_05_07_manual_list_copy.py
-original_list = [1, 2, 3, 4, 5]
+original_list = [1, 2, 3]
 copy_list = []
 
 for element in original_list:
@@ -7,3 +7,5 @@ for element in original_list:
 
 print("Original:", original_list)
 print("Copy:", copy_list)
+
+print(id(original_list[0]) == id(copy_list[0]))  # True

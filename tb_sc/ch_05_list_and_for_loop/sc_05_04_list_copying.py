@@ -36,10 +36,10 @@ print("list2:", list2)  # [60, 2, 3]
 # Shallow copy using list class copy() method
 list1 = [1, 2, 3]
 list2 = list1.copy()
-list2[0] = 20
+list2[0] = 99
 print("\nAfter shallow copy with copy():")
 print("list1:", list1)  # [1, 2, 3]
-print("list2:", list2)  # [20, 2, 3]
+print("list2:", list2)  # [99, 2, 3]
 
 
 # Shallow copy with copy.copy()
@@ -50,10 +50,13 @@ print("\nAfter shallow copy with copy.copy():")
 print("list1:", list1)  # [1, 2, 3]
 print("list2:", list2)  # [30, 2, 3]
 
-# Deep copy
-list1 = [1, 2, 3]
-list2 = copy.deepcopy(list1)
-list2[0] = 50
-print("\nAfter deep copy:")
-print("list1:", list1)  # [1, 2, 3]
-print("list2:", list2)  # [50, 2, 3]
+original = [[1, 2], [3, 4]]
+a_copy = original.copy()
+a_copy[0][0] = 99
+print(original)  # [[99, 2], [3, 4]]
+
+original = [[1, 2], [3, 4]]
+a_copy = copy.deepcopy(original)
+a_copy[0][0] = 99
+print(original)  # [[1, 2], [3, 4]]
+print(a_copy)    # [[99, 2], [3, 4]]

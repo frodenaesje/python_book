@@ -14,10 +14,22 @@ number_list.append(2) # list is now [1, 2]
 name_list[0] = "suzanne"   # Change 1st element, lists are mutable
 mixed_list[1] = "new_text" # Change second element
 
+print(number_list)
+print(name_list)
+print(mixed_list)
+
 text    = "python"
 letters = list(text)   # ["p", "y", "t", "h", "o", "n"]
-letters.append('i')    # ["p", "y", "t", "h", "o", "n","i"]
 print(letters)
 word    = [text]         # ["python"] - the string as a single element in the list
-word.append("next text") # ["python","next text"]
 print(word)
+
+names = ["Anna", "John", "Clara"]
+
+first = names[0]
+names[1] = "Beatrice"
+last = names[-1]
+
+print(first)
+print(names)
+print(last)
