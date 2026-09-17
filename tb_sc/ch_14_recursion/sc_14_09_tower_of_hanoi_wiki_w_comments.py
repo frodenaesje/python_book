@@ -1,4 +1,4 @@
-# file : ch_14_09_tower_of_hanoi_wiki_w_comments.py
+# file: sc_14_09_tower_of_hanoi_wiki_w_comments.py
 # Tower of Hanoi solution based on Wikipedia description
 
 def hanoi(n, source, dest, help):

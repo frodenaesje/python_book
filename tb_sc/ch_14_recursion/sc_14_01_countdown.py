@@ -27,9 +27,9 @@ print("RECURSIVE COUNTDOWN")
 print("=" * 60)
 
 def countdown(n):
-    """Count down from n to 1, then print 'Ferdig!'"""
+    """Count down from n to 1, then print 'Finished!'"""
     if n == 0:  # BASE CASE: Stop when n reaches 0
-        print("Ferdig!")
+        print("Finished!")
     else:       # RECURSIVE CASE: Print n, then call with n-1
         print(n)
         countdown(n - 1)  # Function calls itself!
@@ -52,7 +52,7 @@ countdown(5):
               → calls countdown(1)
                   → prints 1
                   → calls countdown(0)
-                      → BASE CASE! prints "Ferdig!"
+                      → BASE CASE! prints "Finished!"
 """)
 
 print("\n" + "=" * 60)
@@ -64,7 +64,7 @@ def countdown_iter(n):
     while n > 0:
         print(n)
         n -= 1
-    print("Ferdig!")
+    print("Finished!")
 
 print("\nIterative countdown_iter(5):")
 countdown_iter(5)
@@ -104,7 +104,7 @@ print("  4 ****")
 print("  3 ***")
 print("  2 **")
 print("  1 *")
-print("  Ferdig!")
+print("  Finished!")
 
 print("\n" + "=" * 60)
 print("KEY TAKEAWAYS")
@@ -117,7 +117,7 @@ print("""
 5. Countdown is the simplest example to understand the pattern
 
 Next steps:
-  • See sc_15_02_sum.py for recursion with return values
-  • See sc_15_03_factorial.py for a classic example
-  • See sc_15_01_tower_of_hanoi.py for a complex problem
+  • See sc_14_02_sum.py for recursion with return values
+  • See sc_14_03_factorial.py for a classic example
+  • See sc_14_08_tower_of_hanoi_wiki.py for a complex problem
 """)

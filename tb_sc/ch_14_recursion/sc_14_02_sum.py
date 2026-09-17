@@ -49,3 +49,12 @@ print("\nKey insight:")
 print("  - Each recursive call returns a value")
 print("  - These values are combined as the stack unwinds")
 print("  - Base case provides the starting point for unwinding")
+
+
+def sum_to(n):
+    if n == 1:
+        return 1
+    return sum_to(n - 1) + n
+
+
+print("sum_to(5) =", sum_to(5))

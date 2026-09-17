@@ -210,22 +210,22 @@ print("""
 The only way to truly understand recursion is through practice.
 
 Beginner exercises:
-  ☐ Count occurrences of a character in a string
-  ☐ Check if a string is a palindrome
-  ☐ Calculate GCD (greatest common divisor)
-  ☐ Generate all subsets of a set
+  Count occurrences of a character in a string
+  Check if a string is a palindrome
+  Calculate GCD (greatest common divisor)
+  Generate all subsets of a set
   
 Intermediate exercises:
-  ☐ Binary search in a sorted list
-  ☐ Flatten a nested list
-  ☐ Generate all permutations
-  ☐ Solve Tower of Hanoi
+  Binary search in a sorted list
+  Flatten a nested list
+  Generate all permutations
+  Solve Tower of Hanoi
   
 Advanced exercises:
-  ☐ Traverse a binary tree
-  ☐ Solve N-Queens problem
-  ☐ Implement merge sort
-  ☐ Solve Sudoku with backtracking
+  Traverse a binary tree
+  Solve N-Queens problem
+  Implement merge sort
+  Solve Sudoku with backtracking
   
 Start with the beginner exercises and work your way up!
 """)

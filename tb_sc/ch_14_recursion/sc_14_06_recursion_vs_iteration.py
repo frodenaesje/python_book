@@ -11,16 +11,16 @@ print("\n" + "=" * 60)
 print("WHEN TO USE RECURSION")
 print("=" * 60)
 print("""
-✓ Problem naturally divides into smaller versions of itself
+Problem naturally divides into smaller versions of itself
   Examples: Tree traversal, divide-and-conquer algorithms
   
-✓ Code is cleaner and more elegant with recursion
+Code is cleaner and more elegant with recursion
   Examples: Tower of Hanoi, directory traversal
   
-✓ Problem depth is reasonable (< 1000 levels in Python)
+Problem depth is reasonable (< 1000 levels in Python)
   Examples: Parsing expressions, backtracking algorithms
   
-✓ Working with recursive data structures
+Working with recursive data structures
   Examples: Trees, graphs, nested lists
 
 Good use cases:
@@ -36,16 +36,16 @@ print("\n" + "=" * 60)
 print("WHEN TO USE ITERATION (loops)")
 print("=" * 60)
 print("""
-✓ Simple, straightforward loops
+Simple, straightforward loops
   Examples: Counting, summing, searching arrays
   
-✓ Performance is critical
+Performance is critical
   Iteration has less overhead than recursion
   
-✓ Problem depth could be very large
+Problem depth could be very large
   No risk of stack overflow with iteration
   
-✓ No natural recursive structure
+No natural recursive structure
   Examples: Processing a list sequentially
 
 Good use cases:
@@ -138,22 +138,22 @@ print("\n" + "=" * 60)
 print("RECURSION PITFALLS")
 print("=" * 60)
 print("""
-✗ Forgetting the base case
+Forgetting the base case
   → Infinite recursion → Stack overflow
   
-✗ Stack overflow with deep recursion
+Stack overflow with deep recursion
   → Python limit: ~1000 recursive calls
   → Solution: Use iteration or increase recursion limit (risky!)
   
-✗ Inefficiency without memoization
+Inefficiency without memoization
   → Fibonacci is classic example: O(2^n) without memoization
   → Solution: Use iteration or memoization
   
-✗ Harder to debug
+Harder to debug
   → Stack traces can be long and confusing
   → Solution: Print statements, or convert to iteration
   
-✗ More memory overhead
+More memory overhead
   → Each recursive call uses stack space
   → Solution: Use iteration for large problems
 """)

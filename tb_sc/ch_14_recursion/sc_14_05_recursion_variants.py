@@ -70,6 +70,29 @@ def factorial_not_tail(n):
 print("factorial_not_tail(5) =", factorial_not_tail(5))
 print("Not tail: multiplication happens after recursive call returns")
 
+def countdown_tail(n):
+    if n == 0:
+        return
+    print(n)
+    countdown_tail(n - 1)  # Recursive call last statement
+    # Nothing after!
+
+
+def countdown_not_tail(n):
+    if n == 0:
+        return
+    print(n)
+    countdown_not_tail(n - 1)  # Recursive call
+    print("back")               # Work after!
+
+
+print("countdown_tail(3):")
+countdown_tail(3)
+
+print("countdown_not_tail(3):")
+countdown_not_tail(3)
+
+
 # 1.4 Mutual Recursion (functions call each other)
 print("\n4. Mutual Recursion - Functions call each other")
 print("-" * 70)
@@ -117,8 +140,8 @@ def fib_memo_dict(n, memo=None):
     return memo[n]
 
 print("fib_memo_dict(50) =", fib_memo_dict(50))
-print("✓ Pros: Flexible, works with any key type")
-print("✗ Cons: Slightly slower lookup than list")
+print("Pros: Flexible, works with any key type")
+print("Cons: Slightly slower lookup than list")
 
 # 2.2 Memoization with List
 print("\n2. Memoization with List - Fast, preallocated")
@@ -141,8 +164,8 @@ def fib_memo_list(n):
     return helper(n)
 
 print("fib_memo_list(50) =", fib_memo_list(50))
-print("✓ Pros: Faster lookup, predictable memory")
-print("✗ Cons: Must know max n in advance")
+print("Pros: Faster lookup, predictable memory")
+print("Cons: Must know max n in advance")
 
 # 2.3 Using Python's @lru_cache decorator
 print("\n3. Python's @lru_cache - Built-in memoization")
@@ -158,8 +181,8 @@ def fib_cached(n):
     return fib_cached(n - 1) + fib_cached(n - 2)
 
 print("fib_cached(50) =", fib_cached(50))
-print("✓ Pros: Clean, professional, handles caching automatically")
-print("✗ Cons: Less control over cache behavior")
+print("Pros: Clean, professional, handles caching automatically")
+print("Cons: Less control over cache behavior")
 print(f"Cache info: {fib_cached.cache_info()}")
 
 # ============================================================================
@@ -171,7 +194,7 @@ print("PART 3: COMMON RECURSION MISTAKES")
 print("=" * 70)
 
 # Mistake 1: Missing or wrong base case
-print("\n❌ MISTAKE 1: Missing or Wrong Base Case")
+print("\nMISTAKE 1: Missing or Wrong Base Case")
 print("-" * 70)
 
 # def countdown_bad(n):
@@ -188,10 +211,10 @@ def countdown_good(n):
 
 print("countdown_good(3):")
 countdown_good(3)
-print("✓ Always write the base case FIRST!")
+print("Always write the base case FIRST!")
 
 # Mistake 2: Not making progress toward base case
-print("\n❌ MISTAKE 2: Not Making Progress Toward Base Case")
+print("\nMISTAKE 2: Not Making Progress Toward Base Case")
 print("-" * 70)
 
 # def factorial_bad(n):
@@ -203,13 +226,13 @@ def factorial_good(n):
     """Fixed: n decreases toward base case"""
     if n == 0:
         return 1
-    return n * factorial_good(n - 1)  # ✓ n-1 moves toward 0
+    return n * factorial_good(n - 1)  # n-1 moves toward 0
 
 print("factorial_good(5) =", factorial_good(5))
-print("✓ Each recursive call must move closer to base case!")
+print("Each recursive call must move closer to base case!")
 
 # Mistake 3: Modifying shared state incorrectly
-print("\n❌ MISTAKE 3: Modifying Shared State Incorrectly")
+print("\nMISTAKE 3: Modifying Shared State Incorrectly")
 print("-" * 70)
 
 def sum_list_bad(lst, total=[0]):  # DANGER! Default mutable argument
@@ -224,17 +247,17 @@ print("First call:", sum_list_bad([1, 2, 3]))
 # Second call WRONG - total persists!
 print("Second call:", sum_list_bad([1, 2, 3]), "← WRONG! Should be 6")
 
-def sum_list_good(lst, total=0):  # ✓ Immutable default
+def sum_list_good(lst, total=0):  # Immutable default
     """GOOD: Using immutable accumulator"""
     if not lst:
         return total
     return sum_list_good(lst[1:], total + lst[0])
 
 print("sum_list_good([1, 2, 3]) =", sum_list_good([1, 2, 3]))
-print("✓ Never use mutable default arguments in recursion!")
+print("Never use mutable default arguments in recursion!")
 
 # Mistake 4: Stack overflow with deep recursion
-print("\n❌ MISTAKE 4: Stack Overflow with Deep Recursion")
+print("\nMISTAKE 4: Stack Overflow with Deep Recursion")
 print("-" * 70)
 
 import sys
@@ -250,7 +273,7 @@ print(f"Python's default recursion limit: {sys.getrecursionlimit()}")
 print("Solution 1: Use iteration for deep recursion")
 print("Solution 2: Increase recursion limit (use with caution)")
 print("Solution 3: Use tail recursion (if language optimizes it)")
-print("✓ Python does NOT optimize tail recursion!")
+print("Python does NOT optimize tail recursion!")
 
 # ============================================================================
 # PART 4: Debugging Recursive Functions
@@ -328,20 +351,20 @@ print("PART 5: WHEN TO USE RECURSION")
 print("=" * 70)
 
 print("""
-✓ USE RECURSION when:
+USE RECURSION when:
   • Problem has natural recursive structure (trees, graphs)
   • Divide and conquer algorithms (quicksort, merge sort)
   • Backtracking problems (N-queens, maze solving)
   • Mathematical definitions are naturally recursive
   • Code clarity is more important than absolute performance
 
-✗ AVOID RECURSION when:
+AVOID RECURSION when:
   • Simple iteration is clearer (summing a list)
   • Recursion depth could be very large (stack overflow risk)
   • Performance is critical and tail call optimization unavailable
   • Memory is constrained (each call uses stack space)
 
-🎯 RECURSION CHECKLIST:
+RECURSION CHECKLIST:
   1. Start with base case – write it first!
   2. Think "one level down" – assume recursive call works
   3. Ensure progress toward base case

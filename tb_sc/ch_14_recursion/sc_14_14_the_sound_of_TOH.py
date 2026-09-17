@@ -125,7 +125,7 @@ def the_sound_of_TOH(
 
 
 if __name__ == "__main__":
-    # Client code: 5 disks with distinct sounds (frequencies in Hz).
+    # Client code: 7 disks with distinct sounds (frequencies in Hz).
     disk_sounds = [0, 440, 494, 523,  587]
     n_disks = 7 
     try:
