@@ -69,6 +69,30 @@ def countdown_iter(n):
 print("\nIterative countdown_iter(5):")
 countdown_iter(5)
 
+def countdown_tail(n):
+    if n == 0:
+        return
+    print(n)
+    countdown_tail(n - 1)  # Recursive call last statement
+    # Nothing after!
+
+
+def countdown_not_tail(n):
+    if n == 0:
+        return
+    print(n)
+    countdown_not_tail(n - 1)  # Recursive call
+    print("back")               # Work after!
+
+
+print("countdown_tail(3):")
+countdown_tail(3)
+
+print("countdown_not_tail(3):")
+countdown_not_tail(3)
+
+
+
 print("\n" + "-" * 60)
 print("Recursion vs Iteration:")
 print("-" * 60)
