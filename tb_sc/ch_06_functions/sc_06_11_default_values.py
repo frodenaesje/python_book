@@ -1,4 +1,16 @@
 # file: sc_06_11_default_values.py
+# Keyword arguments pass values by parameter name.
+# They can be supplied in a different order from the parameters.
+
+def create_greeting(name, greeting):
+    return f"{greeting}, {name}!"
+
+msg1 = create_greeting(name="Ola", greeting="Hello")
+msg2 = create_greeting(greeting="Hi", name="Kari")
+
+print(msg1)  # Hello, Ola!
+print(msg2)  # Hi, Kari!
+
 # Parameters with default values
 def greet(name, greeting='Hello'):
     print(f'{greeting}, {name}!')
