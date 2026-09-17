@@ -13,6 +13,15 @@ for number in numbers:
 print()
 print(numbers)
 
+# The iteration variable refers to an inner list.
+# append() changes that object, so the original list shows the change.
+numbers = [[1], [2], [3]]
+
+for number in numbers:
+    number.append(99)
+
+print(numbers)
+
 numbers = [3, 7, 2, 8, 4]
 for index in range(len(numbers)):
     numbers[index] *= 2
