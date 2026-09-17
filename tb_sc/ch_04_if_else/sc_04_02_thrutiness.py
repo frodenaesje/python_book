@@ -3,16 +3,22 @@
 
 print(bool(0))       # False
 print(bool(1))       # True
+print(bool(-5))      # True
 print(bool(None))    # False
 print(bool(""))      # False
-print(bool("Hei"))   # True
+print(bool("Hi"))   # True
+print(bool(" "))     # True
 print(bool([]))      # False
 print(bool([1, 2]))  # True
 
-print('if 0:', 'True' if 0 else 'False') # False
-print('if 1:', 'True' if 1 else 'False') # True
-print('if None:', 'True' if None else 'False') # False
-print('if "":', 'True' if "" else 'False') # False
-print('if "Hello":', 'True' if "Hello" else 'False') # True
-print('if []:', 'True' if [] else 'False') # False
-print('if [1, 2]:', 'True' if [1, 2] else 'False') # True
+no_value = None
+if not no_value:
+    print("No value set")
+
+name = "Ada"
+
+if bool(name):
+    print("Name provided")
+
+if name:
+    print("Name provided")

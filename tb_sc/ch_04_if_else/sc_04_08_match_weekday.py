@@ -1,3 +1,5 @@
+# file: sc_04_08_match_weekday.py
+
 day = 3
 
 match day:
@@ -15,6 +17,6 @@ match day:
 point = [3, 0]
 match point:
     case [0, 0]: print('Origin')
-    case [x, 0]: print(f'On x-axis: x={x}')
-    case [0, y]: print(f'On y-axis: y={y}')
-    case [x, y]: print(f'Point ({x}, {y})' if x != y else 'On diagonal')
+    case [x, 0]: print(f'On the x-axis: x={x}')
+    case [0, y]: print(f'On the y-axis: y={y}')
+    case [x, y]: print(f"Point ({x}, {y})")
