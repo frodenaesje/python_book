@@ -107,7 +107,10 @@ def create_gui():
             filetypes=(("Text files", "*.txt"), ("All files", "*.*"))
         )
         if filename:
-            messagebox.showinfo("File saved", f"File saved as:\n{filename}")
+            messagebox.showinfo(
+                "Filename selected",
+                f"Selected filename:\n{filename}"
+            )
 
     bt_save = ttk.Button(fr_right, text="asksaveasfilename - Save file", command=save_file)
     bt_save.pack(fill="x", pady=2)

@@ -1,12 +1,12 @@
+# file: sc_12_04_configure_demo.py
 import tkinter as tk
 
 def show_label_properties():
     properties = label.configure()
     text_field.delete("1.0", tk.END)
     for name, value in properties.items():
-        current_value = value[-1]  # Last element is the current value
-        text_field.insert(tk.END, f"{name}: {current_value}
-")
+        current_value = label.cget(name)
+        text_field.insert(tk.END, f"{name}: {current_value}\n")
 
 root = tk.Tk()
 root.title("Label properties with configure()")

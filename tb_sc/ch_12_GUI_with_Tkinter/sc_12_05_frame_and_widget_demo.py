@@ -2,7 +2,7 @@
 import tkinter as tk
 from tkinter import ttk
 
-# Hovedvindu
+# Main window
 root = tk.Tk()
 root.title("Tkinter Demo - Structured GUI")
 
@@ -38,7 +38,7 @@ rb_b = ttk.Radiobutton(frm_valg, text="Hotel only", variable=rb_valg, value="B")
 rb_b.grid(row=2, column=0, sticky="w")
 rb_c = ttk.Radiobutton(frm_valg, text="Flight only", variable=rb_valg, value="C")
 rb_c.grid(row=3, column=0, sticky="w")
-rb_d = ttk.Radiobutton(frm_valg, text="Neither", variable=rb_valg, value="C")
+rb_d = ttk.Radiobutton(frm_valg, text="Neither", variable=rb_valg, value="D")
 rb_d.grid(row=4, column=0, sticky="w")
 
 # Checkbuttons
@@ -47,14 +47,14 @@ var_dag2 = tk.IntVar()
 var_dag3= tk.IntVar()
 
 lb_check = ttk.Label(frm_valg, text="Attending days:")
-lb_check.grid(row=4, column=0, sticky="w")
+lb_check.grid(row=5, column=0, sticky="w")
 
 cb_dag1 = ttk.Checkbutton(frm_valg, text="Day 1", variable=var_dag1)
-cb_dag1.grid(row=5, column=0, sticky="w")
+cb_dag1.grid(row=6, column=0, sticky="w")
 cb_dag2 = ttk.Checkbutton(frm_valg, text="Day 2", variable=var_dag2)
-cb_dag2.grid(row=6, column=0, sticky="w")
+cb_dag2.grid(row=7, column=0, sticky="w")
 cb_dag3 = ttk.Checkbutton(frm_valg, text="Day 3", variable=var_dag3)
-cb_dag3.grid(row=7, column=0, sticky="w")
+cb_dag3.grid(row=8, column=0, sticky="w")
 
 # === Submit button ===
 def show_data():

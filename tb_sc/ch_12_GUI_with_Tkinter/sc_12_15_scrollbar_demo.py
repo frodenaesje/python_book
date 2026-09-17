@@ -1,4 +1,4 @@
-# file sc_12_15_scrollbar_demo.py
+# file: sc_12_15_scrollbar_demo.py
 import tkinter as tk
 from tkinter import ttk
 
@@ -8,7 +8,7 @@ root.title("Scrollbar-demo: Listbox, Text, Canvas")
 fr_main = ttk.Frame(root)
 fr_main.pack(fill="both", expand=True, padx=10, pady=10)
 
-# --- Listbox med scrollbar ---
+# --- Listbox with scrollbar ---
 fr_listbox = ttk.Frame(fr_main)
 fr_listbox.pack(side="left", fill="both", expand=True, padx=5)
 lb_label = ttk.Label(fr_listbox, text="Listbox")
@@ -24,7 +24,7 @@ lbx_listbox.pack(side="left", fill="both", expand=True)
 for i in range(30):
     lbx_listbox.insert(tk.END, f"Item {i+1}")
 
-# --- Text med scrollbar ---
+# --- Text with scrollbar ---
 fr_text = ttk.Frame(fr_main)
 fr_text.pack(side="left", fill="both", expand=True, padx=5)
 lb_text = ttk.Label(fr_text, text="Text")
@@ -41,7 +41,7 @@ tx_text.pack(side="left", fill="both", expand=True)
 for i in range(30):
     tx_text.insert(tk.END, f"Line {i+1}\n")
 
-# --- Canvas med scrollbar ---
+# --- Canvas with scrollbar ---
 fr_canvas = ttk.Frame(fr_main)
 fr_canvas.pack(side="left", fill="both", expand=True, padx=5)
 lb_canvas = ttk.Label(fr_canvas, text="Canvas")

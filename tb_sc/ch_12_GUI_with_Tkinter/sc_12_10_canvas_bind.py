@@ -2,12 +2,12 @@
 import tkinter as tk
 
 def on_canvas_click(event):
-    # Find the ID of the object that was hit
+    # Find the ID of the nearest object to the event coordinates
     clicked_items = canvas.find_closest(event.x, event.y)
     if clicked_items:
         item_id = clicked_items[0]
-        print(f"You clicked on object with ID: {item_id}")
-        # Change color of the clicked object
+        print(f"Selected nearest object with ID: {item_id}")
+        # Change color of the nearest object
         canvas.itemconfig(item_id, fill="green")
 
 root = tk.Tk()
