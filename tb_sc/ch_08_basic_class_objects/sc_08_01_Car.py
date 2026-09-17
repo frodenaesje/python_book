@@ -1,5 +1,5 @@
 # file: sc_08_01_Car.py
-# This code defines a simple class `Car` with methods to "drive" :-)
+# This code defines a simple class `Car` with methods to "drive"
 # and show information about the car.
 class Car:
     def __init__(self, brand, color):
