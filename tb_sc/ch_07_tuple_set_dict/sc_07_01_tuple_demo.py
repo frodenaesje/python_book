@@ -19,6 +19,20 @@ a_tuple = (1, 2, 3)
 a_list[0]  = 99  # OK
 # a_tuple[0] = 99  # Uncomment to see TypeError: tuples are immutable
 
+# creating from generator and list
+tu = tuple(x for x in range(5)) # from generator
+print(tu)
+
+tu = tuple([x * 2 for x in range(5)]) # from list comprehension
+print(tu)
+# drop the brackets..
+tu = tuple(x * 2 for x in range(5)) # same result, no throwaway list
+print(tu)
+
+
+tu = tuple(map(str, range(3))) # from map-function
+
+
 # unpacking
 a, b, c = tu1
 print("Unpacked tu1:", a, b, c)
