@@ -55,8 +55,17 @@ print(content)
 print(repr(content))
 
 
-# 2. Read file line by line
-print("\n2. Read line by line with readline():")
+# 2. Read specific number of characters
+print("\n2. Read specific characters with read(n):")
+file = open('sample.txt', 'r')
+first_10 = file.read(10)
+next_5 = file.read(5)
+file.close()
+print(f"First 10 characters: {repr(first_10)}")
+print(f"Next 5 characters: {repr(next_5)}")
+
+# 3. Read file line by line
+print("\n3. Read line by line with readline():")
 file = open('sample.txt', 'r')
 line_number = 1
 while True:
@@ -67,22 +76,13 @@ while True:
     line_number += 1
 file.close()
 
-# 3. Read all lines into a list
-print("\n3. Read all lines with readlines():")
+# 4. Read all lines into a list
+print("\n4. Read all lines with readlines():")
 file = open('sample.txt', 'r')
 lines = file.readlines()
 file.close()
 for i, line in enumerate(lines, 1):
     print(f"Line {i}: {repr(line)}")
-
-# 4. Read specific number of characters
-print("\n4. Read specific characters with read(n):")
-file = open('sample.txt', 'r')
-first_10_chars = file.read(10)
-next_5_chars = file.read(5)
-file.close()
-print(f"First 10 characters: {repr(first_10_chars)}")
-print(f"Next 5 characters: {repr(next_5_chars)}")
 
 # 5. Iterate over file object (most Pythonic)
 print("\n5. Iterate over file object (recommended):")
@@ -116,4 +116,4 @@ print(f"Read with UTF-8 encoding: {len(content)} characters")
 
 print("\n=== FILES CREATED FOR DEMONSTRATION ===")
 print("Files created: sample.txt, multi_lines.txt")
-print("Use sc_11_02_examining_file_object.py to examine file object properties.")
+print("Use sc_11_02_examining_file_and_system.py to examine file object properties.")

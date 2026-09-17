@@ -84,8 +84,8 @@ print("\n=== LEVEL 5: HIERARCHICAL EXCEPTION HANDLING ===")
 # Line 56-69: Using exception hierarchy - OSError is parent of FileNotFoundError
 print("5. Using exception hierarchy:")
 try:
-    file = open('sample.txt', 'w')  # This should work
-    file.write("Test content")
+    file = open("data.txt", "r")
+    content = file.read()
     file.close()
     
     # Simulate trying to write to a restricted location

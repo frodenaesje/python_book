@@ -138,13 +138,13 @@ if __name__ == "__main__":
         account1.interest = 3.0
         print(f"\nNew balance: {account1.balance:.2f}")
     except InsufficientFundsError as e:
-        print(f"✗ {e}")
+        print(f"{e}")
     except NegativeDepositError as e:
-        print(f"✗ {e}")
+        print(f"{e}")
     except BankAccountError as e:
-        print(f"✗ Bank error: {e}")
+        print(f"Bank error: {e}")
     except Exception as e:
-        print(f"✗ Unexpected error: {e}")
+        print(f"Unexpected error: {e}")
 
     # Simple menu that shows we can continue after errors."
     account2 = AccountE(999, 888, 500, 1.5)
