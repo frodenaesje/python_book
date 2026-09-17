@@ -22,8 +22,9 @@ class Point:
 p1 = Point(3, 4)
 p2 = Point(3, 4)
 print(p1 == p2)    # True: now we compare value.
-print(hash(p1))    # TypeError: unhashable type: 'Point'
-                   # Python automatically set __hash__ to None.
+# Uncomment to see TypeError: unhashable type: 'Point'.
+# print(hash(p1))
+# Python automatically sets __hash__ to None.
 
 # Step 3: override both.
 class Point:

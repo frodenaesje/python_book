@@ -1,18 +1,18 @@
-# file: sc_10_05_multiple_inheritance.py
+# file: sc_10_05_multiple_inheritance1.py
 class Animal:
     def __init__(self, name):
-        self.name = name
+        self._name = name
 
     def speak(self):
-        return f"{self.name} makes a sound"
+        return f"{self._name} makes a sound"
 
 class Swimmer:
     def swim(self):
-        return f"{self.name} is swimming"
+        return f"{self._name} is swimming"
 
 class Flyer:
     def fly(self):
-        return f"{self.name} is flying"
+        return f"{self._name} is flying"
 
 class Duck(Animal, Swimmer, Flyer):
     def __init__(self, name):

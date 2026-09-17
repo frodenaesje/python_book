@@ -9,7 +9,7 @@ class Animal:  # Parent class, inherits from object.
 class Dog(Animal):  # Subclass of Animal.
     def __init__(self, name, breed):
         super().__init__(name)  # Call the parent class __init__.
-        self.breed = breed
+        self._breed = breed
 
     def speak(self):  # Overrides speak from Animal.
         return "Woof!"

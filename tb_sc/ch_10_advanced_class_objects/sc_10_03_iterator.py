@@ -1,31 +1,41 @@
 # file: sc_10_03_iterator.py
-from collections.abc import Iterator
-
-class MyIterator(Iterator):
-    def __init__(self):
-        self.data = [1, 2, 3]
-        self.index = 0
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        if self.index < len(self.data):
-            item = self.data[self.index]
-            self.index += 1
-            return item
-        else:
-            raise StopIteration
-
-class MyCollectionV1:
+class MyCollection:
     def __init__(self, data):
         self._data = data
 
     def __iter__(self):
-        # Uses the list's built-in iterator.
-        return iter(self._data)
+        return iter(self._data)   # Reuses the list's built-in iterator
 
-class MyCollectionV2:
+collection = MyCollection([1, 2, 3])
+for item in collection:
+    print(item, end=" ")   # 1 2 3
+
+for item in collection:   # Works again - new iterator each time
+    print(item, end=" ")   # 1 2 3
+
+class MyIterator:
+    def __init__(self, data):
+        self._data = data
+        self._index = 0
+
+    def __iter__(self):
+        return self   # Iterator is itself - exhausted after one pass
+
+    def __next__(self):
+        if self._index < len(self._data):
+            item = self._data[self._index]
+            self._index += 1
+            return item
+        else:
+            raise StopIteration
+
+it = MyIterator([1, 2, 3])
+for item in it:
+    print(item, end=" ")   # 1 2 3
+for item in it:
+    print(item, end=" ")   # Nothing - iterator is exhausted
+
+class MyCollection:
     def __init__(self, data):
         self._data = data
 
@@ -48,24 +58,9 @@ class MyCollectionIterator:
         else:
             raise StopIteration
 
-my_iterator = MyIterator()
-print("MyIterator")
-for item in my_iterator:
-    print(item, end=" ")
-
-collection = MyCollectionV1([1, 2, 3])
-print("\nMyCollectionV1")
+collection = MyCollection([1, 2, 3])
 for item in collection:
-    print(item, end=" ")
-
-# Can be used again.
-for item in collection:
-    print(item, end=" ")
-
-collection = MyCollectionV2([1, 2, 3])
-print("\nMyCollectionV2")
-for item in collection:
-    print(item, end=" ")
+    print(item, end=" ")   # 1 2 3
 
 # Can be used again.
 for item in collection:
