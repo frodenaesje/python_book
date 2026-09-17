@@ -11,10 +11,10 @@ print(greet.__defaults__)  # Default values
 print(greet.__closure__)   # Used with closures
 
 def comp(f, g, x):
-    """Returner f(g(x))."""
+    """Return f(g(x))."""
     return f(g(x))
 
-comp(print, len, "Hello") # Først len("Hello") -> 5, så print(5) -> 5
+comp(print, len, "Hello")  # len("Hello") returns 5; print(5) prints it.
 
 # using simple lambdas
 names = ["John", "Mary", "Andrew"]
@@ -49,8 +49,35 @@ greeting = make_greeting_with_parameter("Hi")
 print(greeting("John"))  # "Hi, John"
 
 
+def make_greeting(greeting):
+    return lambda name: f"{greeting}, {name}!"
+
+hi = make_greeting("Hi")
+hello = make_greeting("Hello")
+
+print(hi("John"))      # "Hi, John!"
+print(hello("Paula"))  # "Hello, Paula!"
+
+
+def make_multiplier(n):
+    return lambda x: x * n
+
+double = make_multiplier(2)
+triple = make_multiplier(3)
+
+print(double(5))   # 10
+print(triple(5))   # 15
+print(triple(10))  # 30
+
+numbers = [1, 2, 3, 4]
+double = make_multiplier(2)
+result = map(double, numbers)
+
+print(list(result))  # [2, 4, 6, 8]
+
+
 # 3) From closure to decorator: what if we pass a function instead of data?
-# In the closure above, we passed "Hello" (data).
+# In the closure above, we passed "Hi" (data).
 # Now let's pass a function and have the inner function call it.
 
 # This is a basic decorator -
@@ -59,7 +86,7 @@ def add_enthusiasm(func):
     
     def wrapper(name):
         result = func(name)  # Call the original function
-        return result + "!"  # Add something extra
+        return result + "!!!"  # Add something extra
     return wrapper
 
 # Original function
@@ -68,7 +95,7 @@ def say(name):
 
 # Apply decorator manually (without @ syntax)
 say = add_enthusiasm(say)
-print(say("John"))  # "Hi, John!"
+print(say("John"))  # "Hi, John!!!"
 
 
 # Same thing with @ syntax sugar
@@ -76,7 +103,7 @@ print(say("John"))  # "Hi, John!"
 def say(name):
     return f"Hi, {name}"
 
-print(say("John"))  # "Hi, John!"
+print(say("John"))  # "Hi, John!!!"
 
 
 # ======================================================================
@@ -109,7 +136,7 @@ numpy_quicksort(data.copy())
 
 # ======================================================================
 # Step 2: Problem — what if we want to pass extra arguments?
-# numpy_sort(data.copy(), kind="mergesort")  # ERROR: wrapper(data) only takes one argument!
+# numpy_quicksort(data.copy(), kind="mergesort")  # Uncomment for TypeError: wrapper(data) cannot accept kind.
 # Solution: use *args/**kwargs to support any function signature
 # ======================================================================
 
