@@ -14,7 +14,6 @@ print(text[7:])  # world! (slice from index 7 to end)
 print(text[:5])   # Hello       (from start)
 
 # Slicing with step [start:stop:step]
-print(text[::1])  # Hello, world!  (each character)
 print(text[::2])  # Hlo ol! (every other character)
 print(text[::-1]) # !dlrow ,olleH. reverse string
 text[0] = 'h'  # TypeError: str is immutable!

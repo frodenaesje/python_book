@@ -1,35 +1,17 @@
 # file: sc_02_12_input_patterns.py
 
-# strip whitespace and convert to lowercase
-answer = input("Type yes or no: ").strip().lower()
-print(f"You typed: {answer}")
+name = input("What is your name? ")
+age = int(input("What is your age? "))
+weight = float(input("What is your weight in kg? "))
 
-# validation against a list of valid answers
-choice = input("Choose [yes/no] ").strip().lower()
-if choice not in ["yes", "no"]:
-    print("Invalid choice.")
+age_text = input("What is your age? ")
+age = int(age_text)
 
+city = input("Which city do you live in? ").strip()
+print(city)
 
-# Repeat choice until it is valid
-answer = ""
-while answer not in ['a', 'b', 'c']:
-    answer = input("Choose option [a/b/c]: ").strip().lower()
-print(f"You chose option {answer}")
+answer = input("Do you want to continue? ").strip().lower()
+print(answer)
 
-# Input with type conversion and error handling
-while True:
-    try:
-        number = int(input("Enter an integer: "))
-        break
-    except ValueError:
-        print("Invalid input, try again.")
-
-print(f"You entered the number {number}")
-
-# input with default value
-def ask(prompt, default="yes"):
-    answer = input(f"{prompt} ({default}): ").strip().lower()
-    return answer if answer else default
-
-result = ask("Do you want to continue?")
-print(f"You answered: {result}")
+first_name, last_name = input("Enter first and last name: ").split()
+print(first_name, last_name)

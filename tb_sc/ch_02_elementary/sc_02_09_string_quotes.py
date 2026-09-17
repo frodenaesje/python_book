@@ -29,7 +29,8 @@ full_name = first_name + " " + last_name
 print(full_name)
 
 # Raw string - backslash is literal
-path1 = "C:\\Users\\John\\Documents"
-path2 = r"C:\Users\John\Documents"
-print(path1)   # C:\Users\John\Documents
-print(path2)   # C:\Users\John\Documents
+path1 = "C:\\Users\\Ola\\Documents"
+path2 = r"C:\Users\Ola\Documents"
+
+print(path1)  # C:\Users\Ola\Documents
+print(path2)   # C:\Users\Ola\Documents

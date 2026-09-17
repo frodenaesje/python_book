@@ -1,8 +1,8 @@
 # file name: sc_02_01_name_and_year.py
-CURRENT_YEAR = 2025
+CURRENT_YEAR = 2026
 
 # Ask the user for name and age
-first_name = input("What is your name: ")
+first_name = input("What's your name: ")
 age = int(input("What is your age: "))
 
 # Calculate the birth year

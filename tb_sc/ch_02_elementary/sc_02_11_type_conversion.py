@@ -9,12 +9,7 @@ print(f"String '25' converted to int: {age}, type: {type(age)}")
 price = float("19.99")
 print(f"String '19.99' converted to float: {price}, type: {type(price)}")
 
-# Note: The string must contain a valid number, otherwise ValueError is raised
-try:
-    invalid = int("hello")  # This will raise ValueError
-except ValueError as e:
-    print(f"Error: Cannot convert 'hello' to int - {e}")
-
+# int("hello")  # Uncomment to see ValueError: the text is not an integer.
 
 # Int to string
 text1 = str(42)
@@ -25,10 +20,9 @@ text2 = str(3.14)
 print(f"Float 3.14 converted to string: '{text2}', type: {type(text2)}")
 
 # Useful when concatenating numbers with text
-name = "Alice"
-age = 25
-message = name + " is " + str(age) + " years old."
-print(f"Concatenation: {message}")
+name = "Anna"
+age = 12
+print(name + " is " + str(age) + " years old.")
 
 print("\n=== Converting between Int and Float ===")
 
@@ -40,19 +34,10 @@ print(f"Int 5 converted to float: {x}, type: {type(x)}")
 y = int(5.9)
 print(f"Float 5.9 converted to int: {y}, type: {type(y)} - Note: truncated, not rounded")
 
-z = int(5.1)
-print(f"Float 5.1 converted to int: {z}, type: {type(z)} - Also truncated")
-
-# If you need rounding instead of truncation, use round()
-rounded = round(5.9)
-print(f"Float 5.9 rounded: {rounded}")
-
-print("\n=== Practical Example: User Input ===")
-# input() always returns a string, so you need to convert it
-# (This is a demonstration - normally you'd use input())
-user_input = "42"
-converted_number = int(user_input)
-print(f"User entered: '{user_input}' (string)")
-print(f"Converted to: {converted_number} (int)")
-
-
+print(int(True))    # 1
+print(int(False))   # 0
+print(float(True))  # 1.0
+print(bool(0))      # False
+print(bool(42))     # True
+print(bool(""))     # False
+print(bool("hi"))   # True
