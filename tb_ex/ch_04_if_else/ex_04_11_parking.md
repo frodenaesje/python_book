@@ -102,3 +102,15 @@ The bold row is the combination case: 120 billable minutes at rate 30 is 60, the
 - Discounts: two separate `if`s (weekend, electric).
 - Cap: `if cost > 250: cost = 250`.
 - Print: `print(f"Parking fee: {cost:.2f}")`.
+
+## Assessment criteria
+
+| Criterion | Description | Weight (%) |
+|---|---|---:|
+| Hourly rate | Determines the correct hourly rate from the start hour, including the interval boundaries. | 20 |
+| Free period | Applies the correct free period and ensures that billable time is never negative. | 20 |
+| Base cost | Calculates the base cost correctly from the hourly rate and billable minutes. | 20 |
+| Discounts | Applies weekend and electric-vehicle discounts correctly, including when both apply. | 20 |
+| Maximum fee | Applies the maximum fee of 250 after discounts. | 10 |
+| Output | Prints the calculated parking fee with two decimal places. | 10 |
+| **Total** | | **100%** |

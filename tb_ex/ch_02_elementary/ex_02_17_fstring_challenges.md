@@ -178,3 +178,14 @@ Use conditional expressions inside the f-string to choose the correct plural end
 - Field width and alignment: `<`, `>`, `^`
 - Nested/variable format specifiers: `{value:.{decimals}f}`
 - Conditional expressions inside f-strings: `{'a' if condition else 'b'}`
+
+## Assessment criteria
+
+| Criterion | Description | Weight (%) |
+|---|---|---:|
+| Decimal places | In Exercise 1, uses an f-string format specifier to display the price with two decimal places without using round(). | 20 |
+| Width and alignment | In Exercises 2 and 5, uses f-string field widths and alignment for the required product and price fields and an aligned table with a header and scores shown to two decimal places. | 30 |
+| Thousands separators | In Exercise 3, uses f-string format specifiers to display the population with both comma and underscore thousands separators. | 15 |
+| Percentage | In Exercise 4, calculates the proportion and displays it to one decimal place using the percentage format specifier. | 15 |
+| User-selected precision | In Exercise 6, reads a number and decimal-place count and uses a variable inside the f-string format specifier to display the requested precision. | 20 |
+| **Total** | | **100%** |

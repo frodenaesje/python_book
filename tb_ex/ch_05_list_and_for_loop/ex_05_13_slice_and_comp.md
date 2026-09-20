@@ -51,3 +51,13 @@ Labels: ['cool', 'cool', 'cool', 'warm', 'warm', 'warm', 'cool', 'cool', 'warm',
 - List comprehension to transform every element
 - Filtering inside a comprehension, applied to a slice
 - Conditional expression inside a comprehension
+
+## Assessment criteria
+
+| Criterion | Description | Weight (%) |
+|---|---|---:|
+| List slicing | Uses one slice per requested result to print both weeks, every other day starting from the first, the reversed readings, and the last three days. | 40 |
+| Temperature conversion | Uses a single list comprehension to convert all readings to Fahrenheit, round them to whole degrees, and print the resulting list. | 20 |
+| Warm-day filtering | Uses a single filtering list comprehension applied to a slice to print only second-week readings of 22 or higher. | 20 |
+| Daily labels | Uses a single list comprehension with a conditional expression to print a warm or cool label for every reading, treating 22 or higher as warm. | 20 |
+| **Total** | | **100%** |
