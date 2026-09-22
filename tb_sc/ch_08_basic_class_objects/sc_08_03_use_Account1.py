@@ -1,4 +1,4 @@
-# file: sc_08_03_use_Account1_.py
+# file: sc_08_03_use_Account1.py
 from sc_08_02_Account1 import Account
 
 account1 = Account(1, 1000, 50000, 7)
