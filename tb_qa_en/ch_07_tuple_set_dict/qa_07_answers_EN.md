@@ -3,7 +3,7 @@
 ## Understanding
 
 **1. tuple vs. list**
-A tuple is immutable — it cannot be changed after it is created. A list is mutable. Tuples are used when data should not change, are faster than lists, and can be used as keys in a dictionary.
+A tuple is immutable — its elements cannot be added, removed or replaced after it is created. A list is mutable. A mutable object stored inside a tuple can still be changed. Tuples are useful for fixed collections of values. A tuple can be used as a dictionary key only if all its elements are hashable. Performance differences depend on the operation and implementation; tuples are not universally faster than lists.
 
 **2. Single-value tuple**
 `(42)` is just a number in parentheses — Python interprets it as a regular `int`. The comma is what tells Python this is a tuple: `(42,)`. Without the comma there is no tuple.
@@ -24,7 +24,7 @@ The variable that receives `*` collects all elements not explicitly assigned els
 A hashable value has a constant hash value throughout its lifetime and can be compared with other values. Python uses `hash(key)` to place and find values quickly in the dictionary's internal hash table. The key must be hashable for lookups to work consistently.
 
 **8. `list` vs. `tuple` as a key**
-`list` is mutable — its contents can change after creation, which would make the hash value unstable and lookups unreliable. `tuple` is immutable — its hash value is constant, so it can be used as a key.
+Lists are unhashable and cannot be dictionary keys. A tuple is hashable only if all its elements are hashable. Thus `(1, 2)` can be a dictionary key, while `[1, 2]` and `(1, [2])` cannot: the former is a list, and the latter is a tuple containing an unhashable list.
 
 **9. `remove()` vs. `discard()`**
 `remove()` raises a `KeyError` if the element is not found. `discard()` does nothing if the element is not found. Use `discard()` when you are not certain the element is in the set.
@@ -42,10 +42,10 @@ Python determines the type from the contents: `{"a": 1}` is a dict because it ha
 `Counter` is a specialised dictionary from the `collections` module where the keys are elements from an iterable and the values are counts of occurrences. It resembles `dict` most closely, but gives us `most_common()` as a bonus and sorts by frequency when printed.
 
 **14. Requirements for elements in `Counter`**
-The elements being counted must be hashable — the same requirement as for dictionary keys. Strings, numbers and tuples are hashable. Lists and dictionaries are not hashable and cannot be counted directly. The iterable argument to `Counter` itself may be a list.
+The elements being counted must be hashable — the same requirement as for dictionary keys. The strings and numbers used in the examples are hashable. Tuples are hashable only if all their elements are hashable. Lists and dictionaries are unhashable and cannot be counted directly. The iterable argument to `Counter` itself may be a list.
 
 **15. `most_common(2)` and `most_common()`**
-`most_common(n)` returns the `n` most frequently occurring elements as a list of `(element, count)` tuples, sorted from most to least common. `most_common()` without an argument returns all elements in the same order.
+`most_common(2)` returns a list of up to two of the most common `(element, count)` pairs, in decreasing frequency order. It returns fewer than two pairs if fewer than two distinct elements are present. `most_common()` without an argument returns all `(element, count)` pairs in decreasing frequency order. Ties retain the order in which elements were first encountered.
 
 ---
 
