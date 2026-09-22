@@ -6,7 +6,7 @@
 A class is a template or blueprint — it describes what attributes and methods objects of that type should have. An object is a concrete instance of the class, with its own values for the attributes. `Car` is the class; `my_car = Car("Toyota", "Blue")` is an object.
 
 **2. `__init__()` and when it is called**
-`__init__()` is the constructor — it initialises the object's attributes and ensures the object is in a valid state from the very start. It is called automatically when we create an object, e.g. `Car("Toyota", "Blue")`.
+`__init__()` initialises an already-created instance; object creation is handled by `__new__()`. It is called automatically during ordinary instance creation, e.g. `Car("Toyota", "Blue")`. It sets up attributes and validates initial values only if its code performs the necessary checks.
 
 **3. What is `self`?**
 `self` is a reference to the concrete object the method is called on. Python passes it automatically as the first argument when we call an instance method — we do not write `self` ourselves in the method call.
@@ -27,7 +27,7 @@ Attribute names with a double underscore, e.g. `__balance`, are renamed internal
 A property lets client code read and write an attribute using its clean name (`account1.balance`) without dealing with the internal representation. The main advantage is that the setter method can contain validation — e.g. preventing a negative balance — without the client code needing to change.
 
 **9. Class variable vs. instance variable**
-An instance variable belongs to a single object and is created with `self._name` in `__init__()`. A class variable belongs to the class and is shared by all objects — it is declared inside the class but outside all methods, e.g. `_account_count = 0`.
+An instance variable belongs to a single object and is normally initialised with `self._name` in `__init__()`, but it can also be assigned in another method. A class variable belongs to the class and is shared by its instances; it is commonly declared inside the class but outside all methods, e.g. `_account_count = 0`.
 
 **10. `@classmethod` vs. `@staticmethod`**
 A class method (`@classmethod`) receives the class as its first argument (`cls`) and can read and modify class variables. A static method (`@staticmethod`) receives neither `self` nor `cls` — it belongs to the class logically but needs no access to object or class data. Used for helper functions that naturally belong in the class.
@@ -36,16 +36,16 @@ A class method (`@classmethod`) receives the class as its first argument (`cls`)
 Dunder methods are special methods with double underscores, such as `__eq__()`, `__str__()` and `__add__()`. Python calls them implicitly when operators are used. When we write `circle1 == circle2`, Python calls `circle1.__eq__(circle2)`.
 
 **12. Object without `__bool__()`**
-Python uses a fallback hierarchy: first `__bool__()` is checked, then `__len__()` (true if > 0), and finally the object is always true if neither method exists. An object without `__bool__()` is therefore always truthy.
+Python uses a fallback hierarchy: first `__bool__()` is checked, then `__len__()` (zero is false and a positive length is true). If neither method exists, the object is truthy by default. An object without `__bool__()` can therefore be false if its `__len__()` returns zero.
 
 **13. `__str__()` vs. `__repr__()`**
 `__str__()` is for humans — readable output, called by `print()`. `__repr__()` is for developers — should ideally give a string that recreates the object, called by the REPL. Without `__str__()` Python falls back to `__repr__()`. Without either, `object`'s fallback prints the class name and memory address.
 
 **14. Overloading vs. overriding**
-Overloading means defining multiple versions of the same method with different parameter lists — common in Java and C++, not directly supported in Python (the second definition simply replaces the first). Overriding means replacing a method inherited from a base class with a new implementation in a subclass. What Python calls operator overloading is technically overriding: we replace inherited dunder methods from `object` to give operators new behaviour for our class.
+Overloading means defining multiple versions of the same method with different parameter lists — common in Java and C++, not directly supported in Python (the second definition simply replaces the first). Overriding means replacing a method inherited from a base class with a new implementation in a subclass. Operator overloading defines special-method behaviour for operators. It may override an inherited implementation, but need not do so: `object` does not define methods such as `__add__()` or `__getitem__()`.
 
 **15. `@dataclass` and what it generates automatically**
-`@dataclass` is a decorator that reads field declarations and automatically generates `__init__()`, `__repr__()` and `__eq__()`. Fields are declared with name and type directly in the class block: `x: int`. This reduces boilerplate for simple data classes that mainly store values together.
+`@dataclass` is a decorator that reads field declarations and, with default settings, generates `__init__()`, `__repr__()` and `__eq__()` when those methods have not been explicitly defined. Fields are declared with name and type directly in the class block: `x: int`. This reduces boilerplate for simple data classes that mainly store values together.
 
 **16. Why `items: list = []` is not allowed in a `@dataclass` — and the solution**
 `[]` is evaluated once when the class is defined — all instances would share the exact same list object. Changes to one instance would silently affect all others. The solution is `field(default_factory=list)`, which calls `list()` to create a fresh, independent list for each new instance.
