@@ -3,7 +3,7 @@
 ## Understanding
 
 **1. pytest vs. assert in REPL — and naming conventions**
-In the REPL the program stops at the first `AssertionError` and we get no information about which value was wrong. pytest runs all tests, reports exactly which ones failed and shows the actual values — and we can run the test suite again after each code change. The two naming conventions pytest requires: filenames must start with `test_`, and test functions must start with `test_`.
+In the REPL the program stops at the first `AssertionError` and we get no information about which value was wrong. pytest runs all tests, reports exactly which ones failed and shows the actual values — and we can run the test suite again after each code change. The naming conventions used in this chapter are that test filenames and test function names start with `test_`. These names allow pytest to discover the tests automatically; they are not the only naming patterns pytest supports.
 
 **2. Reading the failure output**
 `FAILED test_calc.py::test_addition - AssertionError: assert 5 == 6` means: the test function `test_addition` in the file `test_calc.py` failed. `assert 5 == 6` shows that the function returned 5 but we expected 6.
@@ -12,7 +12,7 @@ In the REPL the program stops at the first `AssertionError` and we get no inform
 With an ordinary loop the test stops at the first failure — the remaining values are never run. With `@pytest.mark.parametrize` all combinations are run and we get one separate error message per failing value.
 
 **4. `@pytest.fixture`**
-A fixture is a function that pytest calls automatically and passes as an argument to the test functions that request it — by having the same name as the fixture function in their parameter list. It is used to set up test data and objects.
+`@pytest.fixture` marks a function that provides reusable setup, such as test data and objects. A test requests the fixture by using its name in the parameter list. Before running the test, pytest calls the fixture function as needed and supplies its returned value to that parameter; fixture scope determines when an existing value is reused.
 
 **5. Default scope vs. `scope="module"`**
 The default scope (function) creates the fixture fresh before each test function — safe when tests can modify the data. `scope="module"` creates it once for the entire test file — used when resources are expensive to create and tests do not modify them.
