@@ -14,7 +14,7 @@ class Rectangle:
         pass
 
     def is_square(self):
-        # TODO: return True if width == height
+        # TODO: return whether the rectangle is a square
         pass
 
     def __str__(self):
@@ -27,11 +27,6 @@ class Rectangle:
 
     def __lt__(self, other):
         # TODO: a rectangle is less than another if its area is smaller
-        pass
-
-    @staticmethod
-    def is_valid(width, height):
-        # TODO: return True if both values are positive
         pass
 
 
