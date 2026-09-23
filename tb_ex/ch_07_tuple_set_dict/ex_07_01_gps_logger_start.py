@@ -10,21 +10,31 @@ track = [
     ( -3.1190, -60.0217, "Manaus"),         # Brazil
     (-33.8688, 151.2093, "Sydney"),         # Australia
     ( 35.6762, 139.6503, "Tokyo"),          # Japan
-    ( 90.0000,   0.0000, "South Pole"),     # Antarctica
+    (-90.0000,   0.0000, "South Pole"),     # Antarctica
 ]
 
-# TODO: Print header with number of positions
+# max() and min() can use a key function to decide which value
+# in each tuple should be compared. The functions below return
+# the latitude or longitude from a position tuple.
+def get_latitude(position):
+    return position[0]
+
+
+def get_longitude(position):
+    return position[1]
+
+
+# TODO: Print a header showing the number of positions.
 #       Example: "GPS log - 10 positions:"
 
-# TODO: Print all positions using tuple unpacking
-#       for lat, lon, name in track:
-#       Show N/S for latitude, E/W for longitude
-#       Format: "  Narvik          68.4384 N   17.4279 E"
-#       Hint: use abs(lat) and check if lat >= 0 for N or S
+# TODO: Use tuple unpacking to process and display all positions.
+#       Follow the coordinate/output requirements in the exercise.
 
-# TODO: Find and print the northernmost place (highest latitude)
-#       Hint: max(track, key=lambda p: p[0])
+# TODO: Find and print the northernmost place.
+#       Use max() or min() with the appropriate key function.
 
-# TODO: Find and print the southernmost place (lowest latitude)
+# TODO: Find and print the southernmost place.
+#       Use max() or min() with the appropriate key function.
 
-# TODO: Find and print the westernmost place (lowest longitude)
+# TODO: Find and print the westernmost place.
+#       Use max() or min() with the appropriate key function.
