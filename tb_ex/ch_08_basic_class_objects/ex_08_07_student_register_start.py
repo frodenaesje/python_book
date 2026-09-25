@@ -4,65 +4,64 @@ class Student:
     _student_count = 0
 
     def __init__(self, name, student_id, gpa):
-        # TODO: store _name, _student_id
-        # TODO: use the gpa property setter to store and validate gpa
-        # TODO: increment _student_count
+        # TODO: initialize the required attributes with a validated GPA.
+        # Keep the shared count of successfully created students up to date.
         pass
 
     @classmethod
     def get_count(cls):
-        # TODO: return total students created
+        # TODO: return the total number of students created.
         pass
 
     @property
     def gpa(self):
-        # TODO: return _gpa
+        # TODO: return this student's GPA.
         pass
 
     @gpa.setter
     def gpa(self, value):
-        # TODO: validate 0.0 <= value <= 4.0, raise ValueError otherwise
-        # TODO: store as _gpa
+        # TODO: accept values from 0.0 through 4.0.
+        # Otherwise raise ValueError.
         pass
 
     def __str__(self):
-        # TODO: return e.g. "Alice Johnson  (ID: 1001, GPA: 3.9)"
+        # TODO: return a readable string containing name, ID and GPA.
         pass
 
     def __lt__(self, other):
-        # TODO: compare by GPA
+        # TODO: compare this student's GPA with the other student's GPA.
         pass
 
 
 class StudentRegister:
     def __init__(self):
-        # TODO: initialise _students as empty list
+        # TODO: initialize an independent, empty list of Student objects.
         pass
 
     def add(self, student):
-        # TODO: add student to _students
+        # TODO: add the supplied Student object to this register.
         pass
 
     def remove_by_id(self, student_id):
-        # TODO: remove student with matching _student_id
-        # Print a message if not found
+        # TODO: remove the student with this ID.
+        # If not found, leave the register unchanged and print a message.
         pass
 
     def find_by_name(self, name):
-        # TODO: return list of students where name (case-insensitive) is in _name
+        # TODO: return all case-insensitive partial name matches as a list.
         pass
 
     def top_students(self, n):
-        # TODO: return n students with highest GPA
-        # Hint: sorted(..., reverse=True)[:n]
+        # TODO: return up to n students in descending GPA order.
+        # Use Student comparison.
         pass
 
     def __len__(self):
-        # TODO: return number of students
+        # TODO: return the number of students in this register.
         pass
 
     def __str__(self):
-        # TODO: return all students, one per line
+        # TODO: return all students, one per line.
         pass
 
 
