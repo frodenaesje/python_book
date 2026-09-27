@@ -103,8 +103,8 @@ class Team:
         pass
 
     def __getitem__(self, index):
-        # your code here
-        pass
+    # Delegate indexing to the internal list
+        return self._players[index]
 
     def __lt__(self, other):
         # your code here
@@ -117,6 +117,6 @@ class Team:
 
 if __name__ == "__main__":
     # TODO: create a few Players, build a Team with add(), then exercise:
-    #   printing the team, "player in team", len(team), team[0], slicing,
+    #   printing the team, "player in team", len(team), team[0], 
     #   total_goals, top_scorer, and sorting a list of teams by total_goals.
     pass

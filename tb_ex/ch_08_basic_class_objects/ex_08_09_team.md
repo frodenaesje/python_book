@@ -35,7 +35,7 @@ Attributes: `_name`, `_players` (a list of `Player` objects)
 - `add(player)` - add a `Player` to the team.
 - `__len__()` - the number of players.
 - `__contains__(player)` - support `player in team`.
-- `__getitem__(index)` - support indexing and slicing (`team[0]`, `team[0:2]`).
+- `__getitem__(index)` - support indexing (`team[0]`).
 - `__lt__(other)` - compare teams by `total_goals`, so a list of teams can
   be sorted.
 - `__str__()` - the team name, the number of players, and each player on
@@ -97,6 +97,7 @@ and a slice.
 - Composition: a class that holds a list of another class
 - Properties and validation
 - Operator overloading for collection-like objects
+- Value objects vs entities (why `+` fits `Fraction` but not `Team`)
 - Type hints with our own classes
 
 ## Assessment criteria
@@ -105,7 +106,7 @@ and a slice.
 |---|---|---:|
 | Player properties and construction | Completes the number and goals setters by storing the validated value (the ValueError checks are provided in the start file), and routes __init__ through the setters (self.number = number) so validation also runs at construction, rather than assigning to _number/_goals directly. | 10 |
 | Player equality and string form | Implements __eq__ (equal when name and number match) and __str__ producing output such as 'Ada (#14, 12 goals)'. score(n) adds goals through the goals setter rather than touching _goals directly. | 15 |
-| Team as a collection | Team stores a list of Player objects and implements __len__, __contains__, and __getitem__ so that len(team), 'player in team', team[i] and slicing team[i:j] all work. | 25 |
+| Team as a collection | Team stores a list of Player objects and implements __len__, __contains__, and __getitem__ so that len(team), 'player in team', and team[i] all work. | 25 |
 | Team computed properties | Implements total_goals (sum of every player's goals) and top_scorer (the player with most goals, or None for an empty team) as read-only properties, handling the empty-team case correctly. | 25 |
 | Team comparison and string form | Implements __lt__ comparing teams by total_goals so a list of teams can be sorted, and __str__ listing the team name, player count and each player on its own line. | 10 |
 | Type hints | Adds type hints to every method the student writes (only two example signatures are given in the start file), including list[Player] for the roster, Player &#124; None for top_scorer, and the forward reference "Team" where a method refers to its own class. | 15 |
