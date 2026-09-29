@@ -71,7 +71,7 @@ class Player:
 #     add(player)          - append a Player
 #     __len__              - number of players
 #     __contains__(player) - support "player in team"
-#     __getitem__(index)   - support team[0]
+#     __getitem__(index)   - support team[0] and team[0:2]
 #     __lt__(other)        - compare teams by total_goals (for sorting)
 #     __str__              - team name, count, then one player per line
 class Team:
