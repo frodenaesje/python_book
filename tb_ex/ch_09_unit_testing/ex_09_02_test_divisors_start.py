@@ -4,6 +4,11 @@
 import sys
 import os
 
+# The functions we want to test are in the Chapter 6 exercise folder.
+# Python searches certain folders when importing modules.
+# The following line adds that folder to Python's module search path.
+# This is a practical solution for these book exercises; larger projects
+# should normally be organized as packages instead.
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'ch_06_functions'))
 
 from ex_06_03_proper_divisors import proper_divisors, is_perfect

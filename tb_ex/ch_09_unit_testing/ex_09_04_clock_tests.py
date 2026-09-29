@@ -1,9 +1,14 @@
 # file: ex_09_04_clock_tests.py
 # Keep your completed ex_08_08_clock.py in ch_08_basic_class_objects.
-# Import that Chapter 8 implementation directly; no local copy is needed.
+# No local copy is needed in Chapter 9.
 import sys
 import os
 
+# The Clock class we want to test is in the Chapter 8 exercise folder.
+# Python searches certain folders when importing modules.
+# The following line adds that folder to Python's module search path.
+# This is a practical solution for these book exercises; larger projects
+# should normally be organized as packages instead.
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'ch_08_basic_class_objects'))
 
 from ex_08_08_clock import Clock
