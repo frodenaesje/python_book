@@ -1,3 +1,4 @@
+# file: sc_12_11_animation_ball_matplotlib.py
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import numpy as np
