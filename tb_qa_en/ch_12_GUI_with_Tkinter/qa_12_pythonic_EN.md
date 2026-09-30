@@ -14,7 +14,7 @@ With parentheses the function is called immediately and its return value is used
 |----------|----------|
 | `bt = tk.Button(root, command=on_click)`<br>`# No way to pass parameters` | `bt = tk.Button(root, command=lambda: on_click("Hello", lista))` |
 
-Lambda creates a closure that remembers the parameters and passes them on when the button is pressed.
+The lambda defers the call and forwards the arguments when the button is pressed. Whether it forms a closure depends on where the referenced variables are defined.
 
 ## `bind()` with and without lambda
 
@@ -22,7 +22,7 @@ Lambda creates a closure that remembers the parameters and passes them on when t
 |----------|----------|
 | `def on_click(event): ...`<br>`widget.bind("<Button-1>", on_click)` | `def on_click(text, event): ...`<br>`widget.bind("<Button-1>",`<br>`    lambda event: on_click("Hello", event))` |
 
-Lambda receives the event from Tkinter and forwards it along with our own parameters. The event object is always passed last.
+Tkinter passes the event to the bound callback. The lambda forwards it in the position required by on_click's signature.
 
 ## `StringVar` and automatic updating
 
@@ -38,7 +38,7 @@ Lambda receives the event from Tkinter and forwards it along with our own parame
 |----------|----------|
 | `bt_calc = tk.Button(root, text="Calculate",`<br>`    command=calculate)` | `var.trace_add("write", calculate)`<br>`# No button needed` |
 
-`trace_add()` calls `calculate()` automatically every time the variable changes — the user does not need to press anything.
+`trace_add("write", calculate)` calls `calculate()` whenever the variable is written, including a write of the same value. The function must accept the three trace arguments, as the source's `calculate(*args)` does.
 
 ## Animation — `time.sleep()` vs. `after()`
 
@@ -46,7 +46,7 @@ Lambda receives the event from Tkinter and forwards it along with our own parame
 |----------|---------|
 | `def animate():`<br>`    canvas.move(ball, dx, 0)`<br>`    time.sleep(0.02)  # Freezes the GUI!`<br>`    animate()` | `def animate():`<br>`    canvas.move(ball, dx, 0)`<br>`    canvas.after(20, animate)  # Non-blocking` |
 
-`time.sleep()` blocks the event loop and freezes the entire window. `after()` schedules the next call without blocking.
+When called on the GUI thread, `time.sleep()` blocks that thread and prevents its event loop from processing events during the pause. `after(ms, callback)` schedules the callback for later without blocking the GUI thread; it does not guarantee an exact execution time.
 
 ## Animation — `global` vs. class
 
@@ -78,4 +78,4 @@ The connection requires two steps — both must be in place for Listbox and Scro
 |----------|----------|
 | `result = simpledialog.askstring("Input", "Name?")`<br>`label.config(text=f"Hello, {result}!")` | `result = simpledialog.askstring("Input", "Name?")`<br>`if result:`<br>`    label.config(text=f"Hello, {result}!")` |
 
-The user can cancel — then `None` is returned. Without checking, `f"Hello, {result}!"` crashes with `TypeError`.
+Cancellation returns `None` in the demonstrated `simpledialog.askstring` API. `f"Hello, {None}!"` produces `Hello, None!`; it does not raise `TypeError`. Use `if result is not None:` when cancellation alone should be excluded. Use `if result:` only when empty text should also be ignored.
