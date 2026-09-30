@@ -9,10 +9,10 @@ is-a is inheritance — a subclass *is a* variant of the superclass. `Dog` is an
 The diamond indicates that one class owns or contains objects of another class. A filled diamond means composition — the parts cannot exist without the whole. An open diamond means aggregation — the parts can exist independently.
 
 **3. What a subclass inherits**
-The subclass inherits all attributes and methods from the superclass. It adds its own attributes in its `__init__()` and can override methods from the superclass with a new implementation.
+A subclass inherits accessible superclass methods and class attributes. Instance attributes are created by initialization code, not merely by inheritance. The subclass may add its own attributes and methods and override inherited methods.
 
 **4. `super().__init__()` and the consequence of omitting it**
-`super().__init__()` calls the constructor in the superclass and ensures that the superclass's attributes are created on the object. If we omit it, the superclass's attributes are never created — we get `AttributeError` the first time we try to use them.
+`super().__init__()` runs the superclass initializer. If the subclass overrides initialization and omits this call, state established only by that initializer is absent unless the subclass initializes it another way. Accessing an attribute that was never created raises `AttributeError`.
 
 **5. Polymorphism and its variants**
 Polymorphism means that objects of different classes can be treated the same way but behave differently. Via inheritance: subclasses override methods from the superclass. Via duck typing: objects without a common superclass but with the same method name — Python does not care about the type, only that the method exists.
@@ -24,7 +24,7 @@ Polymorphism means that objects of different classes can be treated the same way
 An abstract class cannot be instantiated directly — if we try we get a `TypeError`. It defines a contract: all subclasses *must* implement the abstract methods. A subclass that does not implement all of them cannot be instantiated either.
 
 **8. Composition vs. aggregation — syntactically different in Python?**
-Composition: the whole creates the parts itself inside its own methods — client code never sees them directly. Aggregation: the parts are created outside and passed in as references. Both are implemented in Python by having one object hold references to others — it is a design choice, not a syntactic difference.
+Composition models parts owned by the whole; aggregation models independently existing parts associated with the whole. Creating parts internally versus passing them in is a typical implementation pattern. Both use ordinary object references in Python — ownership and lifetime are design concepts, not distinct Python syntax.
 
 **9. `__str__()` vs. `__repr__()`**
 `__str__()` is for humans — readable output, called by `print()`. `__repr__()` is for developers — should ideally give a string that recreates the object, called by the REPL. Without `__str__()` Python falls back to `__repr__()`. Without either, `object`'s fallback prints the class and memory address.
@@ -36,7 +36,7 @@ Composition: the whole creates the parts itself inside its own methods — clien
 Python automatically sets the `__hash__` method to `None`. This means `hash(obj)` raises a `TypeError`, and the object can no longer be used as a dictionary key or in a set.
 
 **12. The rule for `__eq__()` and `__hash__()`**
-If `a == b` is `True`, then `hash(a) == hash(b)` must also be `True`. The reverse does not necessarily hold — two different objects can coincidentally get the same hash (a hash collision). If we override `__eq__()` we must therefore always override `__hash__()` to uphold the rule.
+For hashable objects, if `a == b` is `True`, then `hash(a) == hash(b)` must also be `True`. The reverse is not required — unequal objects may have the same hash. A class that overrides `__eq__()` may deliberately remain unhashable. If its instances should remain hashable, provide a compatible `__hash__()` and keep hash-relevant state stable.
 
 **13. Iterable vs. iterator**
 An iterable is an object we can iterate over — it implements `__iter__()` which returns an iterator. An iterator is an object that keeps track of where we are in the traversal — it implements `__next__()` and raises `StopIteration` when there are no more elements. An iterator is always itself an iterable.
@@ -45,10 +45,10 @@ An iterable is an object we can iterate over — it implements `__iter__()` whic
 First `iter(iterable)` is called, which calls `iterable.__iter__()` — this returns an iterator object. Then `next(iterator)` is called repeatedly, which calls `iterator.__next__()` for each element. When `StopIteration` is raised the loop ends.
 
 **15. A list can be reused; an iterator cannot**
-`iter(lista)` creates a *new* iterator on each call — the list is unchanged and can be reused in new loops. An iterator remembers where it is via an internal index and cannot be rewound — after all elements have been retrieved it is exhausted.
+A list provides a *new* iterator for each traversal. Iterating the same iterator continues from its current state — starting another `for` loop over it does not reset it. Once exhausted, it remains exhausted.
 
 **16. What is a generator?**
-A generator is a function that uses `yield` instead of `return`. It does not return one value and terminate — it pauses itself, delivers one value and remembers exactly where it left off. The next time `next()` is called it continues from there. Python automatically creates a generator object that implements the iterator protocol — we do not need to write `__iter__()` and `__next__()` ourselves.
+A function containing `yield` is a generator function. Calling it creates a generator iterator; advancing that iterator with `next()` runs until the next `yield`, then pauses while preserving execution state. The next advance continues from there. A generator function may also use `return` to terminate. Python supplies the iterator protocol — we do not need to write `__iter__()` and `__next__()` ourselves.
 
 **17. `yield` vs. `return`**
 `return` terminates the function and sends a value back. The next time the function is called it starts from the beginning — all local state is gone. `yield` pauses the function and sends a value back but preserves the entire state: local variables, which line we are on, everything. The next time `next()` is called the function continues from where it left off.
@@ -206,8 +206,10 @@ print(list(even_numbers(10)))   # [0, 2, 4, 6, 8]
 
 **28. `CountUp` rewritten as a generator**
 ```python
-# Class-based (15 lines):
-class CountUp:
+# Class-based, as in section 10.13:
+from collections.abc import Iterator
+
+class CountUp(Iterator):
     def __init__(self, start: int, stop: int) -> None:
         self._current = start
         self._stop    = stop
@@ -219,10 +221,7 @@ class CountUp:
         self._current += 1
         return value
 
-    def __iter__(self):
-        return self
-
-# As a generator (5 lines):
+# As a generator:
 def count_up(start: int, stop: int):
     current = start
     while current < stop:
@@ -233,4 +232,4 @@ for n in count_up(1, 5):
     print(n, end=" ")   # 1 2 3 4
 ```
 
-Python handles `__iter__()`, `__next__()` and `StopIteration` automatically for the generator. We do not need to manage index and state ourselves — `yield` takes care of it.
+The class inherits `__iter__()` from `Iterator`, but still implements `__next__()`, updates its state and raises `StopIteration`. The generator needs only the function body: Python supplies the iterator protocol and handles exhaustion, while `yield` preserves the suspended execution state. The generator solution is shorter without changing the sequence produced.
