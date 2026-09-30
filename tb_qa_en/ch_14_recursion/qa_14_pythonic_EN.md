@@ -16,7 +16,7 @@ Recursion has fewer purely Pythonic patterns than most other chapters — it is 
 |----------|----------|
 | `def factorial(n):`<br>`    if n > 0:`<br>`        return n * factorial(n-1)`<br>`    else:`<br>`        return 1` | `def factorial(n):`<br>`    if n == 0:`<br>`        return 1`<br>`    return n * factorial(n-1)` |
 
-Check the base case at the top and return immediately. Avoids deeply nested if/else and makes the structure clear.
+For non-negative integer inputs, the two displayed forms produce the same factorial result. Checking the base case first can make the recursive structure clearer. Neither example provides general input validation.
 
 ## Recursive traversal with generator expression
 
@@ -32,4 +32,4 @@ A generator expression combined with `sum()` is concise and readable for recursi
 |-------|---------|
 | `def fibonacci_memo(n, memo={}):`<br>`    # memo is reused across calls!` | `def fibonacci_memo(n, memo=None):`<br>`    if memo is None:`<br>`        memo = {}` |
 
-Mutable objects as default arguments are initialised once and reused. Always use `None` as the default and create the object inside the function. See chapter 6.
+Use `None` when each independent top-level call should start with a fresh dictionary. Recursive calls can share the dictionary explicitly. A mutable default persists across calls and should be used only when that shared state is intentional. See chapter 6.
