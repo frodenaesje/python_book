@@ -6,7 +6,7 @@
 In the REPL, a failed assertion raises `AssertionError` and ends the current evaluation; the REPL remains available for further input. A bare assertion gives a traceback and any supplied message, while pytest provides richer failure reports with inspected values. In a normal run, pytest runs the collected tests and reports which failed, and the suite can be rerun after each code change. The naming conventions used in this chapter are that test filenames and test function names start with `test_`. These allow normal pytest discovery; they are not the only supported naming patterns.
 
 **2. Reading the failure output**
-`FAILED test_calc.py::test_addition - AssertionError: assert 5 == 6` means: the test function `test_addition` in the file `test_calc.py` failed. `assert 5 == 6` shows that the function returned 5 but we expected 6.
+`FAILED test_calc.py::test_addition - AssertionError: assert 5 == 6` means: the test function `test_addition` in the file `test_calc.py` failed. `assert 5 == 6` shows that the assertion checked a comparison that is false. The displayed comparison alone does not identify either operand as the function's return value or the expected value; those roles must be established from the source assertion.
 
 **3. `@pytest.mark.parametrize` vs. an ordinary loop**
 With an ordinary loop the test stops at the first failure — the remaining values are never run. With `@pytest.mark.parametrize` all combinations are run and we get one separate error message per failing value.
