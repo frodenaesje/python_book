@@ -3,20 +3,20 @@
 ## Understanding
 
 **1. Functions as first-class objects**
-Functions are first-class objects, meaning they are treated like any other value: they can be passed as arguments to other functions, returned from functions, and stored in variables, lists and dictionaries. Example: `bt = tk.Button(root, command=on_click)` passes the function reference `on_click` as an argument.
+Functions are first-class objects, meaning they are treated like any other value: they can be assigned to names, passed as arguments to other functions, returned from functions, and stored in lists and dictionaries. Example: `bt = tk.Button(root, command=on_click)` passes the function reference `on_click` as an argument.
 
 **2. What is a closure?**
-A closure arises when an inner function refers to variables or parameters from an outer function, and the inner function lives on after the outer function has finished. The inner function "remembers" the values from the enclosing scope.
+A closure is a function that retains access to bindings from an enclosing function scope. It can use those bindings while the enclosing function is still running or after it has returned. Returning the inner function is a common use of a closure, not a necessary condition for one to exist. A closure does not automatically copy or freeze the values of those bindings.
 
-**3. Free variable and the heap**
-A free variable is a variable that is used in an inner function but defined in an outer function. It cannot live on the stack because the outer function's stack frame disappears when it returns. Python instead places it in a cell object on the heap, which lives on as long as the closure function exists.
+**3. Free variables and closure cells**
+In this closure context, a free variable is a name used by the inner function but bound in an enclosing function. The inner function can retain access to that binding through a closure cell, so the binding can remain available after the enclosing function returns.
 
 **4. `lambda` with and without call**
 ```python
-command=on_button_click("Hello", some_list)          # Calls the function immediately at startup
-command=lambda: on_button_click("Hello", some_list)  # Sends a reference — called on button press
+command=on_button_click("Hello", some_list)          # Calls the function when evaluated
+command=lambda: on_button_click("Hello", some_list)  # Supplies a lambda to call later
 ```
-The first variant runs the function immediately and sets `command` to the return value. The second creates a closure that is called when the event occurs.
+The first expression calls `on_button_click` immediately when the expression is evaluated and supplies its return value as `command`. The second supplies a lambda for later invocation; when Tkinter calls the lambda, its body calls `on_button_click` with the chosen arguments. Whether referenced variables participate in a closure depends on their scope: a module-level lambda that looks up `some_list` globally is not a closure merely because it refers to that name.
 
 **5. `@add_enthusiasm`**
 `@add_enthusiasm` before a function definition is shorthand for:
@@ -26,28 +26,31 @@ say = add_enthusiasm(say)
 Python runs this assignment automatically right after `say` is defined.
 
 **6. `*args` and `**kwargs` in wrapper**
-`*args` and `**kwargs` make the wrapper function general so that it forwards all arguments to the original function regardless of its signature. Without them the wrapper would only work for functions with exactly the signature the wrapper itself defines.
+A wrapper can collect positional arguments in `*args` and keyword arguments in `**kwargs`, then explicitly forward them with `func(*args, **kwargs)`. This supports different compatible call shapes without defining a fixed parameter list. A fixed-signature wrapper is valid when it supports the calls being made, including calls to functions with additional optional parameters. Forwarding does not bypass the wrapped function's own argument validation.
 
 **7. Closure-based decorator vs. `@property`**
 A closure-based decorator takes a function as an argument, wraps it in a new function and returns the wrapper function. `@property` is a class-based decorator that creates a descriptor object — it implements the descriptor protocol with `__get__`, `__set__` and `__delete__`, and translates the dot operator into method calls.
 
 **8. Descriptor and the three methods**
-A descriptor is a design pattern for controlling attribute access. The descriptor protocol consists of:
-- `__get__()` — called when we read an attribute
-- `__set__()` — called when we write to an attribute
-- `__delete__()` — called when we delete an attribute
+A descriptor is an object whose type implements one or more descriptor protocol methods and which is used as a class attribute to participate in attribute access. The methods discussed are:
+
+- `__get__()` - called when we read an attribute
+- `__set__()` - called when we assign to an attribute
+- `__delete__()` - called when we delete an attribute
+
+A descriptor need not implement all three methods.
 
 **9. `self.radius` vs. `self._radius` in `__init__()`**
-`self.radius = radius` goes through the property setter and activates validation. `self._radius = radius` writes directly to the private attribute and bypasses the setter — no validation happens at construction.
+In the chapter's `Circle` example, `self.radius = radius` uses the public property name and invokes the setter, including its validation. `self._radius = radius` assigns the backing attribute directly and bypasses that setter. Construction could still validate the value separately before assigning the backing attribute. The underscore in `_radius` is a convention, not enforced privacy.
 
 **10. `@property` without a setter**
-The attribute becomes read-only. An attempt to assign raises `AttributeError: can't set attribute`.
+A property without a setter prevents ordinary assignment through that property name; such assignment raises `AttributeError`. The exact exception message can vary. The backing attribute can still be writable, so this does not make the whole object immutable.
 
 **11. `nonlocal` vs. `global`**
-`nonlocal` is used in closures to change a variable in the nearest enclosing function scope. `global` is used to change a variable at module level. Both are necessary because Python would otherwise interpret an assignment inside a function as the definition of a new local variable.
+`nonlocal` makes a name refer to an existing binding in the nearest enclosing function scope that binds that name, allowing rebinding there. `global` refers to the module-level binding. Neither declaration is needed merely to read the relevant name or to mutate an object it already references. Rebinding a name, such as assigning a new value to a counter, differs from mutating an existing object, such as appending to a list.
 
 **12. `lambda` vs. `def`**
-A lambda is syntactic sugar for an anonymous function on one line without a `return` statement — the return value is the expression after the colon. A `def` function can have multiple lines, `return` statements, docstrings and a name. Functionally they are equivalent — `type(lambda x: x)` gives `<class 'function'>`.
+A lambda expression creates a function whose body is one expression and whose result is returned automatically. A `def` statement defines a function with a statement suite, allowing statements such as `return` and a docstring. Both create function objects. The lambda restriction is one expression, not one physical source line: normal Python expression syntax can allow a lambda to span multiple lines.
 
 ---
 

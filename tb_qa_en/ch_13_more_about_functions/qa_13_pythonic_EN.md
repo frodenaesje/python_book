@@ -22,7 +22,7 @@ A closure keeps state encapsulated without polluting the global namespace.
 |----------|----------|
 | `for i in range(3):`<br>`    btn = Button(command=lambda: print(i))` | `for i in range(3):`<br>`    btn = Button(command=lambda i=i: print(i))` |
 
-Without `i=i` all lambda functions remember the same variable `i` — and use the last value when called. With `i=i` the value is captured at creation time.
+When these callbacks run after the loop, the first form looks up `i` at call time and uses its final binding. At module level this is global lookup; inside an enclosing function it can use a closure cell. In `lambda i=i: ...`, the default argument is evaluated when the lambda is created, storing the current object as a default argument. This does not copy arbitrary mutable objects and is not a special kind of closure over `i`.
 
 ## Decorator — manual vs. `@`-syntax
 
@@ -38,7 +38,7 @@ The `@`-syntax makes it explicit that the function is decorated — and places t
 |----------|----------|
 | `def wrapper(data):`<br>`    return func(data)` | `def wrapper(*args, **kwargs):`<br>`    return func(*args, **kwargs)` |
 
-A fixed signature limits the decorator to functions with exactly one argument. `*args`/`**kwargs` makes it general and reusable.
+`wrapper(data)` accepts one argument and calls `func(data)`. It can wrap any function that accepts that call, including one with additional optional parameters. `*args` and `**kwargs` allow the wrapper to accept and forward more call shapes. The wrapped function still validates the supplied arguments.
 
 ## `@property` vs. direct attribute access
 
@@ -54,7 +54,7 @@ A fixed signature limits the decorator to functions with exactly one argument. `
 |----------|----------|
 | `# Comment: do not set this directly`<br>`self._radius = radius` | `@property`<br>`def radius(self):`<br>`    return self._radius`<br>`# No setter = read-only` |
 
-Without a setter any attempt to assign raises `AttributeError` — not just a convention that can be broken.
+Without a setter, ordinary assignment to the property name raises `AttributeError`. The backing attribute can still be writable; this does not make the object immutable.
 
 ## `property()` vs. `@property`
 
