@@ -1,19 +1,19 @@
 # Chapter 2 – Answer Key: Review Questions
 
-## 2.1–2.2 A program solves a task / Naming
+## 2.1 and 2.3 A program solves a task / Naming
 
 **1. Constant vs. variable**
 A variable can change value during execution and is named using snake_case, e.g. `current_year`. A constant is intended not to change and is named using UPPER_CASE, e.g. `CURRENT_YEAR`. Python does not enforce this — it is a convention only.
 
 **2. Dynamically typed**
-The type of a variable is determined at runtime, not declared in advance. A variable can refer to values of different types during the same program run. In C++ and Java, the type must be declared explicitly and cannot change to a different type afterwards.
+Python objects have types, but a variable name is not restricted to one type: it can be bound and rebound to objects of different types during execution. In statically typed languages such as C++ and Java, a variable has a fixed type checked before the program runs. That type can sometimes be inferred rather than written explicitly.
 
 **3. snake_case**
 snake_case uses lowercase letters with underscores between words, e.g. `student_count`. Variables, functions, parameters, and filenames should follow this convention in Python.
 
 ---
 
-## 2.3 Operator precedence and associativity
+## 2.4 Operator precedence and associativity
 
 **4. Precedence vs. associativity**
 Precedence defines the ranking of operators — some are evaluated before others. Associativity defines the direction in which an expression is read when two operators of the same precedence appear in sequence.
@@ -23,7 +23,7 @@ A binary operator takes two operands: `1 + 2` — `+` has operands `1` and `2`. 
 
 ---
 
-## 2.4 The int and float numerical data types
+## 2.5 The int and float numerical data types
 
 **6. int vs. float**
 `int` is a whole number (e.g. `2`, `17`, `-5`), `float` is a decimal number (e.g. `2.0`, `3.14`). Use `int` for whole quantities such as age or count, `float` for measurements and calculations that require decimals.
@@ -32,17 +32,17 @@ A binary operator takes two operands: `1 + 2` — `+` has operands `1` and `2`. 
 Decimal numbers are stored internally as binary fractions, which cannot always be represented exactly. `0.1 + 0.2` produces `0.30000000000000004` internally, which is not precisely equal to `0.3`. To compare floats we should check whether the difference is smaller than a small tolerance, e.g. `abs(a - b) < 1e-9`, or use `math.isclose()`.
 
 **8. The difference between `/` and `//`**
-`/` is regular division and always returns `float`. `//` is floor division and returns only the integer part of the result. Given `7` and `2`: `7 / 2` → `3.5`, `7 // 2` → `3`.
+For `int` and `float` operands, `/` performs regular division and returns a `float`. `//` performs floor division: it rounds the quotient down toward negative infinity, rather than truncating towards zero. Thus `7 / 2` gives `3.5`, `7 // 2` gives `3`, and `-7 // 2` gives `-4`. The result of `//` is an `int` when both operands are `int`, otherwise a `float`.
 
 **9. Immutable int**
-The value cannot be changed at the same memory address. When we write `a = 20` after `a = 10`, Python creates a new object at a new address — the old value is lost and eventually cleaned up by the garbage collector.
+An `int` object's value cannot be changed. After `a = 10`, assigning `a = 20` rebinds the name `a` to an object representing 20; it does not change the object representing 10. Python may reuse an existing integer object, so reassignment does not necessarily allocate a fresh object. Other references may still retain the previous object.
 
 **10. `type()`, `id()` and `dir()`**
-`type()` returns the type of an object, e.g. `<class 'int'>`. `id()` returns the unique memory address of an object — useful for checking whether two variables point to the same object. `dir()` lists all attributes and methods available on an object — useful for exploring what we can do with a value.
+`type()` returns the type of an object, e.g. `<class 'int'>`. `id()` returns an identity value unique to the object during its lifetime; in CPython it is the object's memory address. Comparing IDs of existing objects can show whether two names refer to the same object. `dir()` provides attribute and method names useful for exploring an object, but is not guaranteed to be exhaustive.
 
 ---
 
-## 2.5 The str data type
+## 2.6 The str data type
 
 **11. Why `str` is immutable**
 Strings cannot be changed after they are created. Methods such as `.upper()` return a new string — they do not modify the original.
@@ -58,17 +58,17 @@ Both return the index of the first occurrence of a substring. `.find()` returns 
 
 ---
 
-## 2.6 The bool data type
+## 2.7 The bool data type
 
 **15. Truthiness**
 Truthiness means that Python values can be interpreted as `True` or `False`. For `int`: only `0` gives `False`. For `float`: only `0.0` gives `False`. For `str`: only the empty string `""` gives `False`.
 
 **16. `None`**
-`None` is Python's way of expressing "no value" or "nothing here". It is not the same as `0`, `False`, or `""` — those are actual values. `None` is its own type (`NoneType`) and is often used as a default or placeholder value.
+`None` is a value used to represent "no value" or "nothing here". Its type is `NoneType`. It is distinct from `0`, `False` and `""`, and is often used as a default or placeholder value.
 
 ---
 
-## 2.7 Conversions between int, float, str, and bool
+## 2.8 Conversions between int, float, str, and bool
 
 **17. Why `input()` always returns a string**
 `input()` is designed to read text from the keyboard. We must convert explicitly with `int()` or `float()` if we need a number.
@@ -78,7 +78,7 @@ Truthiness means that Python values can be interpreted as `True` or `False`. For
 
 ---
 
-## 2.8 The input() function
+## 2.9 The input() function
 
 **19. Coding pattern**
 An established solution to a problem that recurs again and again. Not a rule, but a convention experienced programmers have settled on because it is clear and easy to recognise.
@@ -87,28 +87,28 @@ An established solution to a problem that recurs again and again. Not a rule, bu
 Code that solves the problem the way Python is designed for — concise and readable. Example: `age = int(input("Age: "))` is more Pythonic than splitting it into two lines without reason.
 
 **21. Why chain `.strip()` and `.lower()`**
-`.strip()` removes unintentional whitespace; `.lower()` makes comparisons case-insensitive. Chained on input, `"YES"`, `"Yes"` and `" yes "` all produce `"yes"`.
+`.strip()` removes leading and trailing whitespace; `.lower()` converts letters to lowercase. Chaining them normalizes the illustrated inputs `"YES"`, `"Yes"` and `" yes "` to `"yes"`, so these responses can be compared consistently.
 
 ---
 
-## 2.9 The print() function
+## 2.10 The print() function
 
 **22. Default behaviour of `print()`**
 Space between arguments (`sep=" "`) and a newline after the last argument (`end="\n"`). Both can be overridden by passing explicit `sep` or `end` keyword arguments.
 
 ---
 
-## 2.10 Use and misuse of comments
+## 2.11 Use and misuse of comments
 
 **23. The main rule for comments**
 Use comments to explain *why* the code does something, not *what* it does. The code itself should show what is happening — good names make comments redundant.
 
 **24. Docstring**
-A triple-quoted string placed immediately after a function or class definition. Accessible via `help()` and used by development tools such as VSCode to display documentation. Unlike regular comments, docstrings are stored as part of the object at runtime.
+A docstring is a string literal placed as the first statement in a function or class body, or at module level. Triple quotes are conventional, but a one-line docstring can use ordinary quotes. It is accessible via `help()` and used by development tools such as VSCode to display documentation. Unlike regular comments, docstrings are available as documentation at runtime.
 
 ---
 
-## 2.13 Formatting text with f-strings
+## 2.14 Formatting text with f-strings
 
 **25. `:.2f` vs. `:.2e` / default alignment**
 `:.2f` gives two decimal places in standard notation: `12.57`. `:.2e` gives two decimal places in scientific notation: `1.26e+01`. Text (`str`) is left-aligned by default; numbers (`int` and `float`) are right-aligned by default. Override with `<` (left), `>` (right), or `^` (centre).
@@ -209,11 +209,11 @@ for _ in range(5):
     print(random.randint(1, 10))
 ```
 
-Running the program twice produces exactly the same five numbers both times. Without `seed(0)`, the numbers would differ on every run.
+Running the program twice produces exactly the same five numbers both times. Without explicitly setting the seed, runs are not guaranteed to reproduce the same sequence; repeated results remain possible.
 
 *Note: the `for` loop is Chapter 5. Until then you can write the five `print(random.randint(1, 10))` lines out by hand after `random.seed(0)` - the point about reproducibility is exactly the same.*
 
-**35. Sentence analysis**
+**35. Sentence analysis - substring matching**
 
 ```python
 sentence = input("Enter a sentence: ")
@@ -221,10 +221,12 @@ words = sentence.split()
 print(f"Number of words: {len(words)}")
 print(f"Uppercase: {sentence.upper()}")
 if "python" in sentence.lower():
-    print("The sentence contains the word 'python'.")
+    print("The sentence contains the substring 'python'.")
 else:
-    print("The sentence does not contain the word 'python'.")
+    print("The sentence does not contain the substring 'python'.")
 ```
+
+The check matches the substring `"python"`, so `"pythonic"` also matches.
 
 *Note: counting the words and upper-casing the sentence are Chapter 2, but the `if`/`else` that checks for "python" is Chapter 4. Until then you can print the check directly - `print("python" in sentence.lower())` - and add the labelled branch after Chapter 4.*
 
@@ -268,13 +270,12 @@ print(f"Hello, {name.strip()}!")
 **39. Table: name, age, monthly salary**
 
 ```python
-print(f"{'Name':<15} {'Age':>6} {'Annual salary':>15}")
+print(f"{'Name':<15} {'Age':>6} {'Monthly salary':>15}")
 for _ in range(3):
     name         = input("Name: ")
     age          = int(input("Age: "))
     monthly_pay  = float(input("Monthly salary: "))
-    annual_pay   = monthly_pay * 12
-    print(f"{name:<15} {age:>6} {annual_pay:>15,.2f}")
+    print(f"{name:<15} {age:>6} {monthly_pay:>15,.2f}")
 ```
 
 *Note: the `for` loop is Chapter 5. Until then you can repeat the read-and-print block three times by hand - the header line and the f-string formatting (alignment and `,.2f`) are all Chapter 2.*
@@ -282,14 +283,14 @@ for _ in range(3):
 **40. Extended table with tax deduction**
 
 ```python
-print(f"{'Name':<15} {'Age':>6} {'Annual salary':>15} {'Tax (33%)':>12}")
+print(f"{'Name':<15} {'Age':>6} {'Monthly salary':>15} {'Annual salary':>15} {'Tax deduction':>15}")
 for _ in range(3):
     name         = input("Name: ")
     age          = int(input("Age: "))
     monthly_pay  = float(input("Monthly salary: "))
     annual_pay   = monthly_pay * 12
     tax          = annual_pay * 0.33
-    print(f"{name:<15} {age:>6} {annual_pay:>15,.2f} {tax / annual_pay:>11.1%}")
+    print(f"{name:<15} {age:>6} {monthly_pay:>15,.2f} {annual_pay:>15,.2f} {tax:>15,.2f}")
 ```
 
-*Note: as in exercise 39, the `for` loop is Chapter 5 and the block can be written out three times by hand until then. The percentage format `:.1%` and the rest of the formatting are Chapter 2.*
+*Note: as in exercise 39, the `for` loop is Chapter 5 and the block can be written out three times by hand until then. Monetary values use `,.2f`; age remains an integer. The tax deduction is 33% of annual salary, so zero salary gives a zero deduction without division.*

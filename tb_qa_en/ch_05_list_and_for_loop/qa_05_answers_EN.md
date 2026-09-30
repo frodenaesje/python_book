@@ -6,19 +6,19 @@
 Container is a conceptual term for data structures that hold multiple elements. Sequence is more specific: an ordered collection with an index per element. The sequence property gives us indexing, slicing, iteration with a for loop, `len()`, and operators like `in`, `+` and `*`.
 
 **2. `list2 = list1`**
-This copies only the reference — `list1` and `list2` point to the same list object in memory. Changes via `list2` are visible in `list1` and vice versa. `id()` returns the memory address of an object; `id(list1) == id(list2)` confirms they point to the same object.
+This copies only the reference - `list1` and `list2` refer to the same list object. Changes to that list via either name are visible through the other. `id()` returns an identity value unique during the object's lifetime; in CPython it is the memory address. `id(list1) == id(list2)` confirms that they refer to the same object.
 
 **3. Shallow copy**
 Creates a new list object, but fills it with the same references as the original. Works as expected when the list contains immutable elements (numbers, strings) — changes to the copy do not affect the original. Falls short when the list contains mutable objects (e.g. lists within a list) — the references to the inner objects are shared.
 
 **4. `list.copy()` vs. `copy.deepcopy()`**
-`list.copy()` makes a shallow copy — a new list object, but with shared references to the elements. `copy.deepcopy()` makes a complete copy of everything, recursively — original and copy are fully independent at all levels.
+`list.copy()` makes a shallow copy: a new list containing references to the same elements. For the nested-list example, `copy.deepcopy()` recursively copies the inner mutable lists too, so changing those copied lists does not affect the original. This does not mean that every object at every level must have a distinct copy.
 
 **5. `sort()` vs. `sorted()`**
 `sort()` is a method on the list class that sorts the list in place and returns `None`. `sorted()` is a built-in function that returns a new, sorted list — the original is unchanged.
 
-**6. The iteration variable as a copy**
-`number` is a copy of each element, not a reference to a position in the list. Assigning to `number` does not affect the list. Technique 2 (`range(len(...))`) and technique 3 (`enumerate()`) both provide an index, which can be used to modify the list directly via indexing.
+**6. The iteration variable refers to an element**
+The loop variable `number` refers to each element object; iteration does not copy that object. Rebinding `number` does not replace the list slot. However, mutating a referenced mutable element, such as an inner list, changes the object also visible through the list. Technique 2 (`range(len(...))`) and technique 3 (`enumerate()`) both provide an index, which can be used to modify the list directly via indexing.
 
 **7. `list(text)` vs. `[text]`**
 `list(text)` iterates over the string character by character and creates a list of single characters: `["p", "y", "t", "h", "o", "n"]`. `[text]` creates a list with the string as a single element: `["python"]`.
@@ -66,7 +66,7 @@ In example 2a, `input()` must be called in two places — once before the loop t
 `sorted()` returns a new sorted list and leaves the original unchanged. `list.sort()` sorts in place and returns `None` — a common mistake is writing `list = list.sort()`, which sets `list` to `None`.
 
 **20. The `key` parameter**
-`key` takes a function that is called on each element to compute a sort key. The element with the lowest key value comes first. The elements themselves are unchanged — only the order changes.
+`key` takes a function that computes a comparison key for each element. `sorted()` orders the original elements by those keys, in ascending order by default. `min()` selects the element with the smallest key and `max()` selects the one with the largest key. They return the selected original element, not its key; they do not sort or modify the input.
 
 **21. `del` on a list vs. `remove()`**
 `del` removes an element by index or deletes an entire slice: `del lst[2]` removes the element at index 2, `del lst[1:3]` removes a range. `remove()` searches for the first occurrence of a value and removes it — it works by value, not by position.
@@ -188,13 +188,13 @@ while x > 0:
 ```
 `x` increases every round and will never become ≤ 0, so the loop runs until we interrupt with Ctrl+C. Fix: change the condition to `while x < 10` or add `if x > 1000: break` inside the loop.
 
-**35. `all()` — word length**
+**35. `all()` - word length**
 ```python
 words = ["hi", "hey", "hello"]
 print(all(len(w) > 3 for w in words))   # False  ("hi" and "hey" have ≤ 3)
 
 words = ["hey", "hello", "world"]
-print(all(len(w) > 3 for w in words))   # True
+print(all(len(w) > 3 for w in words))   # False ("hey" has exactly 3 characters)
 ```
 
 **36. `map()` — uppercase**

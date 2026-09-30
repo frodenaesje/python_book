@@ -3,7 +3,7 @@
 ## Conditions and operators
 
 **1. `=` vs. `==`**
-`=` is assignment — it sets a variable to a value. `==` is comparison — it returns `True` or `False`. Writing `if x = 5` is a syntax error in Python, unlike C++ and Java where it is legal but often a bug.
+`=` is assignment - it binds a name to a value. `==` compares values and returns `True` or `False`. Writing `if x = 5` is a syntax error in Python.
 
 **2. True/False expressions**
 ```
@@ -70,10 +70,10 @@ if (n := len(data)) > 10:
 ## Truthiness and None
 
 **13. Falsy values**
-A falsy value is one that Python interprets as `False` in a condition. Falsy values: `0` (int), `0.0` (float), `""` (empty string), `None`. Everything else is truthy.
+A falsy value is one that Python interprets as `False` in a condition. For the types named in the question, the falsy values are `0` (`int`), `0.0` (`float`), `""` (`str`) and `None` (`NoneType`). Other values of these types are truthy. This list does not describe every Python type; empty containers, for example, are also falsy.
 
 **14. `None`**
-`None` is Python's way of representing "no value" or "not set". It is not the same as `0`, `False` or `""` — it is its own type (`NoneType`) and means explicitly absent value.
+`None` is a value of type `NoneType`, used to represent "no value" or "not set". It is distinct from `0`, `False` and `""`.
 
 **15. `if name:` vs. `if name is not None:`**
 `if name:` is a truthiness check and gives `False` for both `None`, empty string, and other falsy values. `if name is not None:` explicitly checks only whether the value is `None` — an empty string would give `True`. Use `is not None` when an empty string is a valid answer that should be treated differently from "not set".
@@ -113,6 +113,8 @@ else:
 ```
 
 **19. Ticket prices**
+Age 67 belongs to the senior band: ages 16-66 pay 120 NOK, and ages 67 and above pay 80 NOK.
+
 ```python
 age = int(input("Enter your age: "))
 if age < 16:
@@ -134,30 +136,32 @@ print(f"You have {count} {text}.")
 
 **22. Guard clauses**
 ```python
-score = 85
+def print_grade(score):
+    if score < 0:
+        print("Score cannot be negative.")
+        return
+    if score > 100:
+        print("Score cannot exceed 100.")
+        return
 
-if score < 0:
-    print("Score cannot be negative.")
-elif score > 100:
-    print("Score cannot exceed 100.")
-elif score >= 90:
-    grade = "A"
+    if score >= 90:
+        grade = "A"
+    elif score >= 75:
+        grade = "B"
+    else:
+        grade = "C"
     print(f"Grade: {grade}")
-elif score >= 75:
-    grade = "B"
-    print(f"Grade: {grade}")
-else:
-    grade = "C"
-    print(f"Grade: {grade}")
+
+print_grade(85)
 ```
 
-Guard clauses remove the deep nesting. The invalid cases are handled first and flatly — the rest of the code can be written without extra indentation levels.
+The two guard clauses return early for invalid scores. Valid scores reach the grading code without another surrounding level of indentation. This uses a small function and `return`, which are developed further in Chapter 6.
 
-**23. Walrus operator — read until empty**
+**23. Walrus operator - read until empty**
 ```python
-while (line := input("Type something: ").strip()):
+while (line := input("Type something: ")):
     print(f"You typed: {line}")
-# Stops when the user presses Enter without typing anything
+# Empty input stops the loop; spaces are preserved and printed.
 ```
 
 **24. Month names with match-case**
@@ -189,16 +193,28 @@ e) bool([])   → False   (empty list — covered later)
 ```
 
 **26. Pythonic rewrites**
+Original:
 ```python
-# Original:                        # Pythonic:
-if len(name) > 0:                  if name:
-    print("Name provided")             print("Name provided")
+if len(name) > 0:
+    print("Name provided")
 
-if is_active == True:              if is_active:
-    print("Active")                    print("Active")
+if is_active == True:
+    print("Active")
 
-if count != 0:                     if count:
-    print("Elements exist")            print("Elements exist")
+if count != 0:
+    print("Elements exist")
+```
+
+Pythonic, using the same existing variables:
+```python
+if name:
+    print("Name provided")
+
+if is_active:
+    print("Active")
+
+if count:
+    print("Elements exist")
 ```
 
 **27. Leap year**

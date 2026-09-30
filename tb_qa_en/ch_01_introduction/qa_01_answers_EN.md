@@ -9,7 +9,7 @@ Yes, both code and data are stored as sequences of 0s and 1s in memory. There is
 LIFO stands for Last In, First Out — the last item placed in is the first to be taken out. A stack of plates is a good everyday example: we always take from the top. The opposite principle is FIFO: First In, First Out — like a queue where the first to arrive is the first to leave.
 
 **3. Statically typed vs. dynamically typed**
-In statically typed languages like C++ and Java, the type of a variable must be declared explicitly and cannot change afterwards. In dynamically typed languages like Python, the type is determined at runtime, and a variable can refer to values of different types during the same program run.
+In statically typed languages such as C++ and Java, a variable has a fixed type checked before the program runs; that type can sometimes be inferred rather than written explicitly. In Python, objects have types, and a name can be bound and rebound to objects of different types during execution.
 
 **4. A line starting with `#`**
 The line is ignored entirely — it is a comment and has no effect on the execution of the program.
@@ -18,7 +18,7 @@ The line is ignored entirely — it is a comment and has no effect on the execut
 `input()` always returns a text string, regardless of what the user types. `int()` converts the text string to an integer. Without the conversion, mathematical operations would not work as expected.
 
 **6. `.py` file vs. REPL**
-From a `.py` file the entire program runs from top to bottom, and only what is explicitly printed with `print()` is shown. In REPL one line is evaluated at a time, and expressions that produce a result are printed automatically without `print()`.
+A script in a `.py` file does not automatically display expression results. It produces output through `print()` or other output mechanisms. In the interactive REPL, expressions are evaluated as they are entered, and non-`None` results are normally displayed automatically.
 
 **7. What produces output in REPL?**
 
@@ -59,10 +59,10 @@ Hello, Ada you are 25 years old.
 17 // 5  → 3    (integer part of 17 ÷ 5)
 17 %  5  → 2    (remainder: 5 × 3 = 15, so 17 - 15 = 2)
 ```
-`//` gives the whole-number part of a division; `%` gives the remainder.
+`//` rounds the quotient down toward negative infinity; `%` gives the remainder. For example, `-7 // 2` is `-4`, not `-3`.
 
 **12. `10 / 0` in REPL**
-Python raises a `ZeroDivisionError: division by zero`. Division by zero is mathematically undefined and Python signals this with an exception that stops the program.
+Python raises `ZeroDivisionError: division by zero`. Division by zero is mathematically undefined. The exception ends that evaluation, but the REPL remains available for further input.
 
 **13. The `add()` function with different types**
 ```python

@@ -14,8 +14,8 @@ A class is a template or blueprint — it describes what attributes and methods 
 **4. `my_car.drive()` behind the scenes**
 Python rewrites `my_car.drive()` as `Car.drive(my_car)`. The class `Car` owns the code, and `my_car` is passed in as `self` so the method knows which attributes to work with.
 
-**5. Code is shared, attributes are unique**
-All objects of the same class use the same code (the methods). Attributes, however, are stored on each individual object and are unique. Two `Car` objects share the `drive()` method but each have their own `_brand` and `_color`.
+**5. Shared code and instance attribute bindings**
+All objects of the same class use the same code (the methods). Each instance has its own instance attribute bindings, but those bindings may refer to shared objects. Two `Car` objects share the `drive()` method but each have their own `_brand` and `_color`.
 
 **6. Convention for "private" attributes**
 A leading underscore, e.g. `_balance`, is a convention meaning "internal use — do not access this directly from client code". It is an agreement between developers, not a technical barrier — Python does not prevent you from reading or changing the attribute.
@@ -47,8 +47,8 @@ Overloading means defining multiple versions of the same method with different p
 **15. `@dataclass` and what it generates automatically**
 `@dataclass` is a decorator that reads field declarations and, with default settings, generates `__init__()`, `__repr__()` and `__eq__()` when those methods have not been explicitly defined. Fields are declared with name and type directly in the class block: `x: int`. This reduces boilerplate for simple data classes that mainly store values together.
 
-**16. Why `items: list = []` is not allowed in a `@dataclass` — and the solution**
-`[]` is evaluated once when the class is defined — all instances would share the exact same list object. Changes to one instance would silently affect all others. The solution is `field(default_factory=list)`, which calls `list()` to create a fresh, independent list for each new instance.
+**16. Why `items: list = []` is not allowed in a `@dataclass` - and the solution**
+`[]` is evaluated once when the class is defined - instances using that default would share the same list object. Changing that list through one instance would affect the others sharing it. The solution is `field(default_factory=list)`, which calls `list()` to create a fresh, independent list when the corresponding field argument is omitted.
 
 ---
 
@@ -76,6 +76,7 @@ def __str__(self) -> str:
     return f"Person(name={self._name}, age={self._age})"
 
 print(p1)   # Person(name=Alice, age=30)
+print(p2)   # Person(name=Bob, age=25)
 ```
 
 **19. Property `age` with validation**

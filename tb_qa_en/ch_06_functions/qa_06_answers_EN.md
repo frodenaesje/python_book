@@ -12,10 +12,10 @@ A parameter is the variable name inside the function definition. An argument is 
 Returns `None` automatically. The same applies if `return` is used without a value.
 
 **4. Docstring**
-A text string that documents what a function does, placed as the first line of the function block enclosed in triple quotes. Read in REPL with `help(function_name)`.
+A docstring is a string literal that documents a function and occurs as the first statement in its body. Triple quotes are conventional, but not mandatory for a one-line docstring. Read it in the REPL with `help(function_name)`.
 
 **5. Changing `int` or `str` inside a function**
-`int` and `str` are immutable — they cannot be changed. An assignment like `x = x + 1` inside the function creates a new object with a new id. The original outside the function is unchanged, which an `id()` comparison confirms.
+`int` and `str` objects are immutable. An assignment such as `x = x + 1` rebinds the local parameter to another object; it does not mutate the caller's integer object or rebind the caller's name. A changed `id()` shows that the parameter now refers to a different object, but does not prove that a fresh allocation occurred: Python may reuse an existing object. The same distinction applies when a local string parameter is rebound.
 
 **6. Calling `append()` on a list passed as an argument**
 The list is mutable, and the reference is copied — not the object. `append()` modifies the same list object that the call site refers to. The change is visible outside the function, and `id()` is unchanged.
@@ -33,13 +33,13 @@ Default values are evaluated only once when the function is defined. A mutable o
 Local → Enclosing → Global → Built-in. The order in which Python searches for a variable name.
 
 **11. `for` and `if` do not create their own scope**
-Unlike e.g. Java and C++, variables defined inside `for`, `while`, `if` and `try` blocks live on in the enclosing scope after the block finishes. Only `def`, `class`, comprehensions and `lambda` create their own scope.
+`for`, `while`, `if` and `try` blocks do not create a separate local scope in the way a function body does. Assignments executed there bind names in the surrounding scope. Such names can therefore remain accessible after the block finishes; an assignment in a branch or loop that never runs does not create a binding.
 
 **12. `if __name__ == "__main__":`**
 When a file is run directly, `__name__` is set to `"__main__"`. When the file is imported as a module, `__name__` is set to the module name. This construct ensures that test code only runs on direct execution, not on import.
 
 **13. `sys.argv` and `sys.argv[0]`**
-`sys.argv` is a list Python fills with command-line arguments when a script is started. `sys.argv[0]` is always the filename of the script itself. `sys.argv[1]` is the first argument the user passed in. All elements are strings.
+`sys.argv` is a list of command-line arguments. In ordinary script-file execution, `sys.argv[0]` contains the script name or path, and `sys.argv[1]`, if present, is the first argument supplied after it. Other Python invocation modes can give `sys.argv[0]` a different meaning. All elements are strings.
 
 **14. `*args` vs. `sys.argv`**
 `*args` collects arguments from the code that calls the function — a Python mechanism inside the program. `sys.argv` collects arguments from the user who starts the script in the terminal — a mechanism between the operating system and the program. Both give access to a variable number of values, but from completely different sources.
@@ -51,7 +51,7 @@ When a file is run directly, `__name__` is set to `"__main__"`. When the file is
 `list` only says that the value is a list — nothing about its contents. `list[int]` is more precise: a list where all elements are integers. IDEs use this information for better autocompletion and type warnings.
 
 **17. `sys.exit(1)`**
-`sys.exit()` terminates the program immediately. The argument is an exit code sent to the operating system. `0` means "ended normally". Any other number — typically `1` — means "something went wrong". Shell scripts and other programs can read this code.
+`sys.exit(1)` raises `SystemExit` with exit status `1`. If uncaught, it normally terminates the program with that status. Cleanup such as `finally` blocks can still run, and `SystemExit` can technically be caught. Status `0` conventionally means normal completion; a nonzero status such as `1` indicates an error and can be checked by the calling shell or program.
 
 ---
 

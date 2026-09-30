@@ -6,7 +6,7 @@
 A bit is the smallest unit of information — either 0 or 1. A nibble is 4 bits. A byte is 8 bits.
 
 **2. The character `'1'` vs. the number `1`**
-The character `'1'` is a string and is stored internally as the ASCII value 49. The number `1` is an `int` and is stored as the binary value 1. If we try to add them we get a `TypeError` — Python does not allow mixing `str` and `int` without explicit conversion.
+`'1'` is a one-character Unicode string whose character has code point U+0031; ASCII also assigns decimal value 49 to that character. `1` is the integer value one. These character codes and illustrated bit patterns are not complete Python object memory layouts. Adding the string and integer raises `TypeError`; an explicit conversion is needed.
 
 **3. `ord()`**
 `ord()` returns the internal numeric value (Unicode code point) of a character. `ord('A')` returns `65`.
@@ -25,12 +25,12 @@ c) hex(255)        →  '0xff'    (str)
 Each hexadecimal digit represents exactly 4 bits (one nibble). This means we can convert group by group without going via decimal — for example `1111` is always `F`, regardless of context.
 
 **7. Bitwise operators**
-`&` (AND) — sets a bit to 1 only if both bits are 1.
-`|` (OR) — sets a bit to 1 if at least one bit is 1.
-`^` (XOR) — sets a bit to 1 if the bits are different.
-`~` (NOT) — inverts all bits (including the sign bit, giving a negative result in Python).
-`<<` (shift left) — shifts bits to the left, padding with 0 on the right (equivalent to multiplying by 2).
-`>>` (shift right) — shifts bits to the right (equivalent to integer division by 2).
+`&` (AND) - sets a bit to 1 only if both bits are 1.
+`|` (OR) - sets a bit to 1 if at least one bit is 1.
+`^` (XOR) - sets a bit to 1 if the bits are different.
+`~` (NOT) - complements an integer: `~x == -(x + 1)`. It is not always negative; for example, `~-1 == 0`.
+`<<` (shift left) - for a non-negative shift count `n`, `x << n` is equivalent to `x * 2**n`.
+`>>` (shift right) - for a non-negative shift count `n`, `x >> n` is equivalent to floor division `x // 2**n`.
 
 ---
 

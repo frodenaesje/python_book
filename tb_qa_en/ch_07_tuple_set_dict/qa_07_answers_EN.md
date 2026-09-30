@@ -21,7 +21,7 @@ The variable that receives `*` collects all elements not explicitly assigned els
 `keys()`, `values()` and `items()` do not return copies — they return live views that automatically reflect changes in the dictionary. Adding or removing a key is immediately visible in the view without calling the method again.
 
 **7. Hashability**
-A hashable value has a constant hash value throughout its lifetime and can be compared with other values. Python uses `hash(key)` to place and find values quickly in the dictionary's internal hash table. The key must be hashable for lookups to work consistently.
+A hashable value has a constant hash value throughout its lifetime and can be compared with other values. If two hashable objects compare equal, their hash values must be equal. Python uses `hash(key)` to place and find values quickly in the dictionary's internal hash table. The key must be hashable for lookups to work consistently.
 
 **8. `list` vs. `tuple` as a key**
 Lists are unhashable and cannot be dictionary keys. A tuple is hashable only if all its elements are hashable. Thus `(1, 2)` can be a dictionary key, while `[1, 2]` and `(1, [2])` cannot: the former is a list, and the latter is a tuple containing an unhashable list.

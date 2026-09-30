@@ -2,8 +2,8 @@
 
 ## Understanding
 
-**1. pytest vs. assert in REPL — and naming conventions**
-In the REPL the program stops at the first `AssertionError` and we get no information about which value was wrong. pytest runs all tests, reports exactly which ones failed and shows the actual values — and we can run the test suite again after each code change. The naming conventions used in this chapter are that test filenames and test function names start with `test_`. These names allow pytest to discover the tests automatically; they are not the only naming patterns pytest supports.
+**1. pytest vs. assert in REPL - and naming conventions**
+In the REPL, a failed assertion raises `AssertionError` and ends the current evaluation; the REPL remains available for further input. A bare assertion gives a traceback and any supplied message, while pytest provides richer failure reports with inspected values. In a normal run, pytest runs the collected tests and reports which failed, and the suite can be rerun after each code change. The naming conventions used in this chapter are that test filenames and test function names start with `test_`. These allow normal pytest discovery; they are not the only supported naming patterns.
 
 **2. Reading the failure output**
 `FAILED test_calc.py::test_addition - AssertionError: assert 5 == 6` means: the test function `test_addition` in the file `test_calc.py` failed. `assert 5 == 6` shows that the function returned 5 but we expected 6.
@@ -21,7 +21,7 @@ The default scope (function) creates the fixture fresh before each test function
 Arrange (set up test data and environment), Act (call the function being tested), Assert (check the result). A fixture corresponds to the Arrange step.
 
 **7. Test coverage and its limits**
-Test coverage measures what proportion of the code is actually executed when the tests run. 100% coverage means all lines are executed, but not that all possible input values or edge cases are tested. It is entirely possible to have full coverage with tests that do not uncover real bugs.
+Coverage measures which parts of the code were executed during testing. 100% line coverage means that every measured executable line ran. It does not mean that every path, branch, input value or edge case was tested, or that the results were correct. Tests can achieve full line coverage without uncovering real bugs.
 
 **8. `pytest.approx()`**
 Used to compare floating-point numbers with a permitted deviation. `abs=0.001` means the values may differ by up to 0.001 and the test will still pass.
@@ -129,4 +129,10 @@ def test_reset(counter):
 Raises `AssertionError` because Python is case-sensitive — `"python"` and `"Python"` are not equal strings.
 
 **17. The `Miss` column in coverage**
-`Miss` shows the number of code lines that were not executed during the tests. If `Miss` is 0 we have full line coverage. `Cover` shows the percentage of lines that were executed.
+Save the complete QA13 code, including `celsius_to_fahrenheit()` and its three tests, as `test_temperature.py` in a working folder. From that folder, with pytest and pytest-cov installed, run:
+
+```text
+python -m pytest test_temperature.py --cov=test_temperature --cov-report=term-missing
+```
+
+Here `test_temperature` is the module being measured. Because this answer keeps the function and tests in one file, the report covers both. `Stmts` counts measured executable statements, `Miss` counts those not executed, and `Cover` gives the percentage executed. Any missed line numbers appear under `Missing`. A successful run of these three tests should exercise every measured line in this small file, giving `Miss` 0 and 100% line coverage. This does not prove correctness for every possible temperature.

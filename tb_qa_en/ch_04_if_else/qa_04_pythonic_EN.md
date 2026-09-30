@@ -102,7 +102,7 @@ class FigureError(Exception):
     """Base exception for all figure-related errors."""
 ```
 
-`pass` is necessary in if-blocks and loops where a docstring makes no sense. In classes and functions a docstring is preferable because the code becomes self-documenting.
+`pass` can be used as a placeholder when a suite, such as an if-block or loop body, would otherwise be empty. In classes and functions a docstring is preferable because the code becomes self-documenting.
 
 ## Walrus — avoid computing twice
 
