@@ -9,22 +9,22 @@ Text files contain readable text and are handled as strings in Python — charac
 `"w"` opens for writing and overwrites all existing content — the file always starts empty. `"a"` (append) adds content to the end of existing content without deleting anything. Both create the file if it does not exist.
 
 **3. `read()`, `readline()` and `readlines()`**
-`read()` reads the entire file as one string. `readline()` reads one line at a time including the newline. `readlines()` reads the entire file and returns a list where each element is one line.
+For a text file, `read()` without a size reads the remaining text from the current position as one string. `readline()` reads the next line, including its newline if one is present. `readlines()` reads the remaining lines into a list.
 
 **4. Why direct iteration is more memory-efficient**
-`readlines()` loads the entire file into memory. Direct iteration reads one line at a time — Python fetches the next line from disk only when we request it. For large files this is critical.
+Direct iteration processes one line at a time without first building a list containing all remaining lines. Python may buffer input and read ahead internally. The memory advantage is avoiding materialization of the entire remaining file as a Python list of strings, which is especially useful for large files.
 
 **5. `repr()` and file reading**
 `repr()` gives a technical representation where escape sequences are shown as they are — `\n` is shown as `\n` instead of an actual newline. Useful for seeing exactly what the file contains.
 
 **6. Text encoding and UTF-8**
-Text encoding determines which numbers represent which characters. Python does not always use UTF-8 by default — on Windows the default is often `cp1252`. Solution: always use `encoding="utf-8"`.
+Encoding specifies how text maps to bytes. Use an explicit encoding matching the file. For the UTF-8 files used in this chapter, `encoding="utf-8"` makes that choice explicit and portable; UTF-8 should not be assumed to match files that use another encoding.
 
 **7. Broad vs. specific exception handling**
 `except:` without a type catches absolutely all exceptions — including ones we had not thought of. We risk hiding bugs. Specific types such as `except FileNotFoundError:` catch only what we actually expect.
 
 **8. The `else` block**
-Runs only if no exception occurred in the `try` block. Gives a clear separation between risky code and follow-up code that should only run on success.
+The `else` block runs when the `try` suite completes normally: no exception leaves it and execution does not leave through `return`, `break` or `continue`. This separates risky code from follow-up code that should run only after normal completion.
 
 **9. The `finally` block**
 `finally` always runs — whether or not an exception occurred. Ideal for cleanup that must always happen, such as closing a file or database connection.
@@ -32,8 +32,8 @@ Runs only if no exception occurred in the `try` block. Gives a clear separation 
 **10. Custom exception classes**
 A descriptive type like `InvalidPasswordError` is clearer than `ValueError`, makes it easier to catch precisely in client code, and makes the error cause clear to both developer and user.
 
-**11. What `with` guarantees — and what it does not**
-`with` guarantees that the resource is cleaned up — the file is closed — regardless of what happens in the block. `with` does not guarantee that exceptions are handled — they propagate normally.
+**11. What `with` guarantees - and what it does not**
+In `with open(...) as f:`, the file is closed when the entered block exits, including when an exception propagates. The file context manager does not itself suppress that exception. Other context managers may behave differently.
 
 **12. CWD vs. script directory**
 CWD is the directory the program is run from. The script directory is the directory where the Python file is located. Relative paths are interpreted relative to the CWD, not the script directory. For predictable file placement: use `Path(__file__).resolve().parent`.
@@ -42,7 +42,7 @@ CWD is the directory the program is run from. The script directory is the direct
 Serialisation converts a data structure into a linear representation that can be stored on disk or sent over a network. Deserialisation is the reverse process.
 
 **14. The most important difference between `pickle` and `json`**
-`pickle` is binary, Python-only, and handles all Python objects directly. `json` is text-based, human-readable and language-independent, but only supports simple data types — custom classes require manual conversion.
+`pickle` is binary and Python-specific. It supports many Python object types, including suitable user-defined instances, but not every object. `json` is text-based, human-readable and language-independent, representing basic portable data types. The chapter converts custom objects to dictionaries and reconstructs them explicitly.
 
 **15. `pickle` and security**
 A pickle file can contain code that is executed automatically when `pickle.load()` is called. A malicious actor can create a pickle file that runs arbitrary code. pickle is intended for internal use where we control the files ourselves.
