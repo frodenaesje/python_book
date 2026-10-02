@@ -7,19 +7,25 @@
 # After saving your completed tests as ex_09_04_clock_tests.py, run:
 # python -m pytest ex_09_04_clock_tests.py -v
 
-# Keep your completed ex_08_08_clock.py in ch_08_basic_class_objects.
-# No local copy is needed in Chapter 9.
 # Replace each TODO assertion with a meaningful test.
 # The unfinished tests deliberately fail.
-import sys
-import os
+# SIMPLE APPROACH USED IN THE BOOK:
+# Copy these completed files from ../ch_08_basic_class_objects/
+# into this folder (tb_ex/ch_09_unit_testing/):
+# - ex_08_08_clock.py
+# The ordinary imports below then work directly.
 
-# The Clock class we want to test is in the Chapter 8 exercise folder.
-# Python searches certain folders when importing modules.
-# The following line adds that folder to Python's module search path.
-# This is a practical solution for these book exercises; larger projects
-# should normally be organized as packages instead.
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'ch_08_basic_class_objects'))
+# ALTERNATIVE:
+# Instead of copying, keep the completed files in their original exercise
+# folder and add it to Python's module search path. Uncomment these lines:
+#
+# import sys
+# import os
+#
+# sys.path.insert(
+#     0,
+#     os.path.join(os.path.dirname(__file__), '..', 'ch_08_basic_class_objects')
+# )
 
 from ex_08_08_clock import Clock
 

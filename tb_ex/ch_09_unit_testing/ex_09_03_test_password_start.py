@@ -4,23 +4,30 @@
 # python -m pytest ex_09_03_test_password_start.py -v
 #
 # See Exercise 9.1 for an explanation of pytest test discovery.
-# First save your completed ex_06_07_password_checker.py
-# in ../ch_06_functions/.
 # After saving your completed tests as ex_09_03_test_password.py, run:
 # python -m pytest ex_09_03_test_password.py -v
 
 # Replace each TODO assertion with a meaningful test.
 # The unfinished tests deliberately fail.
 import pytest
-import sys
-import os
 
-# The function we want to test is in the Chapter 6 exercise folder.
-# Python searches certain folders when importing modules.
-# The following line adds that folder to Python's module search path.
-# This is a practical solution for these book exercises; larger projects
-# should normally be organized as packages instead.
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'ch_06_functions'))
+# SIMPLE APPROACH USED IN THE BOOK:
+# Copy these completed files from ../ch_06_functions/
+# into this folder (tb_ex/ch_09_unit_testing/):
+# - ex_06_07_password_checker.py
+# The ordinary imports below then work directly.
+
+# ALTERNATIVE:
+# Instead of copying, keep the completed files in their original exercise
+# folder and add it to Python's module search path. Uncomment these lines:
+#
+# import sys
+# import os
+#
+# sys.path.insert(
+#     0,
+#     os.path.join(os.path.dirname(__file__), '..', 'ch_06_functions')
+# )
 
 from ex_06_07_password_checker import is_good_password
 

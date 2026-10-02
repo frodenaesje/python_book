@@ -9,23 +9,31 @@
 # python -m pytest ex_09_01_test_functions_start.py -v
 #
 # Pytest discovers functions whose names start with test_ and runs them.
-# First save your completed ex_06_01_taxi_fare.py and
-# ex_06_06_ordinal_numbers.py in ../ch_06_functions/.
 # After saving your completed tests as ex_09_01_test_functions.py, run:
 # python -m pytest ex_09_01_test_functions.py -v
 
 # Replace each TODO assertion with a meaningful test.
 # The unfinished tests deliberately fail.
 import pytest
-import sys
-import os
 
-# The functions we want to test are in the Chapter 6 exercise folder.
-# Python searches certain folders when importing modules.
-# The following line adds that folder to Python's module search path.
-# This is a practical solution for these book exercises; larger projects
-# should normally be organized as packages instead.
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', 'ch_06_functions'))
+# SIMPLE APPROACH USED IN THE BOOK:
+# Copy these completed files from ../ch_06_functions/
+# into this folder (tb_ex/ch_09_unit_testing/):
+# - ex_06_01_taxi_fare.py
+# - ex_06_06_ordinal_numbers.py
+# The ordinary imports below then work directly.
+
+# ALTERNATIVE:
+# Instead of copying, keep the completed files in their original exercise
+# folder and add it to Python's module search path. Uncomment these lines:
+#
+# import sys
+# import os
+#
+# sys.path.insert(
+#     0,
+#     os.path.join(os.path.dirname(__file__), '..', 'ch_06_functions')
+# )
 
 from ex_06_01_taxi_fare import taxi_fare
 from ex_06_06_ordinal_numbers import ordinal
