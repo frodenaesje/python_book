@@ -1,4 +1,10 @@
 # file: ex_09_04_clock_tests.py
+# Run this test file with pytest, not with VS Code's Run Python File.
+# From a terminal in this folder:
+# python -m pytest ex_09_04_clock_tests.py -v
+#
+# See Exercise 9.1 for an explanation of pytest test discovery.
+
 # Keep your completed ex_08_08_clock.py in ch_08_basic_class_objects.
 # No local copy is needed in Chapter 9.
 import sys

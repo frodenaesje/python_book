@@ -1,4 +1,19 @@
 # file: ex_09_01_test_functions_start.py
+# This file contains pytest tests.
+#
+# VS Code's Run Python File executes this file as an ordinary Python
+# program. It defines the test functions but does not call them, so it
+# normally produces no test results.
+#
+# Run the tests with pytest from a terminal in this folder:
+# python -m pytest ex_09_01_test_functions_start.py -v
+#
+# Pytest discovers functions whose names start with test_ and runs them.
+# First save your completed ex_06_01_taxi_fare.py and
+# ex_06_06_ordinal_numbers.py in ../ch_06_functions/.
+# After saving your completed tests as ex_09_01_test_functions.py, run:
+# python -m pytest ex_09_01_test_functions.py -v
+
 # Replace each TODO assertion with a meaningful test.
 # The unfinished tests deliberately fail.
 import pytest

@@ -1,4 +1,14 @@
 # file: ex_09_03_test_password_start.py
+# Run this test file with pytest, not with VS Code's Run Python File.
+# From a terminal in this folder:
+# python -m pytest ex_09_03_test_password_start.py -v
+#
+# See Exercise 9.1 for an explanation of pytest test discovery.
+# First save your completed ex_06_07_password_checker.py
+# in ../ch_06_functions/.
+# After saving your completed tests as ex_09_03_test_password.py, run:
+# python -m pytest ex_09_03_test_password.py -v
+
 # Replace each TODO assertion with a meaningful test.
 # The unfinished tests deliberately fail.
 import pytest

@@ -1,4 +1,12 @@
 # file: ex_09_02_test_divisors.py
+# Run this test file with pytest, not with VS Code's Run Python File.
+# From a terminal in this folder:
+# python -m pytest ex_09_02_test_divisors.py -v
+#
+# See Exercise 9.1 for an explanation of pytest test discovery.
+# First save your completed ex_06_03_proper_divisors.py
+# in ../ch_06_functions/.
+
 import sys
 import os
 
