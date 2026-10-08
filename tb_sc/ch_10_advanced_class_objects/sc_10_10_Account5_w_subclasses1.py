@@ -1,31 +1,33 @@
 # file: sc_10_10_Account5_w_subclasses1.py
 from abc import ABC, abstractmethod
 from datetime import datetime
+from typing import List, Optional
 
 class Transaction:
-    def __init__(self, amount, trans_type):
+    def __init__(self, amount: float, trans_type: str) -> None:
         self._amount = amount
         self._trans_type = trans_type
         self._timestamp = datetime.now()
     
-    def __str__(self):
+    def __str__(self) -> str:
         return (f"{self._timestamp:%Y-%m-%d %H:%M:%S} | "
                 f"{self._trans_type.capitalize():8} | "
                 f"{self._amount:8.2f}")
 
 class Account(ABC):
-    def __init__(self, cust_id, account_no, start_balance, interest):
+    def __init__(self, cust_id: str, account_no: int,
+                 start_balance: float, interest: float) -> None:
         self._cust_id = cust_id
         self._account_no = account_no
         self._balance = start_balance
         self._interest = interest
-        self._transactions = []
+        self._transactions: List[Transaction] = []
 
     @abstractmethod
-    def account_type(self):
+    def account_type(self) -> str:
         pass
 
-    def deposit(self, amount):
+    def deposit(self, amount: float) -> float:
         if amount > 0:
             self._balance += amount
             self._transactions.append(
@@ -33,18 +35,18 @@ class Account(ABC):
             )
         return self._balance
 
-    def add_monthly_interest(self):
+    def add_monthly_interest(self) -> None:
         monthly_interest = self.calculate_monthly_interest()
         self._balance += monthly_interest
         self._transactions.append(
             Transaction(monthly_interest, "interest")
         )
 
-    def calculate_monthly_interest(self):
+    def calculate_monthly_interest(self) -> float:
         return self._balance \
                * self._interest / 100 / 12
 
-    def withdraw(self, amount):
+    def withdraw(self, amount: float) -> float:
         if amount <= self._balance:
             self._balance -= amount
             self._transactions.append(
@@ -53,22 +55,24 @@ class Account(ABC):
         return self._balance
 
     @property
-    def balance(self):
+    def balance(self) -> float:
         return self._balance
 
-    def __str__(self):
+    def __str__(self) -> str:
         return (f"Customer id  = {self._cust_id}\n"
                 f"Balance      = {self._balance:.2f}\n"
                 f"Interest     = {self._interest}%\n")
 
 class SavingsAccount(Account):
     def __init__(
-            self, cust_id, account_no, start_balance, interest,
-            savings_goal=0):
-        super().__init__(cust_id, account_no, start_balance, interest)
+            self, cust_id: str, account_no: int,
+            start_balance: float, interest: float,
+            savings_goal: float = 0) -> None:
+        super().__init__(
+            cust_id, account_no, start_balance, interest)
         self._savings_goal = savings_goal
 
-    def add_monthly_interest(self):
+    def add_monthly_interest(self) -> None:
         monthly_interest = \
             self.calculate_monthly_interest() * 2
         self._balance += monthly_interest
@@ -76,52 +80,54 @@ class SavingsAccount(Account):
             Transaction(monthly_interest, "interest")
         )
 
-    def __str__(self):
+    def __str__(self) -> str:
         return super().__str__() \
                + f"Savings goal = " \
                  f"{self._savings_goal:.2f}\n"
 
-    def account_type(self):
+    def account_type(self) -> str:
         return "SavingsAccount"
 
 class StudentAccount(Account):
-    W_LIMIT = 1000
+    W_LIMIT: int = 1000
 
     def __init__(
-            self, cust_id, account_no, start_balance, interest,
-            student_id=None):
-        super().__init__(cust_id, account_no, start_balance, interest)
+            self, cust_id: str, account_no: int,
+            start_balance: float, interest: float,
+            student_id: Optional[str] = None) -> None:
+        super().__init__(
+            cust_id, account_no, start_balance, interest)
         self._student_id = student_id
 
-    def withdraw(self, amount):
+    def withdraw(self, amount: float) -> float:
         if amount > StudentAccount.W_LIMIT:
             print(f"Max withdrawal is "
                   f"{StudentAccount.W_LIMIT}.")
             return self._balance
         return super().withdraw(amount)
 
-    def account_type(self):
+    def account_type(self) -> str:
         return "StudentAccount"
 
 class Bank:
-    def __init__(self):
-        self._accounts = []
+    def __init__(self) -> None:
+        self._accounts: List[Account] = []
         self._savings_count = 0
         self._student_count = 0
 
-    def add_account(self, account):
+    def add_account(self, account: Account) -> None:
         self._accounts.append(account)
         if isinstance(account, SavingsAccount):
             self._savings_count += 1
         elif isinstance(account, StudentAccount):
             self._student_count += 1
       
-    def print_account_summary(self):
+    def print_account_summary(self) -> None:
         print(f"Total: {len(self._accounts)} accounts")
         print(f"  SavingsAccount: {self._savings_count}")
         print(f"  StudentAccount: {self._student_count}")
        
-    def do_monthly_update(self):
+    def do_monthly_update(self) -> None:
         print("\nMonthly update:")
         for acc in self._accounts:
             acc.add_monthly_interest()  # Polymorphic call.
@@ -132,8 +138,10 @@ if __name__ == "__main__":
     bank = Bank()
     #
     # Account Cannot be instantiated directly anymore.
-    acc2 = SavingsAccount("B456", 1002, 2000, 1.5, savings_goal=10000)
-    acc3 = StudentAccount("C789", 1003, 1500, 1.2, student_id="STU123")
+    acc2 = SavingsAccount(
+        "B456", 1002, 2000, 1.5, savings_goal=10000)
+    acc3 = StudentAccount(
+        "C789", 1003, 1500, 1.2, student_id="STU123")
     bank.add_account(acc2)
     bank.add_account(acc3)
 
