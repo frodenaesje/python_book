@@ -1,7 +1,6 @@
 # file: sc_10_10_Account5_w_subclasses1.py
 from abc import ABC, abstractmethod
 from datetime import datetime
-from typing import List, Optional
 
 class Transaction:
     def __init__(self, amount: float, trans_type: str) -> None:
@@ -21,7 +20,7 @@ class Account(ABC):
         self._account_no = account_no
         self._balance = start_balance
         self._interest = interest
-        self._transactions: List[Transaction] = []
+        self._transactions: list[Transaction] = []
 
     @abstractmethod
     def account_type(self) -> str:
@@ -94,7 +93,7 @@ class StudentAccount(Account):
     def __init__(
             self, cust_id: str, account_no: int,
             start_balance: float, interest: float,
-            student_id: Optional[str] = None) -> None:
+            student_id: str) -> None:
         super().__init__(
             cust_id, account_no, start_balance, interest)
         self._student_id = student_id
@@ -111,7 +110,7 @@ class StudentAccount(Account):
 
 class Bank:
     def __init__(self) -> None:
-        self._accounts: List[Account] = []
+        self._accounts: list[Account] = []
         self._savings_count = 0
         self._student_count = 0
 
@@ -148,6 +147,8 @@ if __name__ == "__main__":
     bank.print_account_summary()
 
     # Demonstrate polymorphism and isinstance.
+    # The reading of _ attrubutes is not a good example,
+    # but it was to avoid making too much code (properties)
     for acc in bank._accounts:
         print(f"\nType: {acc.account_type()}")
         acc.deposit(500)
