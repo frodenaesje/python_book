@@ -1,5 +1,8 @@
 # file: ex_10_03_vehicle_hierarchy_start.py
 
+# Example output note: with a full 75 kWh battery, driving 200 km at
+# 0.2 kWh/km leaves about 46.67% charge (displayed as 47%), not 96%.
+
 class Vehicle:
     def __init__(self, make, model, year):
         # TODO: store _make, _model, _year and initialise _fuel_level to 0
