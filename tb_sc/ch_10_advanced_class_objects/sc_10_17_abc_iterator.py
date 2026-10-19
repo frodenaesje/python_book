@@ -15,3 +15,6 @@ class CountUp(Iterator):
 
 for number in CountUp(1, 5):
     print(number, end=" ")   # 1 2 3 4
+
+for number in CountUp(1, 5):
+    print(number, end=" ")   # 1 2 3 4
