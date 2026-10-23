@@ -13,7 +13,7 @@ def print_file(filename: str) -> None:
     # TODO Part 2: wrap in try-except FileNotFoundError
     #              print: "Error: 'filename' not found."
 
-    # TODO Part 3 (optional): restructure using try-except-else
+    # TODO Part 3: restructure using try-except-else
     #              put the file reading in the else block
     pass
 
