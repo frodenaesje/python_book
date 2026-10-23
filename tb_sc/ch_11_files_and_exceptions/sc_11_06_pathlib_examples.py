@@ -35,7 +35,6 @@ with open(file_in_script_dir, "w") as f:
             "directory:")
     print("The absolute path to the file just created "
           "is:")
-    print(Path(file_in_script_dir).resolve())
     print(Path(file_in_script_dir)) # same as above
 
 # An other way to concatenate paths is to use the
@@ -47,9 +46,18 @@ with open(another_file_in_script_dir, "w") as f:
             "script's directory using joinpath().")
 
 
-# pathlib does not have methods for
-# copying or moving files. We can use the shutil
-# module for that
+# Before Python 3.14, use shutil to copy files.
 import shutil
 copied_file_path = script_dir / "copied_example.txt"
 shutil.copy(file_in_script_dir, copied_file_path)
+
+# Python 3.14 and later provide Path.copy() to copy a file
+# to a specified destination path.
+pathlib_copied_file = script_dir / "pathlib_copied_example.txt"
+file_in_script_dir.copy(pathlib_copied_file)
+
+# Path.copy_into() copies a file into an existing directory,
+# keeping the original filename.
+backup_dir = script_dir / "backups"
+backup_dir.mkdir(exist_ok=True)
+file_in_script_dir.copy_into(backup_dir)

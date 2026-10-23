@@ -167,9 +167,9 @@ if __name__ == "__main__":
                 continue
             print(f"Balance: {account2.balance:.2f}")
         except (NegativeDepositError, InsufficientFundsError, BankAccountError) as e:
-            print(f"✗ {e}")
+            print(f"{e}")
         except ValueError:
-            print("✗ Amount must be a number")
+            print("Amount must be a number")
 
 print()
 
