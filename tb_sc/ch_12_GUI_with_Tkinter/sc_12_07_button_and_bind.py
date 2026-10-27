@@ -11,6 +11,6 @@ bt_simple = tk.Button(root, text="Click me!")
 bt_simple.pack()
 
 # Uses bind instead of command
-bt_simple.bind("<Button-1>", on_button_click)
+root.bind("<Button-1>", on_button_click)
 
-root.mainloop()
+bt_simple.mainloop()

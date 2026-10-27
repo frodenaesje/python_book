@@ -4,6 +4,9 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 
+# Nested callbacks can access the widgets and variables
+# created in create_gui(), keeping the GUI's state local
+# instead of using global variables.
 def create_gui():
 	root = tk.Tk()
 	root.title("Listbox + Entry Demo")
@@ -21,6 +24,8 @@ def create_gui():
 
 	sb_scroll = ttk.Scrollbar(
 		fr_listbox, orient=tk.VERTICAL)
+	# The Listbox requests a default width of 20 characters.
+    # fill=tk.BOTH lets it stretch to fill the available width in fr_listbox. 
 	lbx_countries = tk.Listbox(
 		fr_listbox, height=8,
 		yscrollcommand=sb_scroll.set,
@@ -56,7 +61,7 @@ def create_gui():
 		root, textvariable=status_var, anchor="w")
 	lb_status.pack(fill="x", padx=10)
 
-	# Entry + button for adding new countries
+	# Frame for entry + button for adding new countries
 	fr_entry = ttk.Frame(root)
 	fr_entry.pack(padx=10, pady=(6, 10), fill="x")
 
