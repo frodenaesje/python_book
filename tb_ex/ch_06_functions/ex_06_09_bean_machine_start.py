@@ -4,8 +4,10 @@ import random
 # TODO: Write drop_ball(num_rows: int) -> int
 #       Simulates one ball dropping through num_rows pegs.
 #       At each row the ball moves left or right with equal chance.
-#       Hint: start at slot 0. Which random call gives you either 0 or 1?
-#             Add that choice once per row; the final slot is the total.
+#       Hint: count right bounces rather than horizontal displacement.
+#             Start at slot 0: a left bounce adds 0, a right bounce adds 1.
+#             All left bounces lead to slot 0; all right to slot num_rows.
+#             Which random call gives you either 0 or 1?
 #       Returns the final slot number (0 to num_rows).
 def drop_ball(num_rows: int) -> int:
     # your code here
@@ -42,7 +44,7 @@ def display_histogram_vertical(counts: list):
 
 
 if __name__ == "__main__":
-    NUM_BALLS = 500
+    NUM_BALLS = 20
     NUM_ROWS = 8
 
     print(f"Bean Machine - {NUM_BALLS} balls, {NUM_ROWS} rows\n")
