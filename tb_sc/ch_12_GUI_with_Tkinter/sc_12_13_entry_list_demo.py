@@ -4,9 +4,26 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import messagebox
 
-# Nested callbacks can access the widgets and variables
-# created in create_gui(), keeping the GUI's state local
-# instead of using global variables.
+# This version defines callbacks inside create_gui(). These nested functions
+# can access widgets and variables in the enclosing function's scope, such as
+# lbx_countries, en_entry and status_var. They do not need these objects passed
+# as arguments or stored in global variables.
+#
+# Tkinter keeps references to the registered callbacks. The callbacks retain
+# access to the enclosing variables even after create_gui() has returned.
+# They call methods on the existing objects rather than assign new values to
+# the enclosing variables, so no nonlocal declaration is needed.
+#
+# This keeps the GUI's state local and places callbacks near the widgets they
+# control. Each call to create_gui() creates its own widgets and callbacks,
+# so separate windows do not overwrite shared global widget references.
+# For a small, self-contained GUI, this is a compact way to keep related code
+# together without introducing a class.
+#
+# As the GUI grows, a long create_gui() can become harder to navigate.
+# sc_12_13_entry_list_demo_v2.py demonstrates standalone callbacks with global
+# state, while sc_12_13_entry_list_demo_v3.py groups state and methods in a class.
+# The three versions demonstrate different ways to structure the same app.
 def create_gui():
 	root = tk.Tk()
 	root.title("Listbox + Entry Demo")
