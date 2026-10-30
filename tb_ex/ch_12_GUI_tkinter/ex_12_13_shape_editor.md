@@ -163,3 +163,13 @@ Only then call `coords()` to apply both new dimensions together.
   dialog. Neither action should change the shape.
 - Try text, dimensions below 10, and dimensions that would extend
   beyond the Canvas. The dialogs should reject these values.
+
+## Assessment criteria
+
+| Criterion | Description | Weight (%) |
+|---|---|---:|
+| Initial shapes | Create at least two rectangles and two ovals with different fill colours, black outlines, and separated positions inside the Canvas. | 20 |
+| Mouse selection | Select the clicked shape, mark it with a red outline of width 3, restore the previous outline, and clear the selection when clicking empty space. | 35 |
+| Resizing | Read the selected shape's dimensions and apply the accepted width and height while keeping its upper-left corner, fill colour, and selection unchanged. Preserve the supplied input limits and cancellation behaviour. | 35 |
+| Class structure | Use ShapeEditor with instance attributes for the Canvas and selection, and methods for shape creation, selection, and resizing. | 10 |
+| **Total** | | **100%** |
