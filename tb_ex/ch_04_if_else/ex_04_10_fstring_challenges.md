@@ -72,3 +72,12 @@ You have 1 message
 - The ternary expression inside an f-string
 - Calling string methods inside a field
 - Plural endings without if-blocks
+
+## Assessment criteria
+
+| Criterion | Description | Weight (%) |
+|---|---|---:|
+| Numeric formatting | Use f-string format specifiers for decimals, field width, percentages, signs and thousands grouping in the stated challenges. | 35 |
+| Interpolation and methods | Interpolate the supplied data and use string methods to produce the requested capitalization and space-grouped number. | 25 |
+| Conditional expressions | Use ternary expressions within f-strings for parity and plural endings, including the combined quantity-and-price challenge, without lists, loops or functions. | 40 |
+| **Total** | | **100%** |

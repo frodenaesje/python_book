@@ -36,3 +36,12 @@ Total              166.50
 - Left align with `<` and right align with `>`
 - Field width to make columns line up
 - `,.2f` for two decimals plus a thousands separator
+
+## Assessment criteria
+
+| Criterion | Description | Weight (%) |
+|---|---|---:|
+| Items and total | Read three item names and prices and calculate their total. | 25 |
+| Item formatting | Use f-string field widths to align names left and prices right, with two decimals and a thousands separator. | 50 |
+| Receipt completion | Print a separator and a total line aligned consistently with the item rows. | 25 |
+| **Total** | | **100%** |

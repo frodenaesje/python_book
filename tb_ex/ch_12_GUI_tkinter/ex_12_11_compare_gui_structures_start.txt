@@ -1,0 +1,56 @@
+Compare Four GUI Structures - Answers
+
+Write your answers below each heading. Use your own words and support your
+explanations with function names, variables or short code excerpts.
+No new program is required.
+
+1. Where does the state live?
+
+Original:
+[Your answer]
+
+v2:
+[Your answer]
+
+v3:
+[Your answer]
+
+v4:
+[Your answer]
+
+2. Why global, but not nonlocal?
+
+[Your answer]
+
+3. Follow one user action
+
+[Your answer]
+
+4. What does lambda contribute?
+
+[Your answer]
+
+5. Compare the trade-offs
+
+Original - benefit and drawback:
+[Your answer]
+
+v2 - benefit and drawback:
+[Your answer]
+
+v3 - benefit and drawback:
+[Your answer]
+
+v4 - benefit and drawback:
+[Your answer]
+
+6. Make and defend a choice
+
+Small demonstration - choice, advantage over an alternative, and cost:
+[Your answer]
+
+Growing application - choice, advantage over an alternative, and cost:
+[Your answer]
+
+Is there one universally most Pythonic solution?
+[Your answer]

@@ -35,3 +35,12 @@ Age:   [ 32           ]
 - Reading `Entry` values via `StringVar` in a callback
 - `Listbox.insert(tk.END, ...)` to append a row
 - Clearing fields by setting the `StringVar` to `""`
+
+## Assessment criteria
+
+| Criterion | Description | Weight (%) |
+|---|---|---:|
+| Form layout | Create labelled name, email and age fields, a Register button and a Listbox using the stated Tkinter layout. | 30 |
+| Registration callback | Read the fields when clicked and append the formatted registration to the existing Listbox contents. | 45 |
+| Empty fields and reset | Do nothing when any field is empty and clear all three fields after a successful registration. | 25 |
+| **Total** | | **100%** |

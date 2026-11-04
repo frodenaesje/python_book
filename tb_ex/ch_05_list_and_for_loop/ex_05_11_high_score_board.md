@@ -51,3 +51,13 @@ Best to worst: [620, 510, 450, 440, 380, 380]
 - Changing an element by index
 - Slicing to take the first three elements
 - The `in` operator for membership
+
+## Assessment criteria
+
+| Criterion | Description | Weight (%) |
+|---|---|---:|
+| Original statistics | Use the stated built-ins to report the original player count, total, extrema and average to one decimal without loops. | 30 |
+| List changes | Append the late score, correct index 0 and remove the disqualified score in the stated order using list operations. | 30 |
+| Ranking | Use sorting and slicing to display the three highest scores and the complete descending ranking. | 25 |
+| List queries | Use count(), index() and membership testing to report the requested facts about the modified list. | 15 |
+| **Total** | | **100%** |

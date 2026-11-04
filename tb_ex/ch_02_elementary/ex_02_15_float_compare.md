@@ -29,3 +29,12 @@ Using math.isclose:  True
 - Floats are stored in binary and are not always exact
 - `==` reports the tiny difference as "not equal"
 - `math.isclose()` asks "close enough?" instead
+
+## Assessment criteria
+
+| Criterion | Description | Weight (%) |
+|---|---|---:|
+| Inputs and sum | Read two numbers and an expected sum as floats and compute the sum. | 25 |
+| Exact comparison | Display the sum and the result of comparing it with the expected value using ==. | 30 |
+| Approximate comparison | Use math.isclose() and display its result alongside the exact comparison, including the stated decimal example. | 45 |
+| **Total** | | **100%** |

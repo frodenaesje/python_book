@@ -385,3 +385,13 @@ To make that practical for any number of people, we need two tools that we have 
 * **loops**, to repeat the same settlement operation instead of writing every possible pair by hand
 
 When we introduce those tools later, we can replace the repetitive code with a much more general solution - without changing the basic settlement logic developed here.
+
+## Assessment criteria
+
+| Criterion | Description | Weight (%) |
+|---|---|---:|
+| Shares and balances | Calculate the total, equal share and signed balances and display them with two decimals. | 25 |
+| Individual status | Use conditions to report who should pay, receive or is already settled, displaying amounts without a negative sign. | 20 |
+| Settlement logic | Use the six separate conditional payment directions, limit each transfer to the unsettled amounts and update both balances after every payment. | 40 |
+| Settlement checks | Demonstrate the stated debtor/recipient scenarios and report no payments when everyone is already settled. | 15 |
+| **Total** | | **100%** |

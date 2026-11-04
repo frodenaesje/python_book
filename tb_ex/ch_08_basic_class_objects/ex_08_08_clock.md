@@ -59,3 +59,12 @@ print(no_leap) # 2021-03-01 00:00:00  (not a leap year)
 - Property validation
 - Cascading increment methods
 - Month length and leap year logic
+
+## Assessment criteria
+
+| Criterion | Description | Weight (%) |
+|---|---|---:|
+| Day increments | Complete inc_day() using the provided month-length helper, handling ordinary days, month ends and leap-year February. | 50 |
+| Month rollover | Complete inc_month() including December-to-January rollover and the call to inc_year(). | 30 |
+| Year increment and cascade | Complete inc_year() and demonstrate the stated complete time/date rollover and February cases using the existing increment chain. | 20 |
+| **Total** | | **100%** |
