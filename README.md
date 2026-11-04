@@ -8,16 +8,23 @@ by Frode Næsje.
 This repository contains companion material for the textbook 
 *Programming in Python — Fundamentals*.
 
+The repository also includes additional exercises that are not in the book.
+These extra exercises include their full exercise text in `tb_ex/`.
+
 ## Structure
 
 - `tb_sc/` — source code examples from the book
 - `tb_qa_en/` — English review questions and answers (full questions in the book)
-- `tb_ex/` — exercise text, start code and solutions to even-numbered exercises
+- `tb_ex/` - assessment criteria for book exercises, full text and criteria for
+  extra exercises, starter code where available, and solutions to even-numbered exercises
 
 ## For Instructors
 
-A separate instructor repository with full solutions and teaching 
-resources (extra exercises, ppt slides all chapters) is available. 
+A separate instructor repository provides full exercise text, assessment
+criteria, reference solutions, additional exercises and PowerPoint lecture slides.
+It also includes ready-to-import multiple-choice question banks for Chapters 1-14:
+QTI ZIP files for Canvas and GIFT files for Moodle, with import instructions.
+
 Contact frode.nasje@gmail.com for access.
 
 ## Downloading the Repository
