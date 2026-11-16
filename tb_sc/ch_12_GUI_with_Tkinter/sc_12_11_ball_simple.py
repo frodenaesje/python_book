@@ -14,6 +14,7 @@ def animate():
     global dx
     canvas.move(oval, dx, 0)
     x0, _, x1, _ = canvas.coords(oval)
+
     if x0 <= 0 or x1 >= 400:
         dx = -dx
     canvas.after(20, animate)

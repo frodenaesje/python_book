@@ -17,8 +17,8 @@ Creates a new list object, but fills it with the same references as the original
 **5. `sort()` vs. `sorted()`**
 `sort()` is a method on the list class that sorts the list in place and returns `None`. `sorted()` is a built-in function that returns a new, sorted list — the original is unchanged.
 
-**6. The iteration variable refers to an element**
-The loop variable `number` refers to each element object; iteration does not copy that object. Rebinding `number` does not replace the list slot. However, mutating a referenced mutable element, such as an inner list, changes the object also visible through the list. Technique 2 (`range(len(...))`) and technique 3 (`enumerate()`) both provide an index, which can be used to modify the list directly via indexing.
+**6. Why is the list not modified when we assign a new value to the iteration variable in `for number in numbers`? Which of the three iteration techniques can we use to replace elements in the list?**
+The loop variable `number` refers to each element object; iteration does not copy that object. Assigning a new value to `number` rebinds that variable, but does not replace the reference stored in the list. Technique 2 (`range(len(numbers))`) and technique 3 (`enumerate(numbers)`) both provide an index, so we can replace an element using `numbers[index] = new_value`. This is different from mutating a referenced mutable element: changing an inner list through `number` changes the object also visible through `numbers`.
 
 **7. `list(text)` vs. `[text]`**
 `list(text)` iterates over the string character by character and creates a list of single characters: `["p", "y", "t", "h", "o", "n"]`. `[text]` creates a list with the string as a single element: `["python"]`.

@@ -42,7 +42,7 @@ def create_gui():
 	sb_scroll = ttk.Scrollbar(
 		fr_listbox, orient=tk.VERTICAL)
 	# The Listbox requests a default width of 20 characters.
-    # fill=tk.BOTH lets it stretch to fill the available width in fr_listbox. 
+	# fill=tk.BOTH lets it stretch to fill the available width in fr_listbox.
 	lbx_countries = tk.Listbox(
 		fr_listbox, height=8,
 		yscrollcommand=sb_scroll.set,

@@ -5,6 +5,7 @@ import random
 class Ball:
     def __init__(self, canvas, color, size, dx, dy):
         self.canvas = canvas
+        self.color = color
         self.size = size
         self.dx = dx
         self.dy = dy
