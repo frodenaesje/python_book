@@ -17,11 +17,11 @@ def save_persons(persons, filename):
     try:
         with open(filename, 'wb') as f:
             pickle.dump(persons, f)
-        print(f"✓ Saved {len(persons)} persons to {filename}")
+        print(f"Saved {len(persons)} persons to {filename}")
     except IOError as e:
-        print(f"✗ Error saving file: {e}")
+        print(f"Error saving file: {e}")
     except Exception as e:
-        print(f"✗ Unexpected error: {e}")
+        print(f"Unexpected error: {e}")
 
 # ========== LOAD (UNPICKLE) ==========
 def load_persons(filename):
@@ -29,16 +29,16 @@ def load_persons(filename):
     try:
         with open(filename, 'rb') as f:
             persons = pickle.load(f)
-        print(f"✓ Loaded {len(persons)} persons from {filename}")
+        print(f"Loaded {len(persons)} persons from {filename}")
         return persons
     except FileNotFoundError:
-        print(f"✗ File {filename} not found")
+        print(f"File {filename} not found")
         return []
     except (pickle.UnpicklingError, EOFError):
-        print(f"✗ Error: {filename} is corrupted or not a valid pickle file")
+        print(f"Error: {filename} is corrupted or not a valid pickle file")
         return []
     except Exception as e:
-        print(f"✗ Unexpected error loading file: {e}")
+        print(f"Unexpected error loading file: {e}")
         return []
 
 def list_persons(persons):
@@ -56,24 +56,24 @@ def add_person(persons):
     try:
         name = input("Name: ").strip()
         if not name:
-            print("✗ Name cannot be empty")
+            print("Name cannot be empty")
             return
         age = int(input("Age: "))
         if age < 0 or age > 150:
-            print("✗ Age must be between 0 and 150")
+            print("Age must be between 0 and 150")
             return
         person = Person(name, age)
         persons.append(person)
-        print(f"✓ Added {person}")
+        print(f"Added {person}")
     except ValueError:
-        print("✗ Age must be a number")
+        print("Age must be a number")
     except KeyboardInterrupt:
-        print("\n✗ Cancelled")
+        print("\nCancelled")
 
 def delete_person(persons):
     """Delete a person by index"""
     if not persons:
-        print("✗ No persons to delete")
+        print("No persons to delete")
         return
     
     list_persons(persons)
@@ -81,11 +81,11 @@ def delete_person(persons):
         index = int(input("\nIndex to delete: "))
         if 0 <= index < len(persons):
             deleted = persons.pop(index)
-            print(f"✓ Deleted {deleted}")
+            print(f"Deleted {deleted}")
         else:
-            print(f"✗ Index {index} out of range")
+            print(f"Index {index} out of range")
     except ValueError:
-        print("✗ Invalid index")
+        print("Invalid index")
 
 def demo():
 
@@ -151,16 +151,16 @@ def interactive_menu():
                 save_persons(persons, filename)
             
             else:
-                print("✗ Unknown command")
+                print("Unknown command")
         
         except KeyboardInterrupt:
-            print("\n✗ Interrupted. Exiting...")
+            print("\nInterrupted. Exiting...")
             break
         except EOFError:
-            print("\n✗ End of input. Exiting...")
+            print("\nEnd of input. Exiting...")
             break
         except Exception as e:
-            print(f"✗ Unexpected error: {e}")
+            print(f"Unexpected error: {e}")
 
 
 # ========== MAIN ==========

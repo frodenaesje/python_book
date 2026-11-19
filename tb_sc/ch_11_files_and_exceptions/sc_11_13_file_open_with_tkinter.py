@@ -65,6 +65,6 @@ except Exception as e:
 # Clean up - destroy tkinter root window
 root.destroy()
 
-print("\n✓ File copy completed successfully!")
+print("\nFile copy completed successfully!")
 print(f"Copied from: {source_file}")
 print(f"Copied to:   {dest_file}")

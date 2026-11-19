@@ -186,9 +186,9 @@ test_files = ['sample.txt', 'nonexistent.txt']  # Regular file, missing file
 for filename in test_files:
     success, content, error = read_file_safely(filename)
     if success:
-        print(f"✓ '{filename}': Read {len(content)} characters")
+        print(f"'{filename}': Read {len(content)} characters")
     else:
-        print(f"✗ '{filename}': {error}")
+        print(f"'{filename}': {error}")
 
 print("\n=== EXCEPTION HANDLING BEST PRACTICES ===")
 print("1. Always catch specific exceptions when possible")

@@ -20,12 +20,12 @@ These extra exercises include their full exercise text in `tb_ex/`.
 
 ## For Instructors
 
-A separate instructor repository provides full exercise text, assessment
+A separate [instructor repository](https://github.com/frodenaesje-books/python_book_instructor) provides full exercise text, assessment
 criteria, reference solutions, additional exercises and PowerPoint lecture slides.
 It also includes ready-to-import multiple-choice question banks for Chapters 1-14:
 QTI ZIP files for Canvas and GIFT files for Moodle, with import instructions.
 
-Contact frode.nasje@gmail.com for access.
+Contact frodenaesje@gmail.com for access.
 
 ## Downloading the Repository
 

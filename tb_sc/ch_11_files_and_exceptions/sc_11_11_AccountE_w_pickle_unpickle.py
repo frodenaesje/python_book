@@ -132,9 +132,9 @@ class AccountE:
         try:
             with open(filename, 'wb') as f:
                 pickle.dump(self, f)
-            print(f"✓ Account {self._account_no} saved to {filename}")
+            print(f"Account {self._account_no} saved to {filename}")
         except Exception as e:
-            print(f"✗ Error saving account: {e}")
+            print(f"Error saving account: {e}")
     
     @staticmethod
     def load_from_file(filename):
@@ -142,13 +142,13 @@ class AccountE:
         try:
             with open(filename, 'rb') as f:
                 account = pickle.load(f)
-            print(f"✓ Account {account.account_no} loaded from {filename}")
+            print(f"Account {account.account_no} loaded from {filename}")
             return account
         except FileNotFoundError:
-            print(f"✗ File {filename} not found")
+            print(f"File {filename} not found")
             return None
         except Exception as e:
-            print(f"✗ Error loading account: {e}")
+            print(f"Error loading account: {e}")
             return None
     
     def __repr__(self):
@@ -240,7 +240,7 @@ def interactive_menu():
                 start_balance = float(input("Starting balance: "))
                 interest = float(input("Interest rate (%): "))
                 account = AccountE(cust_id, account_no, start_balance, interest)
-                print(f"✓ Account {account_no} created")
+                print(f"Account {account_no} created")
             
             elif choice == "l":
                 # Load account from file
@@ -252,32 +252,32 @@ def interactive_menu():
             
             elif choice == "d":
                 if not account:
-                    print("✗ No active account. Create or load an account first.")
+                    print("No active account. Create or load an account first.")
                     continue
                 amount = float(input("Amount to deposit: "))
                 account.deposit(amount)
-                print(f"✓ Deposited ${amount:.2f}")
+                print(f"Deposited ${amount:.2f}")
                 print(f"  New balance: ${account.balance:.2f}")
             
             elif choice == "w":
                 if not account:
-                    print("✗ No active account. Create or load an account first.")
+                    print("No active account. Create or load an account first.")
                     continue
                 amount = float(input("Amount to withdraw: "))
                 account.withdraw(amount)
-                print(f"✓ Withdrew ${amount:.2f}")
+                print(f"Withdrew ${amount:.2f}")
                 print(f"  New balance: ${account.balance:.2f}")
             
             elif choice == "b":
                 if not account:
-                    print("✗ No active account. Create or load an account first.")
+                    print("No active account. Create or load an account first.")
                     continue
                 print(f"Balance: ${account.balance:.2f}")
                 print(f"Interest rate: {account.interest}%")
             
             elif choice == "t":
                 if not account:
-                    print("✗ No active account. Create or load an account first.")
+                    print("No active account. Create or load an account first.")
                     continue
                 if account._transactions:
                     account.print_transactions()
@@ -286,29 +286,29 @@ def interactive_menu():
             
             elif choice == "i":
                 if not account:
-                    print("✗ No active account. Create or load an account first.")
+                    print("No active account. Create or load an account first.")
                     continue
                 monthly_interest = account.calculate_monthly_interest()
                 account.add_monthly_interest()
-                print(f"✓ Added monthly interest: ${monthly_interest:.2f}")
+                print(f"Added monthly interest: ${monthly_interest:.2f}")
                 print(f"  New balance: ${account.balance:.2f}")
             
             elif choice == "save":
                 if not account:
-                    print("✗ No active account. Create or load an account first.")
+                    print("No active account. Create or load an account first.")
                     continue
                 filename = f"account_{account.account_no}.pkl"
                 account.save_to_file(filename)
             
             else:
-                print("✗ Unknown command")
+                print("Unknown command")
         
         except (NegativeDepositError, InsufficientFundsError, BankAccountError) as e:
-            print(f"✗ {e}")
+            print(f"{e}")
         except ValueError as e:
-            print(f"✗ Invalid input: {e}")
+            print(f"Invalid input: {e}")
         except Exception as e:
-            print(f"✗ Unexpected error: {e}")
+            print(f"Unexpected error: {e}")
 
 
 # ========== DEMO: Save and load multiple accounts ==========

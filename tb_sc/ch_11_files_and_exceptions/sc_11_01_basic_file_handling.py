@@ -12,7 +12,7 @@ file.write("Hello World!\n")
 file.write("This is line 2.\n") 
 file.write("This is line 3.")
 file.close()
-print("✓ Created sample.txt with write() method")
+print("Created sample.txt with write() method")
 
 # Read back to verify
 file = open('sample.txt', 'r')
@@ -22,12 +22,19 @@ print("Content of sample.txt after writing:")
 print(content)
 print(repr(content))
 
+# Read the same file using a context manager.
+with open('sample.txt', 'r') as file:
+    content = file.read()
+
+# The file is now closed, even if an exception occurs inside the with block.
+print(content)
+
 # 2. Write multiple lines at once
 lines = ["First line\n", "Second line\n", "Third line\n"]
 file = open('multi_lines.txt', 'w')
 file.writelines(lines)
 file.close()
-print("✓ Created multi_lines.txt with writelines() method")
+print("Created multi_lines.txt with writelines() method")
 
 # Read back to verify
 file = open('multi_lines.txt', 'r')
@@ -42,7 +49,7 @@ file = open('sample.txt', 'a')
 file.write("\nAppended line 4")
 file.write("\nAppended line 5")
 file.close()
-print("✓ Appended to sample.txt")
+print("Appended to sample.txt")
 
 print("\n=== READING FILES - DIFFERENT METHODS ===")
 

@@ -44,11 +44,11 @@ def save_persons(persons, filename):
         
         with open(filename, 'w', encoding='utf-8') as f:
             json.dump(data, f, indent=2, ensure_ascii=False)
-        print(f"✓ Saved {len(persons)} persons to {filename}")
+        print(f"Saved {len(persons)} persons to {filename}")
     except IOError as e:
-        print(f"✗ Error saving file: {e}")
+        print(f"Error saving file: {e}")
     except Exception as e:
-        print(f"✗ Unexpected error: {e}")
+        print(f"Unexpected error: {e}")
 
 
 # ========== LOAD (JSON) ==========
@@ -61,19 +61,19 @@ def load_persons(filename):
         
         # Convert dictionaries back to Person objects
         persons = [Person.from_dict(item) for item in data]
-        print(f"✓ Loaded {len(persons)} persons from {filename}")
+        print(f"Loaded {len(persons)} persons from {filename}")
         return persons
     except FileNotFoundError:
-        print(f"✗ File {filename} not found")
+        print(f"File {filename} not found")
         return []
     except json.JSONDecodeError:
-        print(f"✗ Error: {filename} is corrupted or not a valid JSON file")
+        print(f"Error: {filename} is corrupted or not a valid JSON file")
         return []
     except (KeyError, TypeError) as e:
-        print(f"✗ Error: Invalid data structure in {filename}")
+        print(f"Error: Invalid data structure in {filename}")
         return []
     except Exception as e:
-        print(f"✗ Unexpected error loading file: {e}")
+        print(f"Unexpected error loading file: {e}")
         return []
 
 
@@ -97,19 +97,19 @@ def add_person(persons):
     try:
         name = input("Name: ").strip()
         if not name:
-            print("✗ Name cannot be empty")
+            print("Name cannot be empty")
             return
         age = int(input("Age: "))
         if age < 0 or age > 150:
-            print("✗ Age must be between 0 and 150")
+            print("Age must be between 0 and 150")
             return
         person = Person(name, age)
         persons.append(person)
-        print(f"✓ Added {person}")
+        print(f"Added {person}")
     except ValueError:
-        print("✗ Age must be a number")
+        print("Age must be a number")
     except KeyboardInterrupt:
-        print("\n✗ Cancelled")
+        print("\nCancelled")
 
 
 # ========== DELETE PERSON ==========
@@ -117,7 +117,7 @@ def add_person(persons):
 def delete_person(persons):
     """Delete a person by index"""
     if not persons:
-        print("✗ No persons to delete")
+        print("No persons to delete")
         return
     
     list_persons(persons)
@@ -125,11 +125,11 @@ def delete_person(persons):
         index = int(input("\nIndex to delete: "))
         if 0 <= index < len(persons):
             deleted = persons.pop(index)
-            print(f"✓ Deleted {deleted}")
+            print(f"Deleted {deleted}")
         else:
-            print(f"✗ Index {index} out of range")
+            print(f"Index {index} out of range")
     except ValueError:
-        print("✗ Invalid index")
+        print("Invalid index")
 
 
 # ========== VIEW RAW JSON ==========
@@ -142,7 +142,7 @@ def view_json_file(filename):
         print(f"\nRaw JSON content of {filename}:")
         print(content)
     except FileNotFoundError:
-        print(f"✗ File {filename} not found")
+        print(f"File {filename} not found")
 
 
 # ========== DEMO ==========
@@ -188,7 +188,7 @@ def demo():
     print("\n6. Deleting person at index 1...")
     if len(loaded_persons) > 1:
         deleted = loaded_persons.pop(1)
-        print(f"✓ Deleted {deleted}")
+        print(f"Deleted {deleted}")
         list_persons(loaded_persons)
     
     # Save final version
@@ -239,16 +239,16 @@ def interactive_menu():
                 view_json_file(filename)
             
             else:
-                print("✗ Unknown command")
+                print("Unknown command")
         
         except KeyboardInterrupt:
-            print("\n✗ Interrupted. Exiting...")
+            print("\nInterrupted. Exiting...")
             break
         except EOFError:
-            print("\n✗ End of input. Exiting...")
+            print("\nEnd of input. Exiting...")
             break
         except Exception as e:
-            print(f"✗ Unexpected error: {e}")
+            print(f"Unexpected error: {e}")
 
 
 # ========== MAIN ==========
